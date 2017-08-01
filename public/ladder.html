@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myController">
+	<head>
+	  <title>Bootstrap Example</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	  <script src="teamscript.js"></script>
+	</head>
+	<body>
+	<form align="center" action="./">
+	<button>Back to Tipping</button>
+</form>
+</div>
+		<div class="container" style="background-color:#f2f2f2">
+		<h1 class="text-center">AFL Ladder</h1>
+			<div align = "center" class="row">
+				<div align="center" class="col-md-12 col-xs-12">
+					<table ng-controller="myController" class="table table-bordered" style="background-color:white;">
+						<thead>
+							<tr align="center">
+								<td><b>Position</b></td>
+								<td><b>Team</b></td>
+								<td><b>Plays</b></td>
+								<td><b>Wins</b></td>
+								<td><b>Draws</b></td>
+								<td><b>Losses</b></td>
+								<td><b>Percentage</b></td>
+								<td><b>Points</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="t in teams | orderBy: 'position' ">
+								<td> {{ t.position }} </td>
+								<td> {{ t._id }} </td>
+								<td> {{ t.gamesPlayed }} </td>
+								<td> {{ t.gamesWon }} </td>
+								<td> {{ t.gamesDrawed }} </td>
+								<td> {{ t.gamesLost }} </td>
+								<td> {{ t.percentage }}%</td>
+								<td> {{ t.points }} </td>
+							</tr>
+						</tbody>
+					</table>
+		</div>
+	</body>
+</html>
