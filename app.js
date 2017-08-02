@@ -62,6 +62,30 @@ request(url, function(err, response, html) {
 	});
 })
 // Cheerio stuff ended
+var nodemailer = require('nodemailer');
+
+let transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'gunblademate@gmail.com',
+    pass: 'disablednotmyrealpasswordforreasons'
+  },
+  tls: {
+    rejectUnauthorized: false
+   }
+});
+let HelperOptions = {
+  form: '"Andrew Kuzminsky" <gunblademate@gmail.com',
+  to: 'kuzminskyandrew@gmail.com',
+  subject: 'Hello, world!',
+  text: 'EHJHJHHHHH!'
+};
+transporter.sendMail(HelperOptions, (error, info) => {
+  if(error) {
+    return console.log(error);
+  }
+  console.log("message was sent! " + info);
+});
 
 // Post, Get, Delete
 // MATCH
@@ -80,8 +104,6 @@ app.listen(process.env.PORT || 3000, function () {
   console.log('App.js LOADED');
 });
 // Localhost solution
-/*
-app.listen(3000, function() {
-  console.log('STARTED ON LOCALHOST PORT 3000')
-})
-*/
+//app.listen(3000, function() {
+//  console.log('STARTED ON LOCALHOST PORT 3000')
+//})

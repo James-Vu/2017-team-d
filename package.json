@@ -1,15 +1,19 @@
 {
   "name": "js",
   "version": "1.0.0",
-  "description": "Simple todo application",
+  "description": "Footy Tippy Competition APP",
   "main": "app.js",
   "dependencies": {
     "angular": "^1.6.4",
     "body-parser": "^1.17.2",
+    "cheerio": "^1.0.0-rc.2",
     "express": "^4.15.3",
     "method-override": "^2.3.9",
     "mongoose": "^4.10.2",
-    "morgan": "^1.8.2"
+    "morgan": "^1.8.2",
+    "nodemailer": "^4.0.1",
+    "request": "^2.81.0",
+    "xoauth2": "^1.2.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -17,5 +21,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": []
 }
