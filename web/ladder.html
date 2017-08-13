@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="ladderApp" ng-controller="ladderController">
+	<head>
+	  <title>Bootstrap Example</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	  <script src="js/ladderScript.js"></script>
+	</head>
+	<body>
+		<!--Navbar-->
+		<nav class="navbar navbar-default container" style="background-color:#e6e4e2">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<img src="LTU.png" width="440px" height="100px"></img>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle Navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse" id="navbar1">
+					<ul class="nav navbar-nav">
+						<li style="padding-left:90px;padding-right:90px;"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
+						<li style="padding-left:90px;padding-right:90px;"><a href="users.html">View Users</a></li>
+						<li align="center" class="active" style="width:260px"><a href="ladder.html">Ladder</a></li>
+						<li style="padding-left:90px;padding-right:90px"><a href="#">Help</a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!--END Navbar-->
+</div>
+		<div class="container" style="background-color:#f2f2f2">
+			<br>
+			<div align = "center" class="row">
+				<div align="center" class="col-md-12 col-xs-12">
+					<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
+						<thead>
+							<tr align="center">
+								<td><b>Position</b></td>
+								<td><b>Team</b></td>
+								<td><b>Plays</b></td>
+								<td><b>Wins</b></td>
+								<td><b>Draws</b></td>
+								<td><b>Losses</b></td>
+								<td><b>Percentage</b></td>
+								<td><b>Points</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="t in teams | orderBy: 'position' ">
+								<td> {{ t.position }} </td>
+								<td> {{ t._id }} </td>
+								<td> {{ t.gamesPlayed }} </td>
+								<td> {{ t.gamesWon }} </td>
+								<td> {{ t.gamesDrawed }} </td>
+								<td> {{ t.gamesLost }} </td>
+								<td> {{ t.percentage }}%</td>
+								<td> {{ t.points }} </td>
+							</tr>
+						</tbody>
+					</table>
+		</div>
+	</body>
+</html>

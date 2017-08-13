@@ -1,9 +1,6 @@
 // This file handles all the database connecting we need to do.
-// it also handles any mongoose Schema definitions (pretty much sql table definitions)
-
 var mongoose = require('mongoose');
-
-// Schema, with attributes & collection name such as 'team' not 'teams'
+// Make a team schema, with an _id, isElimianted and tell mongoose the collection name = 'team' not 'teams'
 var Match = new mongoose.Schema({
   roundNo: { type: Number },
   gameNo: { type: Number },
@@ -51,12 +48,9 @@ mongoose.model('Match', Match);
 mongoose.model('User', User);
 mongoose.model('UserTips', UserTips);
 mongoose.model('Team', Team);
-
-// We then connect to our mongoDB
-// Database Host on the Cloud
+// We then connect to our mongoDB called mongoUsers
 mongoose.connect('mongodb://teamd2017project:testpassword@cluster0-shard-00-00-a0wld.mongodb.net:27017,cluster0-shard-00-01-a0wld.mongodb.net:27017,cluster0-shard-00-02-a0wld.mongodb.net:27017/tippingdb?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin');
-
-// Database on the Localhost
+// This is all changeable when we connect to a proper database.
 //mongoose.connect('mongodb://localhost/tippingdb');
-// Print to console that this file has been run. successful or not.
-console.log('DB.JS LOADED');
+mongoose.Promise = global.Promise; // fixes a warning message
+console.log(' We are now connected ');

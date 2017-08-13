@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myController" lang="en">
+	<head>
+		<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+	  <title>Bootstrap Example</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="script.js"></script>
+		<style>
+			input[type='radio'] {
+				transform:scale(1.5);
+			}
+		</style>
+	</head>
+	<body>
+		<!--Title-->
+			<h1 align="center">Tipping example with Data - Round 1</h1><br>
+			<a href="users.html"><p align="center">View Users</p></a>
+			<a href="ladder.html"><p align="center">View Ladder</p></a><br>
+			
+		<!--Navbar-->	
+		<nav class="navbar navbar-default container">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				</div>
+			
+				<div class="collapse navbar-collapse" id="navbar1">
+				  <ul class="nav navbar-nav">
+					<li align="center" class="active" style="width:260px"><a href="#">Tipping<span class="sr-only">(current)</span></a></li>
+					<li style="padding-left:90px; padding-right:90px"><a href="#">Competitions</a></li>
+					<li style="padding-left:90px; padding-right:90px"><a href="#">Rewards</a></li>
+					<li style="padding-left:90px; padding-right:90px"><a href="#">Help</a></li>
+				  </ul>
+				</div>
+			</div>
+		</nav>
+		
+		<div  ng-repeat="m in matches" class="container" style="background-color:#f2f2f2; padding-top:15px;">
+			<!--Match-->
+						<form>
+					<fieldset id="{{m.gameNo}}">
+			<div class="row">
+
+				<!--Section for checkbox 1-->
+				<div class="col-md-2 col-xs-2" align="center" style="padding-top:60px">
+				</div>
+
+				<!--Section for all information about the match-->
+				<div class="col-md-8 col-xs-8">
+					<table class="table table-bordered" style="background-color:white">
+						<tr>
+							<!--Left team info-->
+							<td align="center" class="col-md-3"><br>
+								<img src="{{m.homeTeam}}.png" class="img-responsive" alt="{{ m.awayTeam }}" width="100" height="150">
+								<p style="font-size:17px"><b> {{ m.homeTeam }}</b></p>
+								<p style="font-size:17px"> ${{ m.homeOdds | number : 2}} </p>
+								<input type="radio" name="{{m.gameNo}}"></input>
+							</td>
+							<!--Match information-->
+							<td align="center" class="col-md-6"><br><br>
+								<p style="font-size:17px"> Date: {{ m.matchDate | date : 'MMM d, y h:mm:ss a' : '+0'}}</p>
+								<p style="font-size:17px"> Location: {{ m.matchLocation }}</p>
+							</td>
+							<!--Right team info-->
+							<td align="center" class="col-md-3"><br>
+								<img src="{{ m.awayTeam }}.png" class="img-responsive" alt="{{ m.awayTeam }}" width="100" height="150">
+								<p style="font-size:17px"><b> {{ m.awayTeam }}</b></p>
+								<p style="font-size:17px"> ${{ m.awayOdds | number : 2 }} </p>
+								<input type="radio" name="{{m.gameNo}}"></input>
+							</td>
+						</tr>
+					</div>
+						<!--Drop down box-->
+						<tr align="center">
+							<td colspan="3" style="font-size:20px">
+								<button type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-target="#{{m.gameNo}}drop">
+									<span class="glyphicon glyphicon-collapse-down"></span>
+								</button>
+								<div id="{{m.gameNo}}drop" class="col-md-12 col-xs-12 collapse">
+									<div class="col-md-4 col-xs-4" align="left" style="font-size:15px">
+										<p>12th</p>
+										<p>L W W L L</p>
+										<p>Fremantle</p>
+										<p>North Melbourne</p>
+										<p>GWS Giants</p>
+										<p>Gold Coast Suns</p>
+										<p>Richmond</p>
+									</div>
+									<div class="col-md-4 col-xs-4" align="center" style="font-size:15px">
+										<p>Ladder position</p>
+										<p>Last 5 results</p>
+										<p>Next 5 matches</p>
+									</div>
+									<div class="col-md-4 col-xs-4" align="right" style="font-size:15px">
+										<p>1st</p>
+										<p>L L W W W</p>
+										<p>Brisbane</p>
+										<p>Fremantle</p>
+										<p>Geelong</p>
+										<p>St Kilda</p>
+										<p>Hawthorn</p>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!--Section for checkbox 2-->
+				<div class="col-md-2 col-xs-2" align="center" style="padding-top:60px">
+				</div>
+				</fieldset>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

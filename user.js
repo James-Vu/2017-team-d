@@ -1,52 +1,45 @@
+// Heres where things get messy
+// We're defining all of our functions that we can perform with ---> users <---
+// You could split up teams, matches etc into seperate .js files
+
 require('mongoose').model('User');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
-// Here is a method which creates users
-// upon successful creation they are saved to the database and a message displayed.
+// For the purpose of a sample, we can make users.
 module.exports = {
-  createUser: function (req, res) {
-    var person = req.body; // gets the body of the request sent to the
-                           // method from the front end
-    // Make a new user object
-    new User({ _id: person.id, password: person.password , email: person.email,
-    favouriteTeam: person.favouriteTeam, currentWins: person.currentWins,
-    currentLosses: person.currentLosses, currentDraws: person.currentDraws,
-    userGroup: person.userGroup, emailOptOut: person.emailOptOut})
-
-    // Save the user to the database
+  createTeams: function (req, res) {
+    var person = req.body;
+    new Match({ id: person.id, isEliminated: person.isEliminated })
       .save(function (err) {
         if (err) {
           res.status(504);
           res.end(err);
-        }
-        else {
-          console.log('user made & saved to db');
+        } else {
+          console.log('team saved');
           res.end();
         }
       });
   },
-// This method gets ALL users in our databases USER collection (from a query)
+// This allows us to see all teams
+// parameters = request, response, next(unsure about this one)
+// we query the team model and find all
 // some error handling is done
 // if no errors we then run a for loop, logging all records in console.
-// so we can see what is being pulled.
   seeUsers: function (req, res, next) {
     User.find({}, function (err, docs) {
       if (err) {
         res.status(504);
         res.end(err);
-      }
-      else {
+      } else {
         for (var i = 0; i < docs.length; i++) {
          console.log('Name :', docs[i]._id, ', Fav:', docs[i].favouriteTeam);
         }
-        res.end(JSON.stringify(docs)); // respond with the content of doc
+        res.end(JSON.stringify(docs));
       }
     });
-  }
-
-// A delete method, it's not used currently so you can ignore it.
-/*
+  },
+// This isn't used at all yet.
   delete: function( req, res, next) {
     console.log(req.params.id);
     User.find({ _id: req.params.id}, function(err) {
@@ -64,5 +57,4 @@ module.exports = {
       }
     });
   }
-  */
 }
