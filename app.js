@@ -16,10 +16,6 @@ var team = require('./team'); // loading team.js
 var user = require('./user'); // loading user.js
 var userTips = require('./userTips'); // loading userTips.js
 
-// Directories
-app.use(express.static(__dirname + '/images')); // all image assets go here
-app.use(express.static(__dirname + '/web')); // all html & angularJS assets go here
-
 // Force HTTPS
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
@@ -32,6 +28,10 @@ app.get('*',function(req,res,next){
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/web/tipping.html');
 });
+
+// Directories
+app.use(express.static(__dirname + '/images')); // all image assets go here
+app.use(express.static(__dirname + '/web')); // all html & angularJS assets go here
 
 //var user = "user1";
 //var pass = "test";
