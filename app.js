@@ -20,11 +20,18 @@ var userTips = require('./userTips'); // loading userTips.js
 app.use(express.static(__dirname + '/images')); // all image assets go here
 app.use(express.static(__dirname + '/web')); // all html & angularJS assets go here
 
-// When the server starts, respond by sending localhost:3000 tipping.html
+// Force HTTPS
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect('https://lttc.herokuapp.com'+req.url)
+  else
+    next() /* Continue to other routes if we're not redirecting */
+})
+
+// Feed our webserver a page to display when it starts (This is the homepage)
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/web/tipping.html');
 });
-
 
 //var user = "user1";
 //var pass = "test";
@@ -97,7 +104,7 @@ request(url, function(err, response, html) {
 	});
 })
 
-// Post, Get, Deletem requests
+// Post, Get, Delete requests
 // MATCH
 app.post('/match', match.createTeams); // when POST is called to team, we create a team
 app.get('/match', match.seeMatches); // when GET is called to team, we retrieve ALL teams

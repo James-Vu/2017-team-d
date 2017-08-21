@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="tippingApp" ng-controller="tippingController" lang="en">
+<html ng-app="userApp" ng-controller="userController" lang="en">
 	<head>
 	  <title>La Trobe Footy Tipping</title>
 	  <meta charset="utf-8">
@@ -11,7 +11,7 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-		<script src="js/tippingScript.js"></script>
+		<script src="js/userScript.js"></script>
 	</head>
 
 	<body>
@@ -25,17 +25,16 @@
 						<span class="icon-bar"></span>
 					</button>
 				</div>
-				<!--Just putting here for now, gonna mess with positioning later-->
-				<a>Username</a>
-				|
-				<a>Sign out</a>
+
 				<div class="collapse navbar-collapse" id="navbar1">
 					<ul align="center" class="nav navbar-nav">
-						<li align="left"><img src="LTU-Footy.png" width="300px" style="margin-left:-1em;margin-right:15px"></img></li>
-						<li style="width:260px;margin-top:0.7em"><a href="tipping.html">Tipping</a></li>
-						<li style="width:260px;margin-top:0.7em"><a href="users.html">View Users<span class="sr-only">(current)</span></a></li>
-						<li style="width:260px;margin-top:0.7em"><a href="ladder.html">Ladder</a></li>
-						<li class="active" style="width:260px;margin-top:0.7em"><a href="ranking.html">Ranking</a></li>
+						<li align="left"><a href="tipping.html" style="padding:0px;"><img src="LTU-Footy.png" width="300px" style="margin-left:-1em;margin-right:15px"></img></a></li>
+						<li style="width:220px;margin-top:0.7em"><a href="tipping.html">Tipping</a></li>
+						<li style="width:220px;margin-top:0.7em"><a href="users.html">View Users<span class="sr-only">(current)</span></a></li>
+						<li style="width:220px;margin-top:0.7em"><a href="ladder.html">Ladder</a></li>
+						<li class="active" style="width:220px;margin-top:0.7em"><a href="ranking.html">Ranking</a></li>
+						<li style="margin-left:0.7em;margin-top:0.7em"><a>TestUser</a><li>
+						<li style="margin-top:0.7em"><a>Sign out</a></li>
 					</ul>
 				</div>
 		</nav>
@@ -53,20 +52,14 @@
 							<th>Total tips</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody ng-repeat="u in users">
 						<tr>
-							<td>7</td>
-							<td>Logged in user at the top if possible</td>
-							<td>7</td>
-							<td>6.6</td>
-							<td>69</td>
+							<td> N/A </td> <!-- Rank (Calculate Rank based on points?) -->
+							<td> {{ u._id }}</td> <!-- Username -->
+							<td>7</td> <!-- Last Round -->
+							<td>6.6</td> <!-- Average Tips -->
+							<td>69</td> <!-- Total Tips -->
 						</tr>
-						<tr>
-							<td>1</td>
-							<td>Then the rest of the people in order of ranking</td>
-							<td>8</td>
-							<td>7.8</td>
-							<td>90</td>
 					</tbody>
 				</table>
 			</div>
