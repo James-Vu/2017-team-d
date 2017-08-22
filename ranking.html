@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="tippingApp" ng-controller="tippingController" lang="en">
+<html ng-app="userApp" ng-controller="userController" lang="en">
 	<head>
 	  <title>La Trobe Footy Tipping</title>
 	  <meta charset="utf-8">
@@ -11,81 +11,75 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-		<script src="js/tippingScript.js"></script>
+		<script src="js/userScript.js"></script>
 	</head>
 
 	<body>
-		<!--Navbar -->
-		<nav class="navbar navbar-default" style="background-color:#24292E">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					
-					<!--
-					<a>Username</a>
-					|
-					<a>Sign out</a>
-					-->
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle Navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-				</div>
+		<div class="container">
+			<div id="header">
+			 <!--Navbar-->
+				<nav class="navbar navbar-default" style="background-color:#24292E">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle Navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
 
-				<div class="collapse navbar-collapse" id="navbar1">
-					<ul class="nav navbar-nav">
-						<li align="center" style="padding:10px"><img src="LTU.png"></img></li>
-						<li align="center" class="active" style="width:260px"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
-						<li style="padding-left:40px;padding-right:40px"><a href="users.html">View Users</a></li>
-						<li style="padding-left:40px;padding-right:40px"><a href="ladder.html">Ladder</a></li>
-						<li style="padding-left:40px;padding-right:40px"><a href="#">Help</a></li>
-					</ul>
-				</div>
+					<div class="collapse navbar-collapse" id="navbar1">
+						<ul align="center" class="nav navbar-nav">
+							<li align="left"><a href="tipping.html" style="padding:0px;"><img src="LTU-Footy.png" width="300px" style="margin-left:-1em;margin-right:15px"></img></a></li>
+							<li class="active" style="width:220px;margin-top:0.7em"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
+							<li style="width:220px;margin-top:0.7em"><a href="users.html">View Users</a></li>
+							<li style="width:220px;margin-top:0.7em"><a href="ladder.html">Ladder</a></li>
+							<li style="width:220px;margin-top:0.7em"><a href="ranking.html">Ranking</a></li>
+							<li style="margin-left:0.7em;margin-top:0.7em"><a>TestUser</a><li>
+							<li style="margin-top:0.7em"><a>Sign out</a></li>
+						</ul>
+					</div>
+				</nav>
+			<!--END Navbar-->
 			</div>
-		</nav>
-		<!--END Navbar-->
 
-		<div class="container" style="background-color:#e6e4e2; padding:0">
-			<div align="center" class="col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1" style="padding: 0"></br>
-				<table class="table table-hover table-bordered" style="background-color:white">
-					<thead>
-						<tr>
-							<th>Rank</th>
-							<th>Username</th>
-							<th>Last round</th>
-							<th>Avg tips</th>
-							<th>Total tips</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>7</td>
-							<td>Logged in user at the top if possible</td>
-							<td>7</td>
-							<td>6.6</td>
-							<td>69</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>Then the rest of the people in order of ranking</td>
-							<td>8</td>
-							<td>7.8</td>
-							<td>90</td>
-					</tbody>
-				</table>
-			</div>
+			<div id="body">
+				 <div class="container" style="background-color:#e6e4e2; padding:0">
+					<div align="center" class="col-md-10 col-xs-10 col-md-offset-1 col-xs-offset-1" style="padding: 0"></br>
+						<table class="table table-hover table-bordered" style="background-color:white">
+							<thead>
+								<tr>
+									<th>Rank</th>
+									<th>Username</th>
+									<th>Last round</th>
+									<th>Avg tips</th>
+									<th>Total tips</th>
+								</tr>
+							</thead>
+							<tbody ng-repeat="u in users">
+								<tr>
+									<td> N/A </td> <!-- Rank (Calculate Rank based on points?) -->
+									<td> {{ u._id }}</td> <!-- Username -->
+									<td>7</td> <!-- Last Round -->
+									<td>6.6</td> <!-- Average Tips -->
+									<td>69</td> <!-- Total Tips -->
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			 </div>
+		 </div>
+<!-- Footer -->
+<div>
+	<footer id="footer" class="footer" style="background-color:#24292E;">
+		<div align="center" style="padding-top: 20px;">
+			<a>About us</a> |
+			<a>Privacy Policy</a> |
+			<a>La Trobe Website</a> |
+			<a>Contact Us</a>
 		</div>
-		<!--Footer-->
-	<div>
-	 	<footer id="footer" class="footer" style="background-color:#24292E; padding:25px">
-			<div align="center">
-				<a>About us</a> | 
-				<a>Privacy Policy</a> | 
-				<a>La Trobe Website</a> |
-				<a>Contact Us</a> 
-			</div>
-		</footer>
-	 </div>
+	</footer>
+ </div>
 	</body>
 </html>
