@@ -22,8 +22,8 @@ app.controller("ladderController", function($scope, $http)
 		var connection = $http(
 		{
 			method: "get",
-			url: "https://lttc.herokuapp.com/team"
-			//url:"http://localhost:3000/team"
+			//url: "https://lttc.herokuapp.com/team"
+			url:"http://localhost:3000/team"
 		})
 
 		.then(function(response)
@@ -46,3 +46,4 @@ app.controller("ladderController", function($scope, $http)
 
 	});
 	//end controller
+	angular.bootstrap(document.getElementById("App2"), ['ladderApp']);

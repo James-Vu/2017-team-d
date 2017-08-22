@@ -1,5 +1,7 @@
-var app = angular.module("tippingApp", []);
+var app = angular.module("ladderApp"); // insert ladderScript.js (ladderApp) as a dependancy
+var app = angular.module('tippingApp', ['ladderApp'])
 
+//MATCHES
 app.controller("tippingController", function($scope, $http)
 	{
 		$scope.matches = null;
@@ -21,8 +23,8 @@ app.controller("tippingController", function($scope, $http)
 		var connection = $http(
 		{
 			method: "get",
-			url: "https://lttc.herokuapp.com/match"
-			//url: "http://localhost:3000/match"
+			//url: "https://lttc.herokuapp.com/match"
+			url: "http://localhost:3000/match"
 		})
 
 		.then(function(response)

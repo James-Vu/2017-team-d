@@ -1,30 +1,31 @@
-// App.js launches with our server, and handles packages & requests.
-// it is the heart of our application
-
-// Requiring Packages
 var express = require('express');
-var request = require('request');
-var cheerio = require('cheerio');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var app = express();
-
-// Our own JS files
 var db = require('./db'); // loading db.js
 var match = require('./match'); // loading match.js
 var team = require('./team'); // loading team.js
 var user = require('./user'); // loading user.js
 var userTips = require('./userTips'); // loading userTips.js
 
-// Directories
-app.use(express.static(__dirname + '/images')); // all image assets go here
-app.use(express.static(__dirname + '/web')); // all html & angularJS assets go here
+// Force HTTPS
+/*
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect('https://lttc.herokuapp.com'+req.url)
+  else
+    next()
+})
+*/
 
-// When the server starts, respond by sending localhost:3000 tipping.html
+// Feed our webserver a page to display when it starts (This is the homepage)
 app.get('/', function (req, res) {
 	res.sendFile(__dirname + '/web/tipping.html');
 });
 
+// Directories
+app.use(express.static(__dirname + '/images')); // all image assets go here
+app.use(express.static(__dirname + '/web')); // all html & angularJS assets go here
 
 //var user = "user1";
 //var pass = "test";
@@ -50,54 +51,7 @@ query.exec(function (err, user) {
 	}
 })
 
-
-// Web scrapping with cheerio can probably be moved to Team.js
-var url = "http://afltables.com/afl/seas/2017.html";
-require('mongoose').model('Team');
-var Team = mongoose.model('Team');
-
-request(url, function(err, response, html) {
-	var $ = cheerio.load(html);
-
-	$('table.sortable tbody tr').each(function() {
-		var children = $(this).children();
-
-		var teamName = $(children[1]).text().trim();
-		if(teamName == 'Brisbane Lions') {
-			teamName = 'Brisbane';
-		}
-		var row = {
-			"position" : $(children[0]).text().trim(),
-			"gamesPlayed" : $(children[2]).text().trim(),
-			"gamesWon" : $(children[3]).text().trim(),
-			"gamesDrawed" : $(children[4]).text().trim(),
-			"gamesLost" : $(children[5]).text().trim(),
-			"percentage" : $(children[12]).text().trim(),
-			"points" : $(children[13]).text().trim(),
-			"isEliminated" : 'false'
-		};
-
-		if(row.gamesWon == '') {
-			row.gamesWon = '0';
-		}
-
-		if(row.gamesDrawed == '') {
-			row.gamesDrawed = '0';
-		}
-
-		if(row.gamesLost == '') {
-			row.gamesLost = '0';
-		}
-
-		Team.update({ _id: teamName }, { $set: row }, callback);
-
-		function callback (err, numAffected) {
-
-		}
-	});
-})
-
-// Post, Get, Deletem requests
+// Post, Get, Delete requests
 // MATCH
 app.post('/match', match.createTeams); // when POST is called to team, we create a team
 app.get('/match', match.seeMatches); // when GET is called to team, we retrieve ALL teams
@@ -133,10 +87,3 @@ app.post('/', function(req, res) {
 app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening on port 3000!');
 });
-
-//localhost
-/*
-app.listen(3000, function() {
-	console.log('STARTED ON LOCALHOST PORT 3000')
-});
-*/

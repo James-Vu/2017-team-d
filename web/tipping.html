@@ -40,47 +40,42 @@
 		</nav>
 		<!--END Navbar-->
 
-		<div align="center" class="container" style="background-color:#e6e4e2; padding:0">
+		<div  id="container-new" align="center" class="container" style="background-color:#e6e4e2; padding:0">
+			<!--Ladder side-->
+						<div align="center" style="margin-top:10px" class="col-md-4 col-xs-4">
+							<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
+								<thead>
+									<tr align="center">
+										<td><b>Pos</b></td>
+										<td colspan = 2><b>Team</b></td>
+										<td><b>P</b></td>
+										<td><b>W</b></td>
+										<td><b>D</b></td>
+										<td><b>L</b></td>
+										<td><b>Pts</b></td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="t in teams | orderBy: 'position' ">
+										<td align="center"> {{ t.position }} </td>
+										<td><img ng-src="{{t._id}}.png" class="img-responsive" alt="{{ t._id }}" width="50" height="75"></td>
+										<td>{{ t._id }}</td>
+										<td> {{ t.gamesPlayed }} </td>
+										<td> {{ t.gamesWon }} </td>
+										<td> {{ t.gamesDrawed }} </td>
+										<td> {{ t.gamesLost }} </td>
+										<td> {{ t.points }} </td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 			<form id="tip" method="POST" action="/">
-
-				<!--Ladder side-->
-							<div align="center" style="margin-top:10px" class="col-md-4 col-xs-4">
-								<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
-									<thead>
-										<tr align="center">
-											<td><b>Pos</b></td>
-											<td><b>Team</b></td>
-											<td><b>P</b></td>
-											<td><b>W</b></td>
-											<td><b>D</b></td>
-											<td><b>L</b></td>
-											<td><b>Pts</b></td>
-										</tr>
-									</thead>
-									<tbody>
-										<tr ng-repeat="t in teams | orderBy: 'position' ">
-											<td> {{ t.position }} </td>
-											<td>
-												<img ng-src="{{t._id}}.png" class="img-responsive" alt="{{ t._id }}" width="50" height="75">
-												{{ t._id }}
-											 </td>
-											<td> {{ t.gamesPlayed }} </td>
-											<td> {{ t.gamesWon }} </td>
-											<td> {{ t.gamesDrawed }} </td>
-											<td> {{ t.gamesLost }} </td>
-											<td> {{ t.points }} </td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-
-
 			<br>
 			<div ng-controller="tippingController">
 			<div class="container">
 				<!--Section for all information about the match-->
 				<div class="row">
-				<div align="center" class="col-md-7 col-xs-8" style="padding: 0">
+				<div align="right" class="col-md-8 col-xs-6" style="padding: 0">
 					<!--Submit button-->
 					<div align="center">
 						<br>
@@ -142,13 +137,14 @@
 							</td>
 						</tr>
 					</table>
+					<!--Submit button-->
+					<div align="center"><input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" value="Submit"></div></br>
+						</form>
+					</div>
 			</div>
 </div>
 		</div>
-		<!--Submit button-->
-		<div align="center"><input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" value="Submit"></div></br>
-			</form>
-		</div>
 	</div>
+
 	</body>
 </html>

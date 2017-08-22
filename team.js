@@ -3,10 +3,57 @@
 // You could split up teams, matches etc into seperate .js files
 
 require('mongoose').model('Team');
+var cheerio = require('cheerio');
+var request = require('request');
 var mongoose = require('mongoose');
 var Team = mongoose.model('Team');
 
-// For the purpose of a sample, we can make users.
+
+// Web scrapping with cheerio can probably be moved to Team.js
+var url = "http://afltables.com/afl/seas/2017.html";
+console.log("WEBSCRAPPING WITH CHEERIO @ TEAM.JS")
+
+request(url, function(err, response, html) {
+	var $ = cheerio.load(html);
+
+	$('table.sortable tbody tr').each(function() {
+		var children = $(this).children();
+
+		var teamName = $(children[1]).text().trim();
+		if(teamName == 'Brisbane Lions') {
+			teamName = 'Brisbane';
+		}
+		var row = {
+			"position" : $(children[0]).text().trim(),
+			"gamesPlayed" : $(children[2]).text().trim(),
+			"gamesWon" : $(children[3]).text().trim(),
+			"gamesDrawed" : $(children[4]).text().trim(),
+			"gamesLost" : $(children[5]).text().trim(),
+			"percentage" : $(children[12]).text().trim(),
+			"points" : $(children[13]).text().trim(),
+			"isEliminated" : 'false'
+		};
+
+		if(row.gamesWon == '') {
+			row.gamesWon = '0';
+		}
+
+		if(row.gamesDrawed == '') {
+			row.gamesDrawed = '0';
+		}
+
+		if(row.gamesLost == '') {
+			row.gamesLost = '0';
+		}
+
+		Team.update({ _id: teamName }, { $set: row }, callback);
+
+		function callback (err, numAffected) {
+
+		}
+	});
+})
+
 module.exports = {
   createTeams: function (req, res) {
     var person = req.body;
