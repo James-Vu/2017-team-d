@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="tippingApp" ng-controller="tippingController" lang="en">
+<html ng-app="tippingApp" lang="en">
 	<head>
 	  <title>La Trobe Footy Tipping</title>
 	  <meta charset="utf-8">
@@ -10,7 +10,7 @@
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-
+		<script src="js/ladderScript.js"></script>
 		<script src="js/tippingScript.js"></script>
 	</head>
 
@@ -40,26 +40,54 @@
 		</nav>
 		<!--END Navbar-->
 
-		<div class="container" style="background-color:#e6e4e2; padding:0">
+		<div align="center" class="container" style="background-color:#e6e4e2; padding:0">
 			<form id="tip" method="POST" action="/">
-			<!--Submit button-->
-			<div align="center">
-				<br>
-				<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;
-				box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" value="Submit">
-			</div>
+
+				<!--Ladder side-->
+							<div align="center" style="margin-top:10px" class="col-md-4 col-xs-4">
+								<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
+									<thead>
+										<tr align="center">
+											<td><b>Pos</b></td>
+											<td><b>Team</b></td>
+											<td><b>P</b></td>
+											<td><b>W</b></td>
+											<td><b>D</b></td>
+											<td><b>L</b></td>
+											<td><b>Pts</b></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="t in teams | orderBy: 'position' ">
+											<td> {{ t.position }} </td>
+											<td>
+												<img ng-src="{{t._id}}.png" class="img-responsive" alt="{{ t._id }}" width="50" height="75">
+												{{ t._id }}
+											 </td>
+											<td> {{ t.gamesPlayed }} </td>
+											<td> {{ t.gamesWon }} </td>
+											<td> {{ t.gamesDrawed }} </td>
+											<td> {{ t.gamesLost }} </td>
+											<td> {{ t.points }} </td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
 
 			<br>
-			<div ng-repeat="m in matches" class="container">
-		<!--Match 1-->
-
-				<!--Section for checkbox-->
-
-
+			<div ng-controller="tippingController">
+			<div class="container">
 				<!--Section for all information about the match-->
 				<div class="row">
-				<div align="center" class="col-md-8 col-xs-8 col-md-offset-2 col-xs-offset-2" style="padding: 0">
-					<table class="table table-bordered" style="background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+				<div align="center" class="col-md-7 col-xs-8" style="padding: 0">
+					<!--Submit button-->
+					<div align="center">
+						<br>
+						<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+						box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" value="Submit">
+					</div>
+					<table ng-repeat="m in matches" class="table table-bordered" style="background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 						<tr>
 							<!--Left team info-->
 							<td align="center" class="col-md-3" id="{{ m.homeTeam }}"><br>
@@ -114,9 +142,6 @@
 							</td>
 						</tr>
 					</table>
-
-				<!--Section for checkbox-->
-
 			</div>
 </div>
 		</div>
@@ -124,5 +149,6 @@
 		<div align="center"><input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" value="Submit"></div></br>
 			</form>
 		</div>
+	</div>
 	</body>
 </html>
