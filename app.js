@@ -16,7 +16,6 @@ var team = require('./team'); // loading team.js
 var user = require('./user'); // loading user.js
 var userTips = require('./userTips'); // loading userTips.js
 
-/*
 // Force HTTPS
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
@@ -24,7 +23,6 @@ app.get('*',function(req,res,next){
   else
     next() // Continue to other routes if we're not redirecting
 })
-*/
 
 // Feed our webserver a page to display when it starts (This is the homepage)
 app.get('/', function (req, res) {
