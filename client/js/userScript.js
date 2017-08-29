@@ -21,8 +21,8 @@ app.controller("userController", function($scope, $http)
 		var connection = $http(
 		{
 			method: "get",
-			//url: "https://lttctest.herokuapp.com/users"
-			url:"http://localhost:3000/users"
+			url: "https://lttctest.herokuapp.com/users"
+			//url:"http://localhost:3000/users"
 		})
 
 		.then(function(response)

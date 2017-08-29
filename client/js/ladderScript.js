@@ -22,8 +22,8 @@ app.controller("ladderController", function($scope, $http)
 		var connection = $http(
 		{
 			method: "get",
-			//url: "https://lttctest.herokuapp.com/team"
-			url:"http://localhost:3000/team"
+			url: "https://lttctest.herokuapp.com/team"
+			//url:"http://localhost:3000/team"
 		})
 
 		.then(function(response)

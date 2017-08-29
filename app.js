@@ -7,14 +7,12 @@ var app = express();
 var router = express.Router();
 
 // Force HTTPS
-/*
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
     res.redirect('https://lttctest.herokuapp.com'+req.url)
   else
     next() // Continue to other routes if we're not redirecting
 })
-*/
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());

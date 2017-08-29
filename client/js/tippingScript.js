@@ -23,8 +23,8 @@ app.controller("tippingController", function($scope, $http)
 		var connection = $http(
 		{
 			method: "get",
-			//url: "https://lttctest.herokuapp.com/match"
-			url: "http://localhost:3000/match"
+			url: "https://lttctest.herokuapp.com/match"
+			//url: "http://localhost:3000/match"
 		})
 
 		.then(function(response)
