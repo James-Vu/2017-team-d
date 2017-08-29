@@ -1,73 +1,43 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
+var express = require("express");
+var bodyParser = require("body-parser");
+var mongoose = require("./server/config/mongoose.js")
+var jwt = require('jsonwebtoken');
+
 var app = express();
-var db = require('./db'); // loading db.js
-var match = require('./match'); // loading match.js
-var team = require('./team'); // loading team.js
-var user = require('./user'); // loading user.js
-var userTips = require('./userTips'); // loading userTips.js
+var router = express.Router();
 
 // Force HTTPS
 /*
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    res.redirect('https://lttc.herokuapp.com'+req.url)
+    res.redirect('https://lttctest.herokuapp.com'+req.url)
   else
-    next()
+    next() // Continue to other routes if we're not redirecting
 })
 */
 
-// Feed our webserver a page to display when it starts (This is the homepage)
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+
+app.use(express.static(__dirname + "/client"));
+app.use(express.static(__dirname + '/images')); // all image assets go here
+
+var router = require("./server/config/routes.js")(app);
+
 app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/web/tipping.html');
+  res.sendFile(__dirname + '/client/register.html');
 });
 
-// Directories
-app.use(express.static(__dirname + '/images')); // all image assets go here
-app.use(express.static(__dirname + '/web')); // all html & angularJS assets go here
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.send(err.message);
+});
 
-//var user = "user1";
-//var pass = "test";
-var User = mongoose.model('User');
-var query = User.findOne({ '_id': 'user1' });
-
-// selecting the `name` and `occupation` fields
-query.select('_id password');
-
-// execute the query at a later time
-query.exec(function (err, user) {
-	if(user !== null) {
-		if (err) return handleError(err);
-		console.log('%s %s', user._id, user.password)
-		app.get('/', function (req, res) {
-		res.sendFile(__dirname + '/tipping.html');
-		});
-	}
-	else {
-		app.get('/', function (req, res) {
-		res.sendFile(__dirname + '/login.html');
-		});
-	}
-})
+app.set('superSecret', "secrettoken");
 
 // Post, Get, Delete requests
-// MATCH
-app.post('/match', match.createTeams); // when POST is called to team, we create a team
-app.get('/match', match.seeMatches); // when GET is called to team, we retrieve ALL teams
-app.delete('/match/:_id', match.delete); // when DELETE is called
-// USER
-app.get('/user', user.seeUsers); // when GET is called to user, retrieve all users
-// USERTIPS
-app.get('/userTips', userTips.seeTips); // when GET is called to userTips, retrieve all tips
 // TEAM
-app.post('/team', team.createTeams); // when POST is called to team, we create a team
-app.get('/team', team.seeTeams); // when GET is called to team, we retrieve ALL teams
-app.delete('/team/:_id', team.delete); // when DELETE is called to teams provided with an ID we remove the specific team (in reality this would be an update)
-
-// Research into these
-app.use(bodyParser.urlencoded({ extended: true }));
-//app.use(express.bodyParser());
+//app.delete('/team/:_id', team.delete); // when DELETE is called to teams provided with an ID we remove the specific team (in reality this would be an update)
 
 app.post('/', function(req, res) {
   res.send("<p>SUCCESS, tips were sent to the server</p>" +
@@ -82,8 +52,8 @@ app.post('/', function(req, res) {
 		   "<p> Match 9: " + req.body.match9 + "</p>");
 });
 
-//app.get('/team', team.seeTeams);
-// Start our server on port 3000
+module.exports = app;
+// listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('Express app listening on port 3000');
 });
