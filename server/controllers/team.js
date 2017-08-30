@@ -26,12 +26,13 @@ module.exports = {
 // if no errors we then run a for loop, logging all records in console.
   seeTeams: function (req, res, next) {
     Team.find({}, function (err, docs) {
+      console.log(req);
       if (err) {
         res.status(504);
         res.end(err);
       } else {
         for (var i = 0; i < docs.length; i++) {
-         console.log('ID:', docs[i]._id, ', isEliminated:', docs[i].position);
+         console.log('ID:', docs[i].teamID, ', postition:', docs[i].position);
         }
         res.end(JSON.stringify(docs));
       }

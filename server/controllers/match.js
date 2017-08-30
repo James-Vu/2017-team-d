@@ -23,7 +23,8 @@ module.exports = {
 // some error handling is done
 // if no errors we then run a for loop, logging all records in console.
   seeMatches: function (req, res, next) {
-    Match.find({ roundNo : 1 }, function (err, docs) {
+    var query = req.query;
+    Match.find({ roundNo : query.roundNo }, function (err, docs) {
       if (err) {
         res.status(504);
         res.end(err);
