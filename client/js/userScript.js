@@ -21,7 +21,7 @@ app.controller("userController", function($scope, $http)
 		var connection = $http(
 		{
 			method: "get",
-			url: "https://lttctest.herokuapp.com/users"
+			url: "https://lttc.herokuapp.com/users"
 			//url:"http://localhost:3000/users"
 		})
 
@@ -69,7 +69,7 @@ app.controller("userController", function($scope, $http)
 			var connection = $http(
 			{
 				method: "get",
-				url: "https://lttctest.herokuapp.com/userTips"
+				url: "https://lttc.herokuapp.com/userTips"
 				//url:"http://localhost:3000/userTips"
 			})
 

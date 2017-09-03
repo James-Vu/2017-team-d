@@ -26,7 +26,7 @@ app.controller("tippingController", function($scope, $http)
 		{
 
 			method: "get",
-			url: "https://lttctest.herokuapp.com/match?roundNo=" + $scope.roundNo
+			url: "https://lttc.herokuapp.com/match?roundNo=" + $scope.roundNo
 			//url: "http://localhost:3000/match?roundNo=" + $scope.roundNo
 		})
 
@@ -56,7 +56,7 @@ app.controller("tippingController", function($scope, $http)
 			{
 
 				method: "get",
-				url: "https://lttctest.herokuapp.com/match?roundNo=" + $scope.roundNo
+				url: "https://lttc.herokuapp.com/match?roundNo=" + $scope.roundNo
 				//url: "http://localhost:3000/match?roundNo=" + $scope.roundNo
 			})
 

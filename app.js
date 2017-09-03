@@ -10,14 +10,14 @@ var router = express.Router();
 // Force HTTPS
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    res.redirect('https://lttctest.herokuapp.com'+req.url)
+    res.redirect('https://lttc.herokuapp.com'+req.url)
   else
     next() // Continue to other routes if we're not redirecting
 })
 
 var http = require("http");
 setInterval(function() {
-    http.get("https://lttctest.herokuapp.com");
+    http.get("https://lttc.herokuapp.com");
 }, 300000); // every 5 minutes (300000)
 
 app.use(bodyParser.urlencoded({extended:true}));
