@@ -15,6 +15,10 @@ app.get('*',function(req,res,next){
     next() // Continue to other routes if we're not redirecting
 })
 
+var http = require("http");
+setInterval(function() {
+    http.get("https://lttctest.herokuapp.com");
+}, 300000); // every 5 minutes (300000)
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
