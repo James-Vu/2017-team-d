@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/images')); // all image assets go here
 var router = require("./server/config/routes.js")(app);
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/client/register.html');
+  res.sendFile(__dirname + '/client/login.html');
 });
 
 app.use(function (err, req, res, next) {
