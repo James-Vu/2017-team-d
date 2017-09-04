@@ -4,23 +4,9 @@ var mongoose = require("mongoose");
 var User = mongoose.model("User");
 
 module.exports = {
-  // This function gets all the users from the DB who wish to receive email alerts
-  seeUsersWithOpt: function (req, res, next) {
-    User.find({ emailOptOut: false }, function (err, docs) {
-      if (err) {
-        res.status(504);
-        res.end(err);
-      } else {
-        for (var i = 0; i < docs.length; i++) {
-         console.log('Opt Name :', docs[i]._id, ', Opt Fav:', docs[i].favouriteteam);
-        }
-        res.end(JSON.stringify(docs));
-      }
-    });
-  },
-
-  // This function sends emails (just a post req atm)
-  sendEmail: function(req, res) {
+  // This function sends broadcasts, useful for customized emails from an admin.
+  // eg. "Merry Christmas USERS!"
+  sendBroadcast: function (req, res) {
     var mailman = req.body; // gets the content of the post (TO, SUBJECT, TEXT)
 
     console.log("TO: " + mailman.to);
@@ -37,9 +23,9 @@ module.exports = {
 
     var mailOptions = {
       from: "LTTC ADMIN <lttcnoreply@gmail.com>",
-      to: mailman.to,
-      subject: mailman.subject,
-      text: mailman.text
+      to: mailman.to, // This can be automated.
+      subject: mailman.subject, // Customized
+      text: mailman.text // Customized
     };
 
     transporter.sendMail(mailOptions, function(error, info){
@@ -50,39 +36,48 @@ module.exports = {
       }
     });
     transporter.close();
-  }
-}
-/*
-sendEmail: function (req, res) {
-// SET NODEMAILER_USER='lttcnoreply@gmail.com' SET NODEMAILER_PASS='Vanberk234' node app.js
-var mailman = req.body;
-console.log("TO: " + mailman.to);
-console.log("SUBJECT: " + mailman.subject);
-console.log("TEXT: " + mailman.text);
-
-var transporter = nodemailer.createTransport("SMTP", {
-    service: 'gmail',
-    auth: {
-        user: 'lttcnoreply@gmail.com',
-        pass: 'Vanberk234'
-      }
-  });
-
-  var mailOptions = {
-      from: 'lttcnoreply@gmail.com',
-      to: mailman.to,
-      subject: mailman.subject,
-      text: mailman.text
-    };
-    console.log(mailOptions);
-    console.log("Nothin sent yet");
-    transporter.sendMail(mailOptions, function(error, info) {
-      console.log("IM TRYING TO SEND AN EMAIL");
-      if(error) {
-        console.log(error);
-      } else {
-        console.log("email sent: " + info.response);
+  },
+  // Sends Tipping Reminders to All users whom are opted for emails.
+  sendEmail: function(req, res) {
+    //var mailman = req.body; // gets the content of the post (TO, SUBJECT, TEXT)
+    var transporter = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: "lttcnoreply@gmail.com",
+        pass: "Vanberk234"
       }
     });
+
+    // Get ALL users in the db, send them an email
+    // TODO: CHANGE THE QUERY
+    User.find({}, function (err, docs) {
+      if (err) {
+        res.status(504);
+        res.end(err);
+      }
+      else {
+        // For every user, get the email, assign a subject & message
+        for (var i = 0; i < docs.length; i++) {
+
+          var mailOptions = {
+            from: "LTTC ADMIN <lttcnoreply@gmail.com>",
+            to: docs[i].email,
+            subject: 'Weekly Tipping Reminder',
+            text: 'Dont forget to tip this week!'
+          };
+          // Then send an email to the user.
+          transporter.sendMail(mailOptions, function(error, info) {
+            if (error) {
+              console.log(error);
+            }
+            else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+        }
+        res.end(JSON.stringify(docs));
+      }
+    });
+    transporter.close();
   }
-*/
+}
