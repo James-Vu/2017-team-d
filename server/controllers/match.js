@@ -30,7 +30,7 @@ module.exports = {
         res.end(err);
       } else {
         for (var i = 0; i < docs.length; i++) {
-         console.log('Home Team :', docs[i].homeTeam, ', Away Team:', docs[i].awayTeam);
+         console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
         }
         res.end(JSON.stringify(docs));
       }

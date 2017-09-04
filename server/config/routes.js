@@ -2,6 +2,7 @@ var users = require('./../controllers/users.js');
 var match = require('./../controllers/match.js');
 var team = require('./../controllers/team.js');
 var userTips = require('./../controllers/userTips.js');
+var email = require('./../controllers/email.js');
 var express = require('express');
 var router = express.Router();
 
@@ -16,7 +17,8 @@ module.exports = function(app){
   app.get('/match', match.seeMatches); // when GET is called to match, we retrieve ALL matches
   app.get('/userTips', userTips.seeTips); // when GET is called to userTips, retrieve all tips
   app.get('/team', team.seeTeams); // when GET is called to team, we retrieve ALL teams
-
+  // Post Email Route
+  app.post('/email', email.sendEmail); // when POST is called to email, we send an Email
 }
 
 router.post('/login', function(req, res) {

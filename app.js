@@ -21,6 +21,7 @@ setInterval(function() {
     console.log("#### PINGING THE SERVER EVERY 20 MINUTES ####");
 }, 1200000); // every 20 minutes (1200000)
 
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
