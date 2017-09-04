@@ -18,8 +18,8 @@ app.get('*',function(req,res,next){
 var https = require("https");
 setInterval(function() {
     https.get("https://lttc.herokuapp.com");
-    console.log("@@@@@@@ PINGING THE SERVER EVERY 1 MINUTES @@@@@@@");
-}, 60000); // every 5 minutes (300000) 1 min (60000)
+    console.log("#### PINGING THE SERVER EVERY 20 MINUTES ####");
+}, 1200000); // every 20 minutes (1200000)
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
