@@ -1,8 +1,27 @@
 // Create a SMTP transport object
 var nodemailer = require('nodemailer');
+var mongoose = require("mongoose");
+var User = mongoose.model("User");
+
 module.exports = {
+  // This function gets all the users from the DB who wish to receive email alerts
+  seeUsersWithOpt: function (req, res, next) {
+    User.find({ emailOptOut: false }, function (err, docs) {
+      if (err) {
+        res.status(504);
+        res.end(err);
+      } else {
+        for (var i = 0; i < docs.length; i++) {
+         console.log('Opt Name :', docs[i]._id, ', Opt Fav:', docs[i].favouriteteam);
+        }
+        res.end(JSON.stringify(docs));
+      }
+    });
+  },
+
+  // This function sends emails (just a post req atm)
   sendEmail: function(req, res) {
-    var mailman = req.body;
+    var mailman = req.body; // gets the content of the post (TO, SUBJECT, TEXT)
 
     console.log("TO: " + mailman.to);
     console.log("SUBJECT: " + mailman.subject);
