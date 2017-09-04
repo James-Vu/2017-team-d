@@ -14,7 +14,7 @@ app.get('*',function(req,res,next){
   else
     next() // Continue to other routes if we're not redirecting
 })
-
+// Keep the Dyno Awake
 var https = require("https");
 setInterval(function() {
     https.get("https://lttc.herokuapp.com");

@@ -1,7 +1,6 @@
 var app = angular.module("emailTest", []);
 
 app.controller("emailController", function($scope, $http){
-  $scope.message = "empty";
 
 	$scope.sendMail = function() {
 
@@ -21,16 +20,16 @@ app.controller("emailController", function($scope, $http){
 		.then(function(response)
 			{
         $scope.message = "Success";
+        $scope.to = null;
+				$scope.subject = null;
+				$scope.text= null;
 			})
       .catch(function(response)
 			{
-
 			})
 
 		.finally (function(config)
 			{
-				alert($scope.to);
-        alert($scope.message);
 			});
 	};
 
