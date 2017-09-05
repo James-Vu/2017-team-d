@@ -68,28 +68,28 @@
 						<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
 							<thead>
 								<tr align="center">
-									<td><b>Pos</b></td>
-									<td colspan = 2><b>Team</b></td>
-									<td><b>P</b></td>
-									<td><b>W</b></td>
-									<td><b>D</b></td>
-									<td><b>L</b></td>
-									<td><b>Pts</b></td>
+									<td valign="center"><b>Pos</b></td>
+									<td colspan = 2 valign="center"><b>Team</b></td>
+									<td valign="center"><b>P</b></td>
+									<td valign="center"><b>W</b></td>
+									<td valign="center"><b>D</b></td>
+									<td valign="center"><b>L</b></td>
+									<td valign="center"><b>Pts</b></td>
 								</tr>
 							</thead>
 							<tbody align="center">
 								<tr ng-repeat="t in teams | orderBy: 'position' ">
-									<td> {{ t.position }} </td>
-									<td><img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" width="75%"></td>
-									<td>{{ t.teamID }}</td>
-									<td> {{ t.gamesPlayed }} </td>
-									<td> {{ t.gamesWon }} </td>
-									<td ng-switch="t.gamesDrawn">
+									<td valign="center"> {{ t.position }} </td>
+									<td valign="center"><img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" width="75%"></td>
+									<td valign="center">{{ t.teamID }}</td>
+									<td valign="center"> {{ t.gamesPlayed }} </td>
+									<td valign="center"> {{ t.gamesWon }} </td>
+									<td ng-switch="t.gamesDrawn" valign="center">
 										<span ng-switch-when="0"> - </span>
 										<span ng-switch-default> {{ t.gamesDrawn }} </span>
 									</td>
-									<td> {{ t.gamesLost }} </td>
-									<td> {{ t.points }} </td>
+									<td valign="center"> {{ t.gamesLost }} </td>
+									<td valign="center"> {{ t.points }} </td>
 								</tr>																																																																																																																</tr>
 							</tbody>
 						</table>
