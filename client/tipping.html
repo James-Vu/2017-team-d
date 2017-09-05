@@ -91,13 +91,13 @@
 					<div ng-controller="tippingController" }}>
 						<!--Section for all information about the match-->
 						<form id="tip" method="POST" action="/userTips">
-							<div align="right" class="col-md-8 col-xs-8" style="">
-							<!--Submit button-->
-							<input type="hidden" name="roundNo" value="{{roundNo}}">{{roundNo}}</input>
+							<div align="center" class="col-md-8 col-xs-8" style="">
+							<input type="hidden" name="roundNo" value="{{roundNo}}"><h1 style="margin-left:25px">Round: {{roundNo}}</h1></input>
 
 								<ul class="pager">
   								<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
 									<li align="center">
+										<!--Submit button-->
 										<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
 											box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
    										margin:0;" value="Submit">
