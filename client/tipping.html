@@ -93,7 +93,7 @@
 						<form id="tip" method="POST" action="/userTips">
 							<div align="right" class="col-md-8 col-xs-8" style="">
 							<!--Submit button-->
-							<input name="roundNo" value="{{roundNo}}"></input>
+							<input type="hidden" name="roundNo" value="{{roundNo}}">{{roundNo}}</input>
 
 								<ul class="pager">
   								<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
