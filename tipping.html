@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html ng-app="tippingApp" lang="en">
+<head>
+	<title>La Trobe Footy Tipping</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="Eagle.png" type="image/png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/ladderScript.js"></script>
+	<script src="js/tippingScript.js"></script>
+	<style>
+
+	.affix {
+		top: 0;
+		min-width:100%;
+	}
+
+
+	</style>
+
+</head>
+
+<body>
+	<!--Navbar-->
+	<nav class="navbar navbar-inverse" style="border-radius:0px">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle Navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div>
+
+		<div class="collapse navbar-collapse" id="navbar1">
+			<ul align="center" class="nav navbar-nav">
+				<li align="left"><a href="tipping.html" style="padding:0px;"><img src="LTU-Footy.png" width="300px" style="margin-left:-1em;margin-right:15px"></img></a></li>
+				<li class="active" style="width:220px;"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
+				<li style="width:220px;"><a href="users.html">View Users</a></li>
+				<li style="width:220px;"><a href="ladder.html">Ladder</a></li>
+				<li style="width:220px;"><a href="ranking.html">Ranking</a></li>
+				<li style="margin-left:0.7em;"><a>"Test User"</a><li>
+				<li style=""><a href="email.html">Email</a></li>
+			</ul>
+		</div>
+	</nav>
+		<!--END Navbar-->
+
+		<div align="center" class="container" style="background-color:#e6e4e2;">
+			<!--Ladder side-->
+			<div class="row">
+				<div align="center" style="margin-top:10px" class="col-md-4 col-xs-4">
+					<div data-spy="affix" data-offset-top="90">
+						<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
+							<thead>
+								<tr align="center">
+									<td><b>Pos</b></td>
+									<td colspan = 2><b>Team</b></td>
+									<td><b>P</b></td>
+									<td><b>W</b></td>
+									<td><b>D</b></td>
+									<td><b>L</b></td>
+									<td><b>Pts</b></td>
+								</tr>
+							</thead>
+							<tbody align="center">
+								<tr ng-repeat="t in teams | orderBy: 'position' ">
+									<td> {{ t.position }} </td>
+									<td><img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" width="75%"></td>
+									<td>{{ t.teamID }}</td>
+									<td> {{ t.gamesPlayed }} </td>
+									<td> {{ t.gamesWon }} </td>
+									<td ng-switch="t.gamesDrawn">
+										<span ng-switch-when="0"> - </span>
+										<span ng-switch-default> {{ t.gamesDrawn }} </span>
+									</td>
+									<td> {{ t.gamesLost }} </td>
+									<td> {{ t.points }} </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--Section for all information about the match-->
+				<div ng-controller="tippingController" align="right" class="col-md-8 col-xs-8">
+					<form id="tip" method="POST" action="/userTips">
+
+						<div align="center" class="col-md-8 col-xs-8" style="">
+						<input type="hidden" name="roundNo" value="{{roundNo}}"><h1 style="margin-left:25px">Round: {{roundNo}}</h1></input>
+
+						<ul class="pager">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
+							<li align="center">
+								<!--Submit button-->
+								<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
+								margin:0;" value="Submit">
+							</li>
+							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">Next Round</a></li>
+						</ul>
+						<table ng-repeat="m in matches" class="table table-bordered" style="background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+							<tr>
+								<!--Left team info-->
+								<td align="center" class="col-md-3" id="{{ m.homeTeam }}"><br>
+									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
+									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
+									<p style="font-size:17px">${{ m.homeOdds | number : 2}}</p>
+									<div class="radio">
+										<label style="font-size: 1.5em">
+											<input type="radio" name="match{{m.gameNo}}" value="{{ m.homeTeamID }}">
+											<span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+										</label>
+									</div>
+								</td>
+								<!--Match information-->
+								<td align="center" class="col-md-6"><br><br></br>
+									<p style="font-size:17px">Date: {{ m.matchDate | date : 'MMM d, y h:mm:ss a' : '+1000'}}</p>
+									<p style="font-size:17px">Location: {{ m.matchLocation }}</p>
+								</td>
+								<!--Right team info-->
+								<td align="center" class="col-md-3" id="{{ m.awayTeam }}"><br>
+									<img ng-src="{{ m.awayTeamID }}.png" class="img-responsive" alt="{{ m.awayTeamID }}" width="100" height="150">
+									<p style="font-size:17px"><b>{{ m.awayTeamID }}</b></p>
+									<p style="font-size:17px">${{ m.awayOdds | number : 2 }}</p>
+									<div class="radio">
+										<label style="font-size: 1.5em">
+											<input type="radio" name="match{{m.gameNo}}" value="{{ m.awayTeamID }}">
+											<span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+										</label>
+									</div>
+								</td>
+							</tr>
+							<!--Drop down box-->
+							<tr align="center">
+								<td colspan="3" style="font-size:20px">
+									<button type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-target="#{{m.gameNo}}">See More
+									</button>
+									<div id="{{m.gameNo}}" class="col-md-12 col-xs-12 collapse">
+										<div class="col-md-4 col-xs-4" align="left" style="font-size:15px">
+											<p>9th</p>
+											<p>L L W W W</p>
+										</div>
+										<div class="col-md-4 col-xs-4" align="center" style="font-size:15px">
+											<p>Ladder position</p>
+											<p>Last 5 results</p>
+										</div>
+										<div class="col-md-4 col-xs-4" align="right" style="font-size:15px">
+											<p>3rd</p>
+											<p>D D L L W</p>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<!--Submit button-->
+						<ul class="pager">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
+							<li align="center">
+								<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
+								margin:0;" value="Submit">
+							</li>
+							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">Next Round</a></li>
+						</ul>
+					</br>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--Footer-->
+<div>
+	<footer id="footer" class="footer" style="background-color:#24292E;">
+		<div align="center" style="padding-top: 20px;">
+			<a>About us</a> |
+			<a>Privacy Policy</a> |
+			<a>La Trobe Website</a> |
+			<a>Contact Us</a>
+		</div>
+	</footer>
+</div>
+
+</body>
+</html>
