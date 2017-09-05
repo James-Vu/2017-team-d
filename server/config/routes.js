@@ -11,6 +11,7 @@ module.exports = function(app){
 
   app.post('/users', users.create);
   app.post('/login', users.login);
+  app.post('/userTips', userTips.sendTips);
 
   // Data Pulling Routes
   app.get('/users', users.seeUsers); // when GET is called to user, retrieve all users

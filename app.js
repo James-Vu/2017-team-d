@@ -6,7 +6,7 @@ var jwt = require('jsonwebtoken');
 var app = express();
 var router = express.Router();
 
-/*
+
 // Force HTTPS
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
@@ -20,7 +20,7 @@ setInterval(function() {
     https.get("https://lttc.herokuapp.com");
     console.log("#### PINGING THE SERVER EVERY 20 MINUTES ####");
 }, 1200000); // every 20 minutes (1200000)
-*/
+
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -41,25 +41,7 @@ app.use(function (err, req, res, next) {
 
 app.set('superSecret', "secrettoken");
 
-// Post, Get, Delete requests
-// TEAM
-//app.delete('/team/:_id', team.delete); // when DELETE is called to teams provided with an ID we remove the specific team (in reality this would be an update)
-
-app.post('/', function(req, res) {
-  res.send("<p>SUCCESS, tips were sent to the server</p>" +
-		   "<p> Match 1: " + req.body.match1 + "</p>" +
-		   "<p> Match 2: " + req.body.match2 + "</p>" +
-		   "<p> Match 3: " + req.body.match3 + "</p>" +
-		   "<p> Match 4: " + req.body.match4 + "</p>" +
-		   "<p> Match 5: " + req.body.match5 + "</p>" +
-		   "<p> Match 6: " + req.body.match6 + "</p>" +
-		   "<p> Match 7: " + req.body.match7 + "</p>" +
-		   "<p> Match 8: " + req.body.match8 + "</p>" +
-		   "<p> Match 9: " + req.body.match9 + "</p>");
-});
-
 // data pulling
-
 var mongoose = require('mongoose');
 var request = require('request');
 var cheerio = require('cheerio');

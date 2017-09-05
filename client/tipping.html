@@ -90,10 +90,11 @@
 					<br>
 					<div ng-controller="tippingController" }}>
 						<!--Section for all information about the match-->
-						<form id="tip" method="POST" action="/">
+						<form id="tip" method="POST" action="/userTips">
 							<div align="right" class="col-md-8 col-xs-8" style="">
 							<!--Submit button-->
-							{{ roundNo }}
+							<input name="roundNo" value="{{roundNo}}"></input>
+
 								<ul class="pager">
   								<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
 									<li align="center">
@@ -112,7 +113,7 @@
 											<p style="font-size:17px">${{ m.homeOdds | number : 2}}</p>
 											<div class="radio">
 												<label style="font-size: 1.5em">
-													<input type="radio" name="match{{m.gameNo}}" value="{{ m.homeTeam }}">
+													<input type="radio" name="match{{m.gameNo}}" value="{{ m.homeTeamID }}">
 													<span class="cr"><i class="cr-icon fa fa-circle"></i></span>
 												</label>
 											</div>
@@ -129,7 +130,7 @@
 											<p style="font-size:17px">${{ m.awayOdds | number : 2 }}</p>
 											<div class="radio">
 												<label style="font-size: 1.5em">
-													<input type="radio" name="match{{m.gameNo}}" value="{{ m.awayTeam }}">
+													<input type="radio" name="match{{m.gameNo}}" value="{{ m.awayTeamID }}">
 													<span class="cr"><i class="cr-icon fa fa-circle"></i></span>
 												</label>
 											</div>

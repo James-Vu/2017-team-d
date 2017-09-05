@@ -1,29 +1,50 @@
-// Heres where things get messy
-// We're defining all of our functions that we can perform with ---> users <---
-// You could split up teams, matches etc into seperate .js files
 var mongoose = require('mongoose');
 var UserTips = mongoose.model('UserTips');
 
-// For the purpose of a sample, we can make users.
 module.exports = {
-  createTeams: function (req, res) {
-    var person = req.body;
-    new Match({ id: person.id, isEliminated: person.isEliminated })
-      .save(function (err) {
-        if (err) {
-          res.status(504);
-          res.end(err);
-        } else {
-          console.log('team saved');
-          res.end();
-        }
-      });
+  sendTips: function (req, res) {
+    console.log("REQUEST SENT");
+    var tips = req.body;
+    //var bodyCount = Object.keys(tips).length
+    console.log(tips);
+
+    var i = 0; // we use this to skip over the round number at the start of the req.body index 0
+    for (var key in req.body) {
+      if (req.body.hasOwnProperty(key) && i > 0) {
+        var teamName = req.body[key]; // teamNames stored here
+
+        new UserTips({ userID: "TippinTester", roundNo: tips.roundNo, gameNo: i , teamID: teamName})
+        .save(function (err) {
+          if (err) {
+            res.status(504);
+            res.end(err);
+          }
+          else {
+            console.log('tip saved');
+            res.end();
+          }
+        });
+        // end of save
+      }
+      // end of if statement
+      i++;
+    }
+    // end of for loop
+
+    res.send("<p>SUCCESS, tips were sent to the server</p>" +
+         "<p> Round #: " + req.body.roundNo + "</p>" +
+         "<p> Match 1: " + req.body.match1 + "</p>" +
+         "<p> Match 2: " + req.body.match2 + "</p>" +
+         "<p> Match 3: " + req.body.match3 + "</p>" +
+         "<p> Match 4: " + req.body.match4 + "</p>" +
+         "<p> Match 5: " + req.body.match5 + "</p>" +
+         "<p> Match 6: " + req.body.match6 + "</p>" +
+         "<p> Match 7: " + req.body.match7 + "</p>" +
+         "<p> Match 8: " + req.body.match8 + "</p>" +
+         "<p> Match 9: " + req.body.match9 + "</p>");
+
   },
-// This allows us to see all teams
-// parameters = request, response, next(unsure about this one)
-// we query the team model and find all
-// some error handling is done
-// if no errors we then run a for loop, logging all records in console.
+  // get all userTips
   seeTips: function (req, res, next) {
     UserTips.find({}, function (err, docs) {
       if (err) {
@@ -37,10 +58,10 @@ module.exports = {
       }
     });
   },
-// This isn't used at all yet.
+// Use this to delete buggy tips, not really needed
   delete: function( req, res, next) {
     console.log(req.params.id);
-    UserTips.find({ _id: req.params.id}, function(err) {
+    UserTips.find({ userID: undefined}, function(err) {
       if(err) {
         req.status(504);
         req.end();
