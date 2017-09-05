@@ -13,7 +13,7 @@ module.exports = {
       if (req.body.hasOwnProperty(key) && i > 0) {
         var teamName = req.body[key]; // teamNames stored here
 
-        new UserTips({ userID: "TippinTester", roundNo: tips.roundNo, gameNo: i , teamID: teamName})
+        new UserTips({ userID: "AgoraTester", roundNo: tips.roundNo, gameNo: i , teamID: teamName})
         .save(function (err) {
           if (err) {
             res.status(504);
