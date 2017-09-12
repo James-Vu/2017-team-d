@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html ng-app="tippingApp" lang="en">
+<head>
+	<title>La Trobe Footy Tipping</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="Eagle.png" type="image/png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/ladderScript.js"></script>
+	<script src="js/tippingScript.js"></script>
+	<script>
+	$(function() {
+	    var $affixElement = $('div[data-spy="affix"]');
+	    $affixElement.width($affixElement.parent().width());
+	});
+</script>
+	<style>
+
+	.affix {
+		top: 10px;
+	}
+
+	.affix-bottom {
+		position: absolute;
+	}
+
+
+	</style>
+
+</head>
+
+<body>
+	<!--Navbar desktop-->
+	<nav class="navbar navbar-inverse" style="border-radius:0px">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="tipping.html" style="padding:4px">
+					<img class="img-fluid" src="LTU-Footy.png" width="250px" ></img>
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar1">
+				<ul align="center" class="nav navbar-nav">
+					<li class="active" style="width:220px;"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
+					<li style="width:220px;"><a href="users.html">View Users</a></li>
+					<li style="width:220px;"><a href="ladder.html">Ladder</a></li>
+					<li style="width:220px;"><a href="ranking.html">Ranking</a></li>
+					<li style="margin-left:0.7em;"><a>"Test User"</a><li>
+					<li style=""><a href="email.html">Email</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+		<!--END Navbar-->
+
+		<div align="center" class="container-fluid" style="background-color:#e6e4e2;">
+			<!--Ladder side-->
+			<div class="row">
+				<div align="center" style="margin-top:10px" class="col-md-4 col-xs-4 hidden-xs">
+					<div data-spy="affix" data-offset-top="100" data-offset-bottom="140">
+						<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
+							<thead>
+								<tr align="center">
+									<td valign="center"><b>Pos</b></td>
+									<td colspan = 2 valign="center"><b>Team</b></td>
+									<td valign="center"><b>P</b></td>
+									<td valign="center"><b>W</b></td>
+									<td valign="center"><b>D</b></td>
+									<td valign="center"><b>L</b></td>
+									<td valign="center"><b>Pts</b></td>
+								</tr>
+							</thead>
+							<tbody align="center">
+								<tr ng-repeat="t in teams | orderBy: 'position' ">
+									<td valign="center"> {{ t.position }} </td>
+									<td valign="center"><img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:70%"></td>
+									<td valign="center">{{ t.teamID }}</td>
+									<td valign="center"> {{ t.gamesPlayed }} </td>
+									<td valign="center"> {{ t.gamesWon }} </td>
+									<td ng-switch="t.gamesDrawn" valign="center">
+										<span ng-switch-when="0"> - </span>
+										<span ng-switch-default> {{ t.gamesDrawn }} </span>
+									</td>
+									<td valign="center"> {{ t.gamesLost }} </td>
+									<td valign="center"> {{ t.points }} </td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<!--Section for all information about the match-->
+<!-- changed col-xs-4 to col-xs-12-->
+				<div ng-controller="tippingController"  class="col-md-8 col-xs-12 center-block">
+					<form id="tip" method="POST" action="/userTips">
+
+						<input type="hidden" name="roundNo" value="{{roundNo}}"><h1 style="margin-left:25px">Round: {{roundNo}}</h1></input>
+					<!--Round changing desktop-->
+						<ul class="pager hidden-xs">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
+							<li align="center">
+								<!--Submit button-->
+								<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
+								margin:0;" value="Submit">
+							</li>
+							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">Next Round</a></li>
+						</ul>
+
+						<!--Round changing mobile-->
+						<ul class="pager visible-xs">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">
+								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+							</a></li>
+							<li align="center">
+								<input type="submit" class="btn btn-primary btn-md" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
+								margin:0;" value="Submit">
+							</li>
+							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">
+								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true">
+							</a></li>
+						</ul>
+<!--put entire table in a panel, looks a bit better-->
+					<div ng-repeat="m in matches" class="panel panel-default" align="center">
+						<table  class="table table-bordered" style="background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+							<tr>
+								<!--Left team info-->
+<!-- added col-xs to all classes-->
+								<td align="center" class="col-md-3 col-xs-3" id="{{ m.homeTeam }}"><br>
+									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
+									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
+									<p style="font-size:17px">${{ m.homeOdds | number : 2}}</p>
+									<div class="radio">
+										<label style="font-size: 1.5em">
+											<input type="radio" name="match{{m.gameNo}}" value="{{ m.homeTeamID }}">
+											<span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+										</label>
+									</div>
+									<input type="hidden" name="game{{m.gameNo}}" value=" {{ m.gameNo }}">
+								</td>
+								<!--Match information-->
+								<td align="center" class="col-md-6 col-xs-6"><br><br></br>
+									<p style="font-size:17px">Date: {{ m.matchDate | date : 'MMM d, y h:mm:ss a' : '+1000'}}</p>
+									<p style="font-size:17px">Location: {{ m.matchLocation }}</p>
+								</td>
+								<!--Right team info-->
+								<td align="center" class="col-md-3 col-xs-3" id="{{ m.awayTeam }}"><br>
+									<img ng-src="{{ m.awayTeamID }}.png" class="img-responsive" alt="{{ m.awayTeamID }}" width="100" height="150">
+									<p style="font-size:17px"><b>{{ m.awayTeamID }}</b></p>
+									<p style="font-size:17px">${{ m.awayOdds | number : 2 }}</p>
+									<div class="radio">
+										<label style="font-size: 1.5em">
+											<input type="radio" name="match{{m.gameNo}}" value="{{ m.awayTeamID }}">
+											<span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+										</label>
+									</div>
+								</td>
+							</tr>
+							<!--Drop down box-->
+							<tr align="center">
+								<td colspan="3" style="font-size:20px">
+									<button type="button" class="btn btn-default btn-xs" data-toggle="collapse" data-target="#{{m.gameNo}}">See More
+									</button>
+									<div id="{{m.gameNo}}" class="col-md-12 col-xs-12 collapse">
+										<div class="col-md-4 col-xs-4" align="left" style="font-size:15px">
+											<p>9th</p>
+											<p>L L W W W</p>
+										</div>
+										<div class="col-md-4 col-xs-4" align="center" style="font-size:15px">
+											<p>Ladder position</p>
+											<p>Last 5 results</p>
+										</div>
+										<div class="col-md-4 col-xs-4" align="right" style="font-size:15px">
+											<p>3rd</p>
+											<p>D D L L W</p>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>	<!-- end of panel-->
+						<!--Submit button desktop-->
+						<ul class="pager hidden-xs">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
+							<li align="center">
+								<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
+								margin:0;" value="Submit">
+							</li>
+							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">Next Round</a></li>
+						</ul>
+						<!--Submit button mobile-->
+						<ul class="pager visible-xs">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">
+								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+							</a></li>
+							<li align="center">
+								<input type="submit" class="btn btn-primary btn-md" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
+								margin:0;" value="Submit">
+							</li>
+							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">
+								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true">
+							</a></li>
+						</ul>
+					</br>
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+<!--Footer-->
+<div>
+	<footer id="footer" class="footer" style="background-color:#24292E;">
+		<div align="center" style="padding-top: 20px;">
+			<a>About us</a> |
+			<a>Privacy Policy</a> |
+			<a>La Trobe Website</a> |
+			<a>Contact Us</a>
+		</div>
+	</footer>
+</div>
+
+</body>
+</html>

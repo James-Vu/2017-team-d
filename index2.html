@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-App="myApp">
+<head>
+  <title>Login register</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="static/js/angularMain.js"></script>
+  <script src="static/js/angularController.js"></script>
+  <script src="static/js/angularFactories.js"></script>
+</head>
+<body ng-controller="usersController as UC">
+  <header>Hello There</header>
+  <fieldset>
+    <legend>Login</legend>
+    <form ng-submit="UC.login()">
+      <div ng-if="UC.validationErrors.login">
+        {{ UC.validationErrors.login.message }}
+      </div>
+      <label>Username
+        <input type="text" ng-model="UC.logUser.username"/>
+      </label>
+      <label>Password
+        <input type="password" ng-model="UC.logUser.password"/>
+      </label>
+      <input type="submit" value="Login"/>
+    </form>
+  </fieldset>
+  <fieldset>
+      <legend>Register</legend>
+    <form ng-submit="UC.register()">
+      <div ng-if="UC.validationErrors.username">
+        {{ UC.validationErrors.username.message }}
+      </div>
+      <label>Username
+        <input type="text" ng-model="UC.regUser.username"/>
+      </label>
+      <div ng-if="UC.validationErrors.password">
+        {{ UC.validationErrors.password.message }}
+      </div>
+      <label>Password
+        <input type="password" ng-model="UC.regUser.password"/>
+      </label>
+      <input type="submit" value="Register"/>
+    </form>
+  </fieldset>
+</body>
+</html>

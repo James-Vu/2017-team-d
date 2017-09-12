@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-App="myApp">
+	<head>
+	  <title>Login</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="Eagle.png" type="image/png">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="static/js/angularMain.js"></script>
+		<script src="static/js/angularController.js"></script>
+		<script src="static/js/angularFactories.js"></script>
+	</head>
+
+	<body ng-controller="usersController as UC">
+	<div class="container">	
+		<div align="center" margin-left="auto" margin-right="auto" margin="10%">
+			<div width="100%"  height:"auto">
+				<img src="Eagle-Circle.png" width="300px" style="width:150px; margin:30px"></img>
+			</div>	
+		<div class="panel panel-default" style="max-width:500px; margin-left:auto; margin-right:auto; margin-top:5%">
+			<div class="panel-heading" style="background-color:#24292E">
+				<h3 class="panel-title" align="center" style="color:white"><b>Sign in<b></h3>
+			</div>
+			<div class="panel-body"><form ng-submit="UC.login()">
+					<div class="form-group">
+						<div class="alert alert-danger" ng-if="UC.validationErrors.login">
+							{{ UC.validationErrors.login.message }}
+						</div>
+						<label for="logUsername">Username:</label>
+						<input type="text" class="form-control" id=loginUsername placeholder="Username" ng-model="UC.logUser.username" required>
+						</br>
+						<label for="logPassword">Password*</label>
+						<input type="password" class="form-control" id="logPassword" placeholder="Password" ng-model="UC.logUser.password" required/>
+						<div align="right">
+							<a>Forgot password?</a></br>
+						</div>
+						<label class="form-check-label">
+							<input type="checkbox" class="form-check-input">
+							Remember me
+						</label>
+					</div>
+				<div align="center">
+					<input type="submit" class="btn btn-primary" value="Login" style="padding-left:50px; padding-right:50px">
+				</div>
+				</form>
+				</br>
+				<div align="center">
+					New user? <a href="/register.html">Register</a>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>	
+	</body>
+</html>
