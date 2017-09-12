@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" ng-App="myApp">
+<head>
+	<title>Register</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="Eagle.png" type="image/png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="static/js/angularMain.js"></script>
+	<script src="static/js/angularController.js"></script>
+	<script src="static/js/angularFactories.js"></script>
+</head>
+
+<body ng-controller="usersController as UC">
+	<div class="panel panel-default" margin-top:1%">
+			<div class="panel-heading" style="background-color:#24292E">
+				<h3 class="panel-title" align="center" style="color:white"><b>Register<b></h3>
+			</div>
+		<div class="panel-body">
+			<p><b>Input details to create account:</b></p>
+			<p><b>* Required Field</b></p>
+			<form ng-submit="UC.register()">
+
+				<div class="alert alert-danger" ng-if="UC.validationErrors.firstname">
+					{{ UC.validationErrors.firstname.message }}
+				</div>
+				<div class="alert alert-danger" ng-if="UC.validationErrors.lastname">
+					{{ UC.validationErrors.lastname.message }}
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regFirstName">First Name*</label>
+						<input type="text" class="form-control" id="regFirstName" placeholder="First Name" ng-model="UC.regUser.firstname" required/>
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regLastName">Last Name*</label>
+						<input type="text" class="form-control" id="regLastName" placeholder="Last Name" ng-model="UC.regUser.lastname" required/>
+					</div>
+				</div>
+				
+				<div class="alert alert-danger" ng-if="UC.validationErrors.username">
+					{{ UC.validationErrors.username.message }}
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regUsername">Username*</label>
+						<input type="text" class="form-control" id="regUsername" placeholder="Username" ng-model="UC.regUser.username" required/>
+					</div>
+				</div>
+
+				<div class="alert alert-danger" ng-if="UC.validationErrors.email">
+					{{ UC.validationErrors.email.message }}
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regEmail">Email Address*</label>
+						<input type="email" class="form-control" id="regEmail" placeholder="Email Address" ng-model="UC.regUser.email" required>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regEmailConf">Confirm Email Address*</label>
+						<input type="email" class="form-control" id="regEmailConf" placeholder="Confirm Email Address" ng-model="UC.regUser.emailConf" required/>
+					</div>
+				</div>	
+
+				<div class="alert alert-danger" ng-if="UC.validationErrors.password">
+					{{ UC.validationErrors.password.message }}
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regPassword">Password*</label>
+						<input type="password" class="form-control" id="regPassword" placeholder="Password" ng-model="UC.regUser.password" required/>
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regPasswordConf">Confirm Password*</label>
+						<input type="password" class="form-control" id="regPasswordConf" placeholder="Confirm Password" ng-model="UC.regUser.passwordConf" required/>
+					</div>
+				</div>
+				
+				<div class="alert alert-danger" ng-if="UC.validationErrors.dob">
+					{{ UC.validationErrors.dob.message }}
+				</div>
+				<div class="alert alert-danger" ng-if="UC.validationErrors.gender">
+					{{ UC.validationErrors.gender.message }}
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regdob">Date Of Birth*</label>
+						<input type="date" class="form-control" id="regdob" placeholder="dd/mm/yyyy" ng-model="UC.regUser.dob" required/>
+					</div>
+					
+				</div>
+				
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regGender">Gender*</label>
+						<select class="form-control" id="regGender" ng-model="UC.regUser.gender" required>
+							<option value="" disabled selected hidden>Please Choose...</option>
+							<option value="Female">Female</option>
+							<option value="Male">Male</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+				</div>	
+
+				<div class="alert alert-danger" ng-if="UC.validationErrors.favouriteteam">
+					{{ UC.validationErrors.favouriteteam.message }}
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-xs-6 form-group">
+						<label for="regTeam">Favourite AFL Team*</label>
+						<select class="form-control" id="regTeam" ng-model="UC.regUser.favouriteteam" required>
+							<option value="" disabled selected hidden>Please Choose...</option>
+							<!-- must replace from db with ng-repeat of some form-->
+							<option value="Adelaide">Adelaide</option>
+							<option value="Brisbane">Brisbane Lions</option>
+							<option value="Carlton">Carlton</option>
+							<option value="Collingwood">Collingwood</option>
+							<option value="Essendon">Essendon</option>
+							<option value="Fremantle">Fremantle</option>
+							<option value="Geelong">Geelong</option>
+							<option value="Gold Coast">Gold Coast Suns</option>
+							<option value="Greater Western Sydney">GWS Giants</option>
+							<option value="Hawthorn">Hawthorn</option>
+							<option value="Melbourne">Melbourne</option>
+							<option value="North Melbourne">North Melbourne</option>
+							<option value="Port Adelaide">Port Adelaide</option>
+							<option value="Richmond">Richmond</option>
+							<option value="St Kilda">St.Kilda</option>
+							<option value="Sydney">Sydney Swans</option>
+							<option value="West Coast">West Coast Eagles</option>
+							<option value="Western Bulldogs">Western Bulldogs</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="alert alert-danger" ng-if="UC.validationErrors.check">
+					{{ UC.validationErrors.check.message }}
+				</div>
+				<div class="row">
+					<label class="col-md-6 col-xs-6 form-check-label">
+						<input name="agree" type="checkbox" class="form-check-input" required>
+						I have read and agree to the terms and conditions
+					</label>
+				</div>
+
+				<div class="row" style="padding:15px;">
+					<input class="btn btn-primary" type="submit" value="Create Account">
+				</div>
+			</form>
+			<div class="row" style="padding:15px;">
+				<a href="/login.html">Already have an account? Click here to login now</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
