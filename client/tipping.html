@@ -35,35 +35,38 @@
 </head>
 
 <body>
-	<!--Navbar-->
+	<!--Navbar desktop-->
 	<nav class="navbar navbar-inverse" style="border-radius:0px">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-				<span class="sr-only">Toggle Navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-		</div>
-
-		<div class="collapse navbar-collapse" id="navbar1">
-			<ul align="center" class="nav navbar-nav">
-				<li align="left"><a href="tipping.html" style="padding:0px;"><img src="LTU-Footy.png" width="300px" style="margin-left:-1em;margin-right:15px"></img></a></li>
-				<li class="active" style="width:220px;"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
-				<li style="width:220px;"><a href="users.html">View Users</a></li>
-				<li style="width:220px;"><a href="ladder.html">Ladder</a></li>
-				<li style="width:220px;"><a href="ranking.html">Ranking</a></li>
-				<li style="margin-left:0.7em;"><a>"Test User"</a><li>
-				<li style=""><a href="email.html">Email</a></li>
-			</ul>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="tipping.html" style="padding:4px">
+					<img class="img-fluid" src="LTU-Footy.png" width="250px" ></img>
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar1">
+				<ul align="center" class="nav navbar-nav">
+					<li class="active" style="width:220px;"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
+					<li style="width:220px;"><a href="users.html">View Users</a></li>
+					<li style="width:220px;"><a href="ladder.html">Ladder</a></li>
+					<li style="width:220px;"><a href="ranking.html">Ranking</a></li>
+					<li style="margin-left:0.7em;"><a>"Test User"</a><li>
+					<li style=""><a href="email.html">Email</a></li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 		<!--END Navbar-->
 
-		<div align="center" class="container" style="background-color:#e6e4e2;">
+		<div align="center" class="container-fluid" style="background-color:#e6e4e2;">
 			<!--Ladder side-->
 			<div class="row">
-				<div align="center" style="margin-top:10px" class="col-md-4 col-xs-4">
+				<div align="center" style="margin-top:10px" class="col-md-4 col-xs-4 hidden-xs">
 					<div data-spy="affix" data-offset-top="100" data-offset-bottom="140">
 						<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
 							<thead>
@@ -90,18 +93,19 @@
 									</td>
 									<td valign="center"> {{ t.gamesLost }} </td>
 									<td valign="center"> {{ t.points }} </td>
-								</tr>																																																																																																																</tr>
+								</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
 				<!--Section for all information about the match-->
-				<div ng-controller="tippingController" align="center" class="col-md-8 col-xs-8">
+<!-- changed col-xs-4 to col-xs-12-->			
+				<div ng-controller="tippingController"  class="col-md-8 col-xs-12 center-block">
 					<form id="tip" method="POST" action="/userTips">
 
 						<input type="hidden" name="roundNo" value="{{roundNo}}"><h1 style="margin-left:25px">Round: {{roundNo}}</h1></input>
-
-						<ul class="pager">
+					<!--Round changing desktop-->	
+						<ul class="pager hidden-xs">
 							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
 							<li align="center">
 								<!--Submit button-->
@@ -111,11 +115,28 @@
 							</li>
 							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">Next Round</a></li>
 						</ul>
-
-						<table ng-repeat="m in matches" class="table table-bordered" style="background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+						
+						<!--Round changing mobile-->
+						<ul class="pager visible-xs">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1"> 
+								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+							</a></li>
+							<li align="center">
+								<input type="submit" class="btn btn-primary btn-md" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
+								margin:0;" value="Submit">
+							</li>
+							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">
+								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true">
+							</a></li>
+						</ul>
+<!--put entire table in a panel, looks a bit better-->						
+					<div ng-repeat="m in matches" class="panel panel-default" align="center">
+						<table  class="table table-bordered" style="background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 							<tr>
 								<!--Left team info-->
-								<td align="center" class="col-md-3" id="{{ m.homeTeam }}"><br>
+<!-- added col-xs to all classes-->								
+								<td align="center" class="col-md-3 col-xs-3" id="{{ m.homeTeam }}"><br>
 									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
 									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
 									<p style="font-size:17px">${{ m.homeOdds | number : 2}}</p>
@@ -127,12 +148,12 @@
 									</div>
 								</td>
 								<!--Match information-->
-								<td align="center" class="col-md-6"><br><br></br>
+								<td align="center" class="col-md-6 col-xs-6"><br><br></br>
 									<p style="font-size:17px">Date: {{ m.matchDate | date : 'MMM d, y h:mm:ss a' : '+1000'}}</p>
 									<p style="font-size:17px">Location: {{ m.matchLocation }}</p>
 								</td>
 								<!--Right team info-->
-								<td align="center" class="col-md-3" id="{{ m.awayTeam }}"><br>
+								<td align="center" class="col-md-3 col-xs-3" id="{{ m.awayTeam }}"><br>
 									<img ng-src="{{ m.awayTeamID }}.png" class="img-responsive" alt="{{ m.awayTeamID }}" width="100" height="150">
 									<p style="font-size:17px"><b>{{ m.awayTeamID }}</b></p>
 									<p style="font-size:17px">${{ m.awayOdds | number : 2 }}</p>
@@ -165,9 +186,10 @@
 									</div>
 								</td>
 							</tr>
-						</table>
-						<!--Submit button-->
-						<ul class="pager">
+						</table>	
+					</div>	<!-- end of panel-->	
+						<!--Submit button desktop-->
+						<ul class="pager hidden-xs">
 							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
 							<li align="center">
 								<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
@@ -176,8 +198,24 @@
 							</li>
 							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">Next Round</a></li>
 						</ul>
+						<!--Submit button mobile-->
+						<ul class="pager visible-xs">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1"> 
+								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+							</a></li>
+							<li align="center">
+								<input type="submit" class="btn btn-primary btn-md" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
+								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
+								margin:0;" value="Submit">
+							</li>
+							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">
+								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true">
+							</a></li>
+						</ul>
 					</br>
 				</form>
+						
+			
 			</div>
 		</div>
 	</div>

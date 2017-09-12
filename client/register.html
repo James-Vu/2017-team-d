@@ -15,7 +15,7 @@
 </head>
 
 <body ng-controller="usersController as UC">
-	<div class="panel panel-default" style="margin-left:5%; margin-right:5%; margin-top:1%">
+	<div class="panel panel-default" margin-top:1%">
 			<div class="panel-heading" style="background-color:#24292E">
 				<h3 class="panel-title" align="center" style="color:white"><b>Register<b></h3>
 			</div>
@@ -35,12 +35,16 @@
 						<label for="regFirstName">First Name*</label>
 						<input type="text" class="form-control" id="regFirstName" placeholder="First Name" ng-model="UC.regUser.firstname" required/>
 					</div>
+					
+				</div>
+				
+				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regLastName">Last Name*</label>
 						<input type="text" class="form-control" id="regLastName" placeholder="Last Name" ng-model="UC.regUser.lastname" required/>
 					</div>
 				</div>
-
+				
 				<div class="alert alert-danger" ng-if="UC.validationErrors.username">
 					{{ UC.validationErrors.username.message }}
 				</div>
@@ -59,11 +63,14 @@
 						<label for="regEmail">Email Address*</label>
 						<input type="email" class="form-control" id="regEmail" placeholder="Email Address" ng-model="UC.regUser.email" required>
 					</div>
+				</div>
+				
+				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regEmailConf">Confirm Email Address*</label>
 						<input type="email" class="form-control" id="regEmailConf" placeholder="Confirm Email Address" ng-model="UC.regUser.emailConf" required/>
 					</div>
-				</div>
+				</div>	
 
 				<div class="alert alert-danger" ng-if="UC.validationErrors.password">
 					{{ UC.validationErrors.password.message }}
@@ -73,12 +80,16 @@
 						<label for="regPassword">Password*</label>
 						<input type="password" class="form-control" id="regPassword" placeholder="Password" ng-model="UC.regUser.password" required/>
 					</div>
+					
+				</div>
+				
+				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regPasswordConf">Confirm Password*</label>
 						<input type="password" class="form-control" id="regPasswordConf" placeholder="Confirm Password" ng-model="UC.regUser.passwordConf" required/>
 					</div>
 				</div>
-
+				
 				<div class="alert alert-danger" ng-if="UC.validationErrors.dob">
 					{{ UC.validationErrors.dob.message }}
 				</div>
@@ -90,6 +101,10 @@
 						<label for="regdob">Date Of Birth*</label>
 						<input type="date" class="form-control" id="regdob" placeholder="dd/mm/yyyy" ng-model="UC.regUser.dob" required/>
 					</div>
+					
+				</div>
+				
+				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regGender">Gender*</label>
 						<select class="form-control" id="regGender" ng-model="UC.regUser.gender" required>
@@ -99,7 +114,7 @@
 							<option value="Other">Other</option>
 						</select>
 					</div>
-				</div>
+				</div>	
 
 				<div class="alert alert-danger" ng-if="UC.validationErrors.favouriteteam">
 					{{ UC.validationErrors.favouriteteam.message }}
