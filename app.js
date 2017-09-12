@@ -193,7 +193,6 @@ function (next) {
 function (err) {
 
 });
-*/
 module.exports = app;
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
