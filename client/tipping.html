@@ -24,12 +24,21 @@
 	.affix {
 		top: 10px;
 	}
+<<<<<<< HEAD
 
 	.affix-bottom {
 		position: absolute;
 	}
 
 
+=======
+		
+	.affix-bottom {
+		position: absolute;
+	}
+
+
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 	</style>
 
 </head>
@@ -83,7 +92,11 @@
 							<tbody align="center">
 								<tr ng-repeat="t in teams | orderBy: 'position' ">
 									<td valign="center"> {{ t.position }} </td>
+<<<<<<< HEAD
 									<td valign="center"><img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:70%"></td>
+=======
+									<td valign="center"><img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" width="75%"></td>
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 									<td valign="center">{{ t.teamID }}</td>
 									<td valign="center"> {{ t.gamesPlayed }} </td>
 									<td valign="center"> {{ t.gamesWon }} </td>
@@ -99,12 +112,20 @@
 					</div>
 				</div>
 				<!--Section for all information about the match-->
+<<<<<<< HEAD
 <!-- changed col-xs-4 to col-xs-12-->
+=======
+<!-- changed col-xs-4 to col-xs-12-->			
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 				<div ng-controller="tippingController"  class="col-md-8 col-xs-12 center-block">
 					<form id="tip" method="POST" action="/userTips">
 
 						<input type="hidden" name="roundNo" value="{{roundNo}}"><h1 style="margin-left:25px">Round: {{roundNo}}</h1></input>
+<<<<<<< HEAD
 					<!--Round changing desktop-->
+=======
+					<!--Round changing desktop-->	
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 						<ul class="pager hidden-xs">
 							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
 							<li align="center">
@@ -115,10 +136,17 @@
 							</li>
 							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">Next Round</a></li>
 						</ul>
+<<<<<<< HEAD
 
 						<!--Round changing mobile-->
 						<ul class="pager visible-xs">
 							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">
+=======
+						
+						<!--Round changing mobile-->
+						<ul class="pager visible-xs">
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1"> 
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 							</a></li>
 							<li align="center">
@@ -130,12 +158,20 @@
 								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true">
 							</a></li>
 						</ul>
+<<<<<<< HEAD
 <!--put entire table in a panel, looks a bit better-->
+=======
+<!--put entire table in a panel, looks a bit better-->						
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 					<div ng-repeat="m in matches" class="panel panel-default" align="center">
 						<table  class="table table-bordered" style="background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 							<tr>
 								<!--Left team info-->
+<<<<<<< HEAD
 <!-- added col-xs to all classes-->
+=======
+<!-- added col-xs to all classes-->								
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 								<td align="center" class="col-md-3 col-xs-3" id="{{ m.homeTeam }}"><br>
 									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
 									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
@@ -146,7 +182,10 @@
 											<span class="cr"><i class="cr-icon fa fa-circle"></i></span>
 										</label>
 									</div>
+<<<<<<< HEAD
 									<input type="hidden" name="game{{m.gameNo}}" value=" {{ m.gameNo }}">
+=======
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 								</td>
 								<!--Match information-->
 								<td align="center" class="col-md-6 col-xs-6"><br><br></br>
@@ -187,8 +226,13 @@
 									</div>
 								</td>
 							</tr>
+<<<<<<< HEAD
 						</table>
 					</div>	<!-- end of panel-->
+=======
+						</table>	
+					</div>	<!-- end of panel-->	
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 						<!--Submit button desktop-->
 						<ul class="pager hidden-xs">
 							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
@@ -201,7 +245,11 @@
 						</ul>
 						<!--Submit button mobile-->
 						<ul class="pager visible-xs">
+<<<<<<< HEAD
 							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">
+=======
+							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1"> 
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 							</a></li>
 							<li align="center">
@@ -215,6 +263,7 @@
 						</ul>
 					</br>
 				</form>
+<<<<<<< HEAD
 
 
 			</div>
@@ -233,5 +282,25 @@
 	</footer>
 </div>
 
+=======
+						
+			
+			</div>
+		</div>
+	</div>
+</div>
+<!--Footer-->
+<div>
+	<footer id="footer" class="footer" style="background-color:#24292E;">
+		<div align="center" style="padding-top: 20px;">
+			<a>About us</a> |
+			<a>Privacy Policy</a> |
+			<a>La Trobe Website</a> |
+			<a>Contact Us</a>
+		</div>
+	</footer>
+</div>
+
+>>>>>>> 081f9e46082713bee97aa8b8bab4ccd199980226
 </body>
 </html>
