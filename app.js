@@ -6,7 +6,7 @@ var jwt = require('jsonwebtoken');
 var app = express();
 var router = express.Router();
 
-
+/*
 // Force HTTPS
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
@@ -20,7 +20,7 @@ setInterval(function() {
     https.get("https://lttc.herokuapp.com");
     console.log("#### PINGING THE SERVER EVERY 20 MINUTES ####");
 }, 1200000); // every 20 minutes (1200000)
-
+*/
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -40,7 +40,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.set('superSecret', "secrettoken");
-
+/*
 // data pulling
 var mongoose = require('mongoose');
 var request = require('request');
@@ -196,7 +196,7 @@ function (next) {
 function (err) {
 
 });
-
+*/
 module.exports = app;
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
