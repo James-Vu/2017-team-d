@@ -1,18 +1,85 @@
 <!DOCTYPE html>
-<html ng-app = "emailTest" ng-controller = "emailController" lang = "en">
-  <head>
-    <title>Email Test</title>
-    <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href = "https://fonts.googleapis.com/css?family=Maven+Pro:700,900|Oswald|Roboto+Condensed" rel = "stylesheet">
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src = "js/nodeMail.js"></script>
+<html ng-app="userApp" ng-controller="userController" lang="en">
+	<head>
+	  <title>La Trobe Footy Tipping</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="style.css">
+		<link rel="icon" href="Eagle.png" type="image/png">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src = "js/nodeMail.js"></script>
 
-  </head>
-  <body>
+	</head>
+	<!--Navbar-->
+	<nav align="center" class="navbar navbar-inverse" style="border-radius:0px;background-color:#24292E;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<!-- Hamburger button -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<!-- Logo -->
+				<a href="tipping.html"><img style="margin-left:0em;margin-top:10px;padding-bottom:5px" class="img-fluid" src="LTU-Footy.png" width="250px"></a>
+			<!-- Responsive Navbar -->
+			</div>
+			<div align="center" class="collapse navbar-collapse" id="navbar1">
+				<ul align="center" class="nav navbar-nav">
+					<li><a href="tipping.html">Tipping</a></li>
+					<li><a href="users.html">View Users</a></li>
+					<li><a href="ladder.html">Ladder</a></li>
+					<li><a href="ranking.html">Ranking</a></li>
+					<li class="active"><a href="email.html">Email<span class="sr-only">(current)</span></a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-user"></span> TestUser</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<body>
+			<div id="header">
+			<div id="body">
+				 <div class="container" style="background-color:#e6e4e2; padding:0">
+           <h1>&nbsp<b>Email Test</b></h1>
+					<div align="left" class="col-md-8 col-xs-10" style="padding:0px; margin-left:10px"></br>
+            <form ng-submit="sendMail()">
+            <input style="width:200px;margin-bottom:4px" ng-model = "to" type = "text" placeholder = " Recipient"></input></span><br>
+            <input style="width:200px;margin-bottom:4px" ng-model = "subject" type = "text" placeholder = " Subject"></input><br>
+            <textarea style="margin-bottom:5px;" ng-model = "text" cols="40" rows="5" placeholder=" Message"></textarea><br>
+
+            <button style="margin-bottom:5px" id = "send_email" type = "submit">Send Email</button>
+
+          </form>
+          The purpose of this page is to merely test the email functionality, however...an Admin could utilise such a page to create emergency broadcasts or seasonal announcements.
+          emails not strictly related to "weekly tipping reminders"
+					</div>
+				</div>
+			 </div>
+		 </div>
+<!-- Footer -->
+<div>
+	<footer id="footer" class="footer" style="background-color:#24292E;">
+		<div align="center" style="padding-top: 20px;">
+			<a>About us</a> |
+			<a>Privacy Policy</a> |
+			<a>La Trobe Website</a> |
+			<a>Contact Us</a>
+		</div>
+	</footer>
+ </div>
+	</body>
+</html>
+
+
+    <!--
     <form ng-submit="sendMail()">
-
+    <script src = "js/nodeMail.js"></script>
     <input style="width:40%" ng-model = "to" type = "text" placeholder = "To"></input><br>
     <input style="width:40%" ng-model = "subject" type = "text" placeholder = "Subject"></input><br>
     <textarea ng-model = "text" cols = "40" rows = "5" placeholder = "message"><br>
@@ -21,4 +88,4 @@
     <button id = "send_email" type = "submit">Send Email</button>
 
   </form>
- </body>
+-->
