@@ -14,8 +14,8 @@
 	<script src="static/js/angularFactories.js"></script>
 </head>
 
-<body ng-controller="usersController as UC">
-	<div class="panel panel-default" margin-top:1%">
+<body ng-cloak ng-controller="usersController as UC">
+	<div class="panel panel-default" style="margin-top:1%">
 			<div class="panel-heading" style="background-color:#24292E">
 				<h3 class="panel-title" align="center" style="color:white"><b>Register<b></h3>
 			</div>
@@ -24,29 +24,29 @@
 			<p><b>* Required Field</b></p>
 			<form ng-submit="UC.register()">
 
-				<div class="alert alert-danger" ng-if="UC.validationErrors.firstname">
-					{{ UC.validationErrors.firstname.message }}
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.firstname">
+					<p ng-cloak>{{ UC.validationErrors.firstname.message }}</p>
 				</div>
-				<div class="alert alert-danger" ng-if="UC.validationErrors.lastname">
-					{{ UC.validationErrors.lastname.message }}
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.lastname">
+					<p ng-cloak>{{ UC.validationErrors.lastname.message }}</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regFirstName">First Name*</label>
 						<input type="text" class="form-control" id="regFirstName" placeholder="First Name" ng-model="UC.regUser.firstname" required/>
 					</div>
-					
+
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regLastName">Last Name*</label>
 						<input type="text" class="form-control" id="regLastName" placeholder="Last Name" ng-model="UC.regUser.lastname" required/>
 					</div>
 				</div>
-				
-				<div class="alert alert-danger" ng-if="UC.validationErrors.username">
-					{{ UC.validationErrors.username.message }}
+
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.username">
+					<p ng-cloak>{{ UC.validationErrors.username.message }}</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
@@ -55,8 +55,8 @@
 					</div>
 				</div>
 
-				<div class="alert alert-danger" ng-if="UC.validationErrors.email">
-					{{ UC.validationErrors.email.message }}
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.email">
+					<p ng-cloak>{{ UC.validationErrors.email.message }}</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
@@ -64,46 +64,46 @@
 						<input type="email" class="form-control" id="regEmail" placeholder="Email Address" ng-model="UC.regUser.email" required>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regEmailConf">Confirm Email Address*</label>
 						<input type="email" class="form-control" id="regEmailConf" placeholder="Confirm Email Address" ng-model="UC.regUser.emailConf" required/>
 					</div>
-				</div>	
+				</div>
 
-				<div class="alert alert-danger" ng-if="UC.validationErrors.password">
-					{{ UC.validationErrors.password.message }}
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.password">
+					<p ng-cloak>{{ UC.validationErrors.password.message }}</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regPassword">Password*</label>
 						<input type="password" class="form-control" id="regPassword" placeholder="Password" ng-model="UC.regUser.password" required/>
 					</div>
-					
+
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regPasswordConf">Confirm Password*</label>
 						<input type="password" class="form-control" id="regPasswordConf" placeholder="Confirm Password" ng-model="UC.regUser.passwordConf" required/>
 					</div>
 				</div>
-				
-				<div class="alert alert-danger" ng-if="UC.validationErrors.dob">
-					{{ UC.validationErrors.dob.message }}
+
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.dob">
+					<p ng-cloak>{{ UC.validationErrors.dob.message }}</p>
 				</div>
-				<div class="alert alert-danger" ng-if="UC.validationErrors.gender">
-					{{ UC.validationErrors.gender.message }}
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.gender">
+					<p ng-cloak>{{ UC.validationErrors.gender.message }}</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regdob">Date Of Birth*</label>
 						<input type="date" class="form-control" id="regdob" placeholder="dd/mm/yyyy" ng-model="UC.regUser.dob" required/>
 					</div>
-					
+
 				</div>
-				
+
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
 						<label for="regGender">Gender*</label>
@@ -114,10 +114,10 @@
 							<option value="Other">Other</option>
 						</select>
 					</div>
-				</div>	
+				</div>
 
-				<div class="alert alert-danger" ng-if="UC.validationErrors.favouriteteam">
-					{{ UC.validationErrors.favouriteteam.message }}
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.favouriteteam">
+					<p ng-cloak>{{ UC.validationErrors.favouriteteam.message }}</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6 col-xs-6 form-group">
@@ -147,8 +147,8 @@
 					</div>
 				</div>
 
-				<div class="alert alert-danger" ng-if="UC.validationErrors.check">
-					{{ UC.validationErrors.check.message }}
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.check">
+					<p ng-cloak>{{ UC.validationErrors.check.message }}</p>
 				</div>
 				<div class="row">
 					<label class="col-md-6 col-xs-6 form-check-label">
