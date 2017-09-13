@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body ng-cloak>
 	<!--Navbar desktop-->
 	<nav class="navbar navbar-inverse" style="border-radius:0px">
 		<div class="container-fluid">
@@ -83,7 +83,9 @@
 							<tbody align="center">
 								<tr ng-repeat="t in teams | orderBy: 'position' ">
 									<td valign="center"> {{ t.position }} </td>
-									<td valign="center"><img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:70%"></td>
+									<td valign="center">
+										<img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:55px">
+									</td>
 									<td valign="center">{{ t.teamID }}</td>
 									<td valign="center"> {{ t.gamesPlayed }} </td>
 									<td valign="center"> {{ t.gamesWon }} </td>
