@@ -44,7 +44,7 @@
 </div>
 		<div class="container" style="background-color:#f2f2f2">
 			<div align = "center" class="row">
-				<div align="center" class="col-md-12 col-xs-12">
+				<div align="center" class="col-md-12 col-xs-6 table-responsive" >
 					<br>
 					<table ng-controller="userController" class="table table-bordered" style="background-color:white;">
 						<thead>
@@ -72,11 +72,13 @@
 							</tr>
 						</tbody>
 					</table>
+					</div>
+					<div align="center" class="col-md-12 col-xs-6 table-responsive" >
           <table ng-controller="userTipController"  class="table table-bordered" style="background-color:white">
 						<thead>
 							<tr align="center">
 								<td><b>User</b></td>
-                <td><b>Round</b></td>
+								<td><b>Round</b></td>
 								<td><b>Game</b></td>
 								<td><b>Team</b></td>
 							</tr>
@@ -84,12 +86,13 @@
 						<tbody>
 							<tr align="center" ng-repeat="ut in userTips">
 								<td> {{ ut.userID }} </td>
-                <td> {{ ut.roundNo }} </td>
+								<td> {{ ut.roundNo }} </td>
 								<td> {{ ut.gameNo }}</td>
 								<td> {{ ut.teamID }}</td>
 							</tr>
 						</tbody>
 					</table>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -98,9 +101,10 @@
 		 	<footer id="footer" class="footer" style="background-color:#24292E;">
 				<div align="center" style="padding-top: 20px;">
 					<a>About us</a> |
+					<a href="rules.html">Rules</a> |
 					<a>Privacy Policy</a> |
-					<a>La Trobe Website</a> |
-					<a>Contact Us</a>
+					<a href="http://www.latrobe.edu.au/">La Trobe Website</a> |
+					<a href="contactUs.html">Contact Us</a>
 				</div>
 			</footer>
 		 </div>
