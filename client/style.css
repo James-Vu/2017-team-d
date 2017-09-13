@@ -77,7 +77,6 @@ body {
 }
 
 .navbar-inverse {
-  height: 81px;
   background-color: #24292E;
 }
 .navbar-inverse .navbar-nav > li > a,
@@ -92,6 +91,7 @@ body {
 .navbar-inverse .navbar-nav > .active > a:focus {
   padding-top: 2.5px;
     line-height: 75px;
+    padding-bottom:-5px;
     border-bottom: 5px solid #e6e4e2;
 }
 
@@ -101,4 +101,14 @@ body {
 
 .navbar-form {
   margin-top: 22px;
+}
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+  color:white;
 }

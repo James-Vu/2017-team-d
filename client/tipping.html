@@ -31,42 +31,42 @@
 
 
 	</style>
-
 </head>
+<!--Navbar-->
+<nav align="center" class="navbar navbar-inverse" style="border-radius:0px">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<!-- Hamburger button -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+				<span class="sr-only">Toggle Navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!-- Logo -->
+			<img style="margin-left:0em;margin-top:10px;padding-bottom:5px" class="img-fluid" src="LTU-Footy.png" width="250px">
+		<!-- Responsive Navbar -->
+		</div>
+		<div align="center" class="collapse navbar-collapse" id="navbar1">
+			<ul align="center" class="nav navbar-nav">
+				<li class="active"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
+				<li><a href="users.html">View Users</a></li>
+				<li><a href="ladder.html">Ladder</a></li>
+				<li><a href="ranking.html">Ranking</a></li>
+				<li><a href="email.html">Email</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> TestUser</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
 
 <body ng-cloak>
-	<!--Navbar desktop-->
-	<nav class="navbar navbar-inverse" style="border-radius:0px">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
-					<span class="sr-only">Toggle Navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="tipping.html" style="padding:4px">
-					<img class="img-fluid" src="LTU-Footy.png" width="250px" ></img>
-				</a>
-			</div>
-			<div class="collapse navbar-collapse" id="navbar1">
-				<ul align="center" class="nav navbar-nav">
-					<li class="active" style="width:220px;"><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
-					<li style="width:220px;"><a href="users.html">View Users</a></li>
-					<li style="width:220px;"><a href="ladder.html">Ladder</a></li>
-					<li style="width:220px;"><a href="ranking.html">Ranking</a></li>
-					<li style="margin-left:0.7em;"><a>"Test User"</a><li>
-					<li style=""><a href="email.html">Email</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-		<!--END Navbar-->
+		<div align="center" class="container" style="background-color:#e6e4e2;">
 
-		<div align="center" class="container-fluid" style="background-color:#e6e4e2;">
-			<!--Ladder side-->
+			<!--Ladder-->
 			<div class="row">
-				<div align="center" style="margin-top:10px" class="col-md-4 col-xs-4 hidden-xs">
+				<div align="center" style="margin-top:10px;margin-left:-10px" class="col-md-3 col-xs-4 hidden-xs">
 					<div data-spy="affix" data-offset-top="100" data-offset-bottom="140">
 						<table ng-controller="ladderController" class="table table-bordered" style="background-color:white;">
 							<thead>
@@ -101,11 +101,10 @@
 					</div>
 				</div>
 				<!--Section for all information about the match-->
-<!-- changed col-xs-4 to col-xs-12-->
-				<div ng-controller="tippingController"  class="col-md-8 col-xs-12 center-block">
+				<div ng-controller="tippingController"  class="col-md-8 col-xs-12 center-block" style="float:right">
 					<form id="tip" method="POST" action="/userTips">
 
-						<input type="hidden" name="roundNo" value="{{roundNo}}"><h1 style="margin-left:25px">Round: {{roundNo}}</h1></input>
+						<input type="hidden" name="roundNo" value="{{roundNo}}"><h1 style="margin-left:25px"><b>Round: {{roundNo}}</b></h1></input>
 					<!--Round changing desktop-->
 						<ul class="pager hidden-xs">
 							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
