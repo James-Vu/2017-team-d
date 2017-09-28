@@ -19,6 +19,18 @@
 	    $affixElement.width($affixElement.parent().width());
 	});
 </script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+</script>
+<script>
+$('[data-toggle=offcanvas]').click(function() {
+    $('.row-offcanvas').toggleClass('active');
+    $('.collapse').toggleClass('in').toggleClass('hidden-xs').toggleClass('visible-xs');
+});
+</script>
 	<style>
 
 	.affix {
@@ -63,7 +75,7 @@
 
 <body ng-cloak>
 		<div align="center" class="container" style="background-color:#e6e4e2;">
-
+			
 			<!--Ladder-->
 			<div class="row">
 				<div align="center" style="margin-top:10px;" class="col-md-3 col-xs-4 hidden-xs hidden-sm hidden-md">
@@ -103,7 +115,9 @@
 				<!--Section for all information about the match-->
 				<div ng-controller="tippingController"  class="col-md-8 col-xs-12 center-block" style="float:right">
 					<form id="tip" method="POST" action="/userTips">
-
+					<div align="right">
+						<a href="#"  data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="Choose which team you think will win each match by clicking on the circle below their team logo. Once all selections have been made, hit the submit button">Click for instructions</a>
+					</div>
 						<input type="hidden" name="roundNo" value="{{roundNo}}"><h1 style="margin-left:25px"><b>Round: {{roundNo}}</b></h1></input>
 					<!--Round changing desktop-->
 						<ul class="pager hidden-xs">
