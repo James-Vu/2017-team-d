@@ -60,12 +60,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="t in teams | orderBy: 'position' ">
+							<tr style="text-align:center" ng-repeat="t in teams | orderBy: 'position' ">
 								<td> {{ t.position }} </td>
-								<td> {{ t._id }} </td>
+								<td> {{ t.teamID }} </td>
 								<td> {{ t.gamesPlayed }} </td>
 								<td> {{ t.gamesWon }} </td>
-								<td> {{ t.gamesDrawed }} </td>
+								<td> {{ t.gamesDrawn }} </td>
 								<td> {{ t.gamesLost }} </td>
 								<td> {{ t.percentage }}%</td>
 								<td> {{ t.points }} </td>
