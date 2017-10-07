@@ -38,7 +38,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.set('superSecret', "secrettoken");
-
+/*
 // data pulling
 var mongoose = require('mongoose');
 var request = require('request');
@@ -193,6 +193,7 @@ function (next) {
 function (err) {
 
 });
+*/
 module.exports = app;
 // listen on port 3000
 app.listen(process.env.PORT || 3000, function () {
