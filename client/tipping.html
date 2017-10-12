@@ -162,12 +162,12 @@ $(document).ready(function () {
 								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
 								margin:0;" value="Submit">
 							</li>
-							<li ng-class="roundNo == 23 ? 'next disabled' : 'next'"><a href="#" ng-click="roundNo = roundNo + 1" ng-disabled"roundNo == 23">Next Round</a></li>
+							<li ng-class="roundNo == 23 ? 'next disabled' : 'next'"><a href="#" ng-click="roundNo != 23 ? roundNo = roundNo + 1 : roundNo = roundNo" ng-disabled"roundNo == 23">Next Round</a></li>
 						</ul>
 
 						<!--Round changing mobile-->
 						<ul class="pager visible-xs">
-							<li ng-class="roundNo == 1 ? 'previous disabled' : 'previous'"><a href="#" ng-click="roundNo = roundNo - 1">
+							<li ng-class="roundNo == 1 ? 'previous disabled' : 'previous'"><a href="#" ng-click="roundNo != 1 ? roundNo = roundNo - 1 : roundNo = roundNo" >
 								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 							</a></li>
 							<li align="center">
@@ -175,7 +175,7 @@ $(document).ready(function () {
 								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
 								margin:0;" value="Submit">
 							</li>
-							<li ng-class="roundNo == 23 ? 'next disabled' : 'next'"><a href="#" ng-click="roundNo = roundNo + 1">
+							<li ng-class="roundNo == 23 ? 'next disabled' : 'next'"><a href="#" ng-click="roundNo != 23 ? roundNo = roundNo + 1 : roundNo = roundNo" ng-disabled"roundNo == 23">
 								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true">
 							</a></li>
 						</ul>
@@ -238,17 +238,17 @@ $(document).ready(function () {
 					</div>
 						<!--Submit button desktop-->
 						<ul class="pager hidden-xs">
-							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">Previous Round</a></li>
+							<li ng-class="roundNo == 1 ? 'previous disabled' : 'previous'"><a href="#" ng-click="roundNo != 1 ? roundNo = roundNo - 1 : roundNo = roundNo" >Previous Round</a></li>
 							<li align="center">
 								<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
 								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
 								margin:0;" value="Submit">
 							</li>
-							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">Next Round</a></li>
+							<li ng-class="roundNo == 23 ? 'next disabled' : 'next'"><a href="#" ng-click="roundNo != 23 ? roundNo = roundNo + 1 : roundNo = roundNo" ng-disabled"roundNo == 23">Next Round</a></li>
 						</ul>
 						<!--Submit button mobile-->
 						<ul class="pager visible-xs">
-							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">
+							<li ng-class="roundNo == 1 ? 'previous disabled' : 'previous'"><a href="#" ng-click="roundNo != 1 ? roundNo = roundNo - 1 : roundNo = roundNo" >
 								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 							</a></li>
 							<li align="center">
@@ -256,7 +256,7 @@ $(document).ready(function () {
 								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
 								margin:0;" value="Submit">
 							</li>
-							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">
+							<li ng-class="roundNo == 23 ? 'next disabled' : 'next'"><a href="#" ng-click="roundNo != 23 ? roundNo = roundNo + 1 : roundNo = roundNo" ng-disabled"roundNo == 23">
 								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true">
 							</a></li>
 						</ul>
