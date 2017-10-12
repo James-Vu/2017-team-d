@@ -47,14 +47,17 @@
 			<div id="body">
 				 <div class="container" style="background-color:#e6e4e2; padding:0">
 					<div align="left" class="col-md-8 col-xs-10" style="padding:0px; margin-left:10px"></br>
-						<h1 style="margin-top:-15px">{{ data.username }}{{prof}}</h1>
-						<p>Name: {{ data.firstname }} {{ data.lastname }}</p>
-						<p>Email: {{ data.email }}</p>
-						<p>Date of Birth: {{data.dob | date:"dd/mm/yyyy"}}</p>
-						<p>Gender: {{ data.gender }}</p>
-						<p>Favourite Team: {{ data.favouriteteam }}
-							<img src="{{ data.favouriteteam }}.png" class="img-responsive"
-							alt="{{ t.teamID }}" height="auto" style="max-width:65px"></p>
+						<table>
+							<tr>
+								<td><h1>{{ data.username }}{{prof}}</h1></td>
+								<td><img src="{{ data.favouriteteam }}" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:65px"></td>
+							</tr>
+						</table>	
+						<p style="font-size:20px"><b>Name: </b>{{ data.firstname }} {{ data.lastname }}</p>
+						<p style="font-size:20px"><b>Email: </b>{{ data.email }}</p>
+						<p style="font-size:20px"><b>Date of Birth: </b>{{data.dob | date:"dd/mm/yyyy"}}</p>
+						<p style="font-size:20px"><b>Gender: </b>{{ data.gender }}</p>
+						<p style="font-size:20px"><b>Favourite Team: </b>{{ data.favouriteteam }}</p>
 					</div>
 				</div>
 			 </div>
