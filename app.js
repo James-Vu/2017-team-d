@@ -11,6 +11,7 @@ var morgan = require('morgan');
 var app = express();
 var router = express.Router();
 
+
 // Force HTTPS
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
@@ -82,7 +83,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/client/login.html');
 });
 
-/*
+
 // data pulling
 var mongoose = require('mongoose');
 var request = require('request');
@@ -140,11 +141,24 @@ request(url, function(error, response, html) {
 })
 
 
+var XLSX = require('xlsx');
+var workbook = XLSX.readFile('afl.xlsx');
+var sheet_name_list = workbook.SheetNames;
+var odds = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
+var matches = [];
+
+for(var i = 0, len = odds.length; i < len; i++) {
+	if(odds[i].Date.substring(7,9) >= 17) {
+		matches.unshift(odds[i]);
+	}
+}
+
+
 // pulls data about matches
 var season = 2017;
 var roundNo = 1;
-var currentRoundNo = 24;
-
+var currentRoundNo = 23;
+var matchesToSave = [];
 
 require('mongoose').model('Match');
 var Match = mongoose.model('Match');
@@ -177,7 +191,9 @@ function (next) {
           var awayScore = $(game).find('.match .team-names .away .score').text();
           var time = $(game).find('.venue-time .time').text();
           var location = $(game).find('.venue-time .venue').text();
-
+		  var homeOdds = matches[i]['Home Odds'];
+		  var awayOdds = matches[i]['Away Odds'];
+		  i++;
 
           if(time.indexOf('PM') != -1) {
             time = time.replace('PM', '');
@@ -188,56 +204,69 @@ function (next) {
           // another way could be useful
           //var homeScore = $(game).find('.match .team-names .home .score').text();
 
-          var match_data = {
+          
+		  var match_data = {
             roundNo: roundNo,
-            gameNo: gameNo++,
+            gameNo: gameNo,
             matchDate: d,
             matchLocation: location,
             homeTeamID: homeTeam,
             awayTeamID: awayTeam,
             homeScore: homeScore,
             awayScore: awayScore,
-            homeOdds: -1,
-            awayOdds: -1
+            homeOdds: homeOdds,
+            awayOdds: awayOdds
           };
-          //console.log(match);
-          var match = new Match(match_data);
-          Match.findOne({ roundNo: match.roundNo, gameNo: match.gameNo }, function(error, match) {
-            if(error){
-              console.log(error);
-            }
-            else if(match == null){
-              console.log('no such match');
-              match.save( function(error, data) {
-                if(error) {
-                  res.json(error);
-                }
-                else{
-                  res.json(_data);
-                }
-              });
-            }
-            else{
-              Match.update({ roundNo: match.roundNo, gameNo: match.gameNo }, { $set: match_data }, callback);
 
-              function callback (err, numAffected) {
-                //console.log(numAffected);
-              }
-            }
-          })
-          game = $(game).next();
+		  //console.log(match);
+		  matchesToSave.push(match_data);
+		    
+		  
+		  gameNo++;
+		  game = $(game).next();
+
         }
       });
     }
-    roundNo++;
-    next();
-  })
+	if(roundNo < currentRoundNo){
+	  roundNo++;
+	  next();
+	}
+	else {
+		async.eachSeries(matchesToSave, function(m, callback) {
+			//console.log(m);
 
+			Match.findOne({ roundNo: m.roundNo, gameNo: m.gameNo}, function(err, doc){
+				console.log(m.roundNo);
+				console.log(m.gameNo);
+				console.log(doc);
+				if(err) {
+					return handleError(err);
+				}
+				else if(doc == null) {
+					m.save(function (err) {
+						if (err) return handleError(err);
+					});
+				}	
+				else {
+					Match.update({_id: doc._id}, m, function (err, res) {
+						console.log(err);
+						console.log(res);
+					});
+				}					
+			});
+			callback();
+		});
+	}
+
+  })
 },
 function (err) {
 
 });
-*/
+
+
+
 module.exports = app;
 // listen on port 3000
 app.listen(port);
