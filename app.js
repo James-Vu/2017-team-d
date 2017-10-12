@@ -145,11 +145,11 @@ var XLSX = require('xlsx');
 var workbook = XLSX.readFile('afl.xlsx');
 var sheet_name_list = workbook.SheetNames;
 var odds = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
-var matches = [];
+var matchOdds = [];
 
 for(var i = 0, len = odds.length; i < len; i++) {
 	if(odds[i].Date.substring(7,9) >= 17) {
-		matches.unshift(odds[i]);
+		matchOdds.push(odds[i]);
 	}
 }
 
@@ -157,7 +157,7 @@ for(var i = 0, len = odds.length; i < len; i++) {
 // pulls data about matches
 var season = 2017;
 var roundNo = 1;
-var currentRoundNo = 23;
+var currentRoundNo = 2;
 var matchesToSave = [];
 
 require('mongoose').model('Match');
@@ -191,9 +191,6 @@ function (next) {
           var awayScore = $(game).find('.match .team-names .away .score').text();
           var time = $(game).find('.venue-time .time').text();
           var location = $(game).find('.venue-time .venue').text();
-		  var homeOdds = matches[i]['Home Odds'];
-		  var awayOdds = matches[i]['Away Odds'];
-		  i++;
 
           if(time.indexOf('PM') != -1) {
             time = time.replace('PM', '');
@@ -214,8 +211,8 @@ function (next) {
             awayTeamID: awayTeam,
             homeScore: homeScore,
             awayScore: awayScore,
-            homeOdds: homeOdds,
-            awayOdds: awayOdds
+            homeOdds: -1,
+            awayOdds: -1
           };
 
 		  //console.log(match);
@@ -235,11 +232,22 @@ function (next) {
 	else {
 		async.eachSeries(matchesToSave, function(m, callback) {
 			//console.log(m);
-
+			if(m != null) {
+				for(var i = 0, len = matchOdds.length; i < len; i++) {
+					console.log(matchOdds[i]);
+					if(matchOdds[i]['Home Team'].charAt(0) == m.homeTeamID.charAt(0) && 
+						matchOdds[i]['Away Team'].charAt(0) == m.awayTeamID.charAt(0) &&
+						matchOdds[i].Venue.charAt(0) == m.matchLocation.charAt(0) &&
+						matchOdds[i].used != true) {
+							m.homeOdds = matchOdds[i]['Home Odds'];
+							m.awayOdds = matchOdds[i]['Away Odds'];
+							matchOdds.used = true;
+					}
+				}
+			}
+			
+			
 			Match.findOne({ roundNo: m.roundNo, gameNo: m.gameNo}, function(err, doc){
-				console.log(m.roundNo);
-				console.log(m.gameNo);
-				console.log(doc);
 				if(err) {
 					return handleError(err);
 				}
