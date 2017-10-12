@@ -82,7 +82,7 @@ $(document).ready(function () {
 				<li><a href="ladder.html">Ladder</a></li>
 				<li><a href="ranking.html">Ranking</a></li>
 				<li><a href="email.html">Email</a></li>
-				<li><a style="color:white" href="profile.html"><span class="glyphicon glyphicon-user"></span> {{data.username}}</a></li>
+				<li><a style="color:#9d9d9d;" href="profile.html"><span class="glyphicon glyphicon-user"></span> {{data.username}}</a></li>
 				<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 			</ul>
 		</div>
@@ -162,12 +162,12 @@ $(document).ready(function () {
 								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
 								margin:0;" value="Submit">
 							</li>
-							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1" ng-disabled"roundNo == 23">Next Round</a></li>
+							<li ng-class="roundNo == 1 ? 'next disabled' : 'next'"><a href="#" ng-click="roundNo = roundNo + 1" ng-disabled"roundNo == 23">Next Round</a></li>
 						</ul>
 
 						<!--Round changing mobile-->
 						<ul class="pager visible-xs">
-							<li class="previous"><a href="#" ng-click="roundNo = roundNo - 1">
+							<li ng-class="roundNo == 1 ? 'previous disabled' : 'previous'"><a href="#" ng-click="roundNo = roundNo - 1">
 								<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
 							</a></li>
 							<li align="center">
@@ -175,7 +175,7 @@ $(document).ready(function () {
 								box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   display:inline-block;
 								margin:0;" value="Submit">
 							</li>
-							<li class="next"><a href="#" ng-click="roundNo = roundNo + 1">
+							<li ng-class="roundNo == 1 ? 'next disabled' : 'next'"><a href="#" ng-click="roundNo = roundNo + 1">
 								<span class="glyphicon glyphicon-arrow-right" aria-hidden="true">
 							</a></li>
 						</ul>
