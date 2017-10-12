@@ -244,7 +244,8 @@ function (next) {
 					return handleError(err);
 				}
 				else if(doc == null) {
-					m.save(function (err) {
+					var match = new Match(m);
+					match.save(function (err) {
 						if (err) return handleError(err);
 					});
 				}	
