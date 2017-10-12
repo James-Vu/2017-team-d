@@ -155,7 +155,7 @@ $(document).ready(function () {
 					</div>
 					<!--Round changing desktop-->
 						<ul class="pager hidden-xs">
-							<li class="(roundNo == 1) ? 'previous disabled' : 'previous'"><a href="#" ng-click="roundNo = roundNo - 1" >Previous Round</a></li>
+							<li class="(roundNo == 1) ? 'previous disabled' : 'previous'"><a href="#" ng-click="(roundNo != 1) ? roundNo = roundNo - 1 : " >Previous Round</a></li>
 							<li align="center">
 								<!--Submit button-->
 								<input type="submit" class="btn btn-primary btn-lg" style="padding-left:40px; padding-right:40px;margin-bottom:5px;
