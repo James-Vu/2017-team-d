@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="userApp" ng-controller="userController" lang="en">
+	<head>
+	  <title>La Trobe Footy Tipping</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="Eagle.png" type="image/png">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src = "js/nodeMail.js"></script>
+		<script src = "js/userScript.js"></script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<!--Navbar-->
+	<nav align="center" class="navbar navbar-inverse" style="border-radius:0px">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<!-- Hamburger button -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<!-- Logo -->
+				<a href="tipping.html"><img style="margin-left:0em;margin-top:10px;padding-bottom:5px" class="img-fluid" src="LTU-Footy.png" width="250px"></a>
+			<!-- Responsive Navbar -->
+			</div>
+			<div ng-controller="userLogController" align="center" class="collapse navbar-collapse" id="navbar1">
+				<ul align="center" class="nav navbar-nav">
+					<li><a href="tipping.html">Tipping</a></li>
+					<li class="active"><a href="users.html">View Users<span class="sr-only">(current)</span></a></li>
+					<li><a href="ladder.html">Ladder</a></li>
+					<li><a href="ranking.html">Ranking</a></li>
+					<li><a href="email.html">Email</a></li>
+					<li><a style="color:white" href="profile.html"><span class="glyphicon glyphicon-user"></span> {{data.username}}</a></li>
+					<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<body>
+</div>
+		<div class="container" style="background-color:#f2f2f2">
+			<div align = "center" class="row">
+				<div align="center" class="col-md-12 col-xs-6 table-responsive" >
+					<br>
+					<table ng-controller="userController" class="table table-bordered" style="background-color:white;">
+						<thead>
+							<tr align="center">
+								<td><b>User</b></td>
+								<td><b>Email</b></td>
+								<td><b>FavouriteTeam</b></td>
+								<td><b>Win</b></td>
+								<td><b>Loss</b></td>
+								<td><b>Draw</b></td>
+								<td><b>Group</b></td>
+								<td><b>emailOptOut</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr align="center" ng-repeat="u in users">
+								<td> {{ u.username }} </td>
+								<td> {{ u.email }}</td>
+								<td> {{ u.favouriteteam }}</td>
+								<td> {{ u.currentWins }}</td>
+								<td> {{ u.currentLosses }}</td>
+								<td> {{ u.currentDraws }}</td>
+                <td> {{ u.userGroup }}</td>
+								<td> {{ u.emailOptOut }}</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+					<div align="center" class="col-md-12 col-xs-6 table-responsive" >
+          <table ng-controller="userTipController"  class="table table-bordered" style="background-color:white">
+						<thead>
+							<tr align="center">
+								<td><b>User</b></td>
+								<td><b>Round</b></td>
+								<td><b>Game</b></td>
+								<td><b>Team</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr align="center" ng-repeat="ut in userTips">
+								<td> {{ ut.userID }} </td>
+								<td> {{ ut.roundNo }} </td>
+								<td> {{ ut.gameNo }}</td>
+								<td> {{ ut.teamID }}</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Footer-->
+		<div>
+		 	<footer id="footer" class="footer" style="background-color:#24292E;">
+				<div align="center" style="padding-top: 20px;">
+					<a>About us</a> |
+					<a href="rules.html">Rules</a> |
+					<a>Privacy Policy</a> |
+					<a href="http://www.latrobe.edu.au/">La Trobe Website</a> |
+					<a href="contactUs.html">Contact Us</a>
+				</div>
+			</footer>
+		 </div>
+	</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="userApp" ng-controller="userController" lang="en">
+	<head>
+	  <title>La Trobe Footy Tipping</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <link rel="stylesheet" href="style.css">
+		<link rel="icon" href="Eagle.png" type="image/png">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src = "js/nodeMail.js"></script>
+		<script src = "js/userScript.js"></script>
+	</head>
+
+	<!--Navbar-->
+<nav align="center" class="navbar navbar-inverse" style="border-radius:0px;background-color:#24292E;">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<!-- Hamburger button -->
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+				<span class="sr-only">Toggle Navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!-- Logo -->
+			<a href="tipping.html"><img style="margin-left:0em;margin-top:10px;padding-bottom:5px" class="img-fluid" src="LTU-Footy.png" width="250px"></a>
+		<!-- Responsive Navbar -->
+		</div>
+		<div ng-controller="userLogController" align="center" class="collapse navbar-collapse" id="navbar1">
+			<ul align="center" class="nav navbar-nav">
+				<li><a href="tipping.html">Tipping</a></li>
+				<li><a padding="30px" href="users.html">View Users</a></li>
+				<li><a href="ladder.html">Ladder</a></li>
+				<li><a href="ranking.html">Ranking</a></li>
+				<li><a href="email.html">Email</a></li>
+				<li><a style="color: white" href="profile.html"><span class="glyphicon glyphicon-user"></span> {{ data.username }}</a></li>
+				<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+	<body>
+
+			<div class="container"  style="background-color:#e6e4e2">
+
+
+				<div class="col-md-12"><!--Part 1-->
+					<h1><b>Rules</b></h1></br>
+					<p>La Trobe Footy Tipping is proud to join and support a long line of Australian AFL tipping websites.  This website is mainly dedicated to students and staff of La Trobe University, Victoria, Australia, but all are welcome to join up and compete in our tipping competition!</p>
+				</div>
+				<div class="col-md-12"><!--Part 2-->
+					<h3><b>What you need to know</b></h3>
+					<p>How to join and register?
+					<p>It is free to join and play La Trobe Footy Tipping. Simply follow the below steps.</p>
+					<p><b>Step 1:</b> Become a member of <a href="https://lttc.herokuapp.com/">lttc.herokuapp.com</a> (if you're not already)
+							Go to our register page and register your name, contact details, date or birth and choose a user name and password for yourself. It only takes a couple of minutes.
+							Each member has a unique username. If the system says your username is taken, please use a different nickname. E.g. If you enter 'Kangaroo' and it's taken, try entering a variation like "KangarooHops"</p>
+					<p><b>Step 2:</b> Log into your account and have fun!</p>
+				</div>
+				<div class="col-md-12">
+					<h3><b>How to tip?</b></h3>
+					<p>To take part in the tipping competition and potentially win prizes, simply follow the below steps.</p>
+					<p><b>Step 1:</b> Choose the round of matches you wish to place a tip on. </p>
+					<p> The selected round must not have been started yet, choose either the current round or a future round to tip on.</p>
+					<p><b>Step 2: </b>Check the boxes of the team you expect to win for each match and click submit.</br>
+					<p>Tips for each game can be entered or edited at any time prior to the start of the first game of that round.</p>
+					<p>Under no circumstances will tips be accepted after a game has commenced.</p>
+					<p>If tippers do not enter tips for a game, round or join after the season has commenced they will be allocated the default score.</p>
+				</div>
+				<div class="col-md-12">
+					<h3><b>How does the competition work?</b></h3>
+					<p>Upon registering an account and joining our site, the user will automatically be entered into our main Tipping competition, which you may view from the “Rankings” tab.</p>
+					<p>Tippers will be firstly ranked by their weekly score, where the highest score is the highest rank.</p>
+					<p>End of season winners will be determined by total score (The total of all round scores added together).</p>
+					</br>
+				</div>
+			</div>
+
+<!-- Footer -->
+<div>
+	<footer id="footer" class="footer" style="background-color:#24292E;">
+		<div align="center" style="padding-top: 20px;">
+			<a>About us</a> |
+			<a href="rules.html">Rules</a> |
+			<a>Privacy Policy</a> |
+			<a href="http://www.latrobe.edu.au/">La Trobe Website</a> |
+			<a href="contactUs.html">Contact Us</a>
+		</div>
+	</footer>
+ </div>
+	</body>
+</html>

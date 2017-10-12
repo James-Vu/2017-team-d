@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="tippingApp" ng-controller="ladderController">
+	<head>
+	  <title>La Trobe Footy Tipping</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="icon" href="Eagle.png" type="image/png">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="js/ladderScript.js"></script>
+		<script src="js/tippingScript.js"></script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<!--Navbar-->
+	<nav align="center" class="navbar navbar-inverse" style="border-radius:0px;background-color:#24292E;">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<!-- Hamburger button -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<!-- Logo -->
+				<a href="tipping.html"><img style="margin-left:0em;margin-top:10px;padding-bottom:5px" class="img-fluid" src="LTU-Footy.png" width="250px"></a>
+			<!-- Responsive Navbar -->
+			</div>
+			<div ng-controller="userLogController" align="center" class="collapse navbar-collapse" id="navbar1">
+				<ul align="center" class="nav navbar-nav">
+					<li><a href="tipping.html">Tipping</a></li>
+					<li><a href="users.html">View Users</a></li>
+					<li class="active"><a href="ladder.html">Ladder<span class="sr-only">(current)</span></a></li>
+					<li><a href="ranking.html">Ranking</a></li>
+					<li><a href="email.html">Email</a></li>
+					<li><a style="color: white" href="profile.html"><span class="glyphicon glyphicon-user"></span> {{ data.username }}</a></li>
+					<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<body>
+		<div class="container" style="background-color:#f2f2f2">
+			<br>
+			<div align = "center" class="row">
+				<div align="center" class="col-md-12 col-xs-12 table-responsive">
+					<table ng-controller="ladderController" class="table table-bordered table-responsive" style="background-color:white;">
+						<thead>
+							<tr align="center">
+								<td><b>Position</b></td>
+								<td colspan=2><b>Team</b></td>
+								<td><b>Plays</b></td>
+								<td><b>Wins</b></td>
+								<td><b>Draws</b></td>
+								<td><b>Losses</b></td>
+								<td><b>Percentage</b></td>
+								<td><b>Points</b></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr style="text-align:center" ng-repeat="t in teams | orderBy: 'position' ">
+								<td> {{ t.position }} </td>
+								<td style="padding:0px;width:65px" valign="center">
+									<img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:65px">
+								</td>
+								<td> {{ t.teamID }} </td>
+								<td> {{ t.gamesPlayed }} </td>
+								<td> {{ t.gamesWon }} </td>
+								<td> {{ t.gamesDrawn }} </td>
+								<td> {{ t.gamesLost }} </td>
+								<td> {{ t.percentage }}%</td>
+								<td> {{ t.points }} </td>
+							</tr>
+						</tbody>
+					</table>
+		</div>
+	</div>
+</div>
+	<!--Footer-->
+	<div>
+	 	<footer id="footer" class="footer" style="background-color:#24292E;">
+			<div align="center" style="padding-top: 20px;">
+				<a>About us</a> |
+				<a href="rules.html">Rules</a> |
+				<a>Privacy Policy</a> |
+				<a href="http://www.latrobe.edu.au/">La Trobe Website</a> |
+				<a href="contactUs.html">Contact Us</a>
+			</div>
+		</footer>
+	 </div>
+</body>
+</html>

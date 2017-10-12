@@ -1,0 +1,31 @@
+{
+  "name": "lttc",
+  "version": "1.0.0",
+  "description": "tipping app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "team d",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "cheerio": "^1.0.0-rc.2",
+    "connect-flash": "^0.1.1",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "express-validator": "^4.2.1",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.12.1",
+    "mongoose-unique-validator": "^1.0.6",
+    "mongoose-validator": "^1.3.2",
+    "morgan": "^1.9.0",
+    "nodemailer": "^4.1.3",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "request": "^2.83.0",
+    "validator": "^9.0.0"
+  }
+}
