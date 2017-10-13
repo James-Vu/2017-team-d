@@ -1,3 +1,6 @@
+/*Authors: Andrew Kuzminsky, Luke Lo Presti, Matthew Mandile
+  Version: v12*/
+
 .checkbox label:after,
 .radio label:after {
     content: '';

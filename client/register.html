@@ -1,3 +1,7 @@
+<!--
+Authors: Andrew Kuzminsky, Luke Lo Presti, Matthew Mandile
+Version: v12
+-->
 <!DOCTYPE html>
 <html lang="en" ng-App="myApp">
 <head>
@@ -5,18 +9,18 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="Eagle.png" type="image/png">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-	<script src="static/js/angularMain.js"></script>
-	<script src="static/js/angularController.js"></script>
-	<script src="static/js/angularFactories.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="style.css"> <!-- Stylesheet -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script> <!-- JQuery -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!-- Bootstrap -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> <!-- AngularJS -->
+	<script src="static/js/angularMain.js"></script> <!-- Static JS angularMain -->
+	<script src="static/js/angularController.js"></script> <!-- Static JS angularController -->
+	<script src="static/js/angularFactories.js"></script> <!-- Static JS angularFactories -->
 </head>
 
 <body ng-cloak ng-controller="usersController as UC">
-<div class="container">	
+<div class="container">
 	<div class="panel panel-default" style="margin-top:1%">
 			<div class="panel-heading" style="background-color:#24292E">
 				<h3 class="panel-title" align="center" style="color:white"><b>Register<b></h3>
@@ -25,7 +29,7 @@
 			<div class="col-md-12 col-xs-12">
 				<p align="left"><b>Input details to create account:</b></p>
 				<p align="left"><b>* Required Field </br><span style="color:red">* Case sensitive </span></b></p>
-			</div>	
+			</div>
 			<form ng-submit="UC.register()">
 
 				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.firstname">
@@ -35,12 +39,12 @@
 					<p ng-cloak>{{ UC.validationErrors.lastname.message }}</p>
 				</div>
 				<div class="col-md-12 col-xs-12">
-				
+
 				<div class="col-md-12 col-xs-12 form-group">
 					<p align="left">First Name*</p>
 					<input type="text" class="form-control" id="regFirstName" placeholder="First Name" ng-model="UC.regUser.firstname" required/>
 				</div>
-				
+
 					<div class="col-md-12 col-xs-12 form-group">
 						<p align="left">Last Name*</p>
 						<input type="text" class="form-control" id="regLastName" placeholder="Last Name" ng-model="UC.regUser.lastname" required/>
@@ -49,46 +53,46 @@
 				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.username">
 					<p ng-cloak>{{ UC.validationErrors.username.message }}</p>
 				</div>
-		
+
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regUsername">Username* <span style="color:red">*</span></label>
 						<input type="text" class="form-control" id="regUsername" placeholder="Username" ng-model="UC.regUser.username" required/>
 					</div>
-			
+
 
 				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.email">
 					<p ng-cloak>{{ UC.validationErrors.email.message }}</p>
 				</div>
-	
+
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regEmail">Email Address* <span style="color:red">*</span></label>
 						<input type="email" class="form-control" id="regEmail" placeholder="Email Address" ng-model="UC.regUser.email" required>
 					</div>
-			
+
 
 
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regEmailConf">Confirm Email Address* <span style="color:red">*</span></label>
 						<input type="email" class="form-control" id="regEmailConf" placeholder="Confirm Email Address" ng-model="UC.regUser.emailConf" required/>
 					</div>
-	
+
 
 				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.password">
 					<p ng-cloak>{{ UC.validationErrors.password.message }}</p>
 				</div>
-		
+
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regPassword">Password* <span style="color:red">*</span></label>
 						<input type="password" class="form-control" id="regPassword" placeholder="Password" ng-model="UC.regUser.password" required/>
 					</div>
 
-				
+
 
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regPasswordConf">Confirm Password* <span style="color:red">*</span></label>
 						<input type="password" class="form-control" id="regPasswordConf" placeholder="Confirm Password" ng-model="UC.regUser.passwordConf" required/>
 					</div>
-			
+
 
 				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.dob">
 					<p ng-cloak>{{ UC.validationErrors.dob.message }}</p>
@@ -96,15 +100,15 @@
 				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.gender">
 					<p ng-cloak>{{ UC.validationErrors.gender.message }}</p>
 				</div>
-				
+
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regdob">Date Of Birth*</label>
 						<input type="date" class="form-control" id="regdob" placeholder="dd/mm/yyyy" ng-model="UC.regUser.dob" required/>
 					</div>
 
-			
 
-		
+
+
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regGender">Gender*</label>
 						<select class="form-control" id="regGender" ng-model="UC.regUser.gender" required>
@@ -114,12 +118,12 @@
 							<option value="Other">Other</option>
 						</select>
 					</div>
-		
+
 
 				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.favouriteteam">
 					<p ng-cloak>{{ UC.validationErrors.favouriteteam.message }}</p>
 				</div>
-			
+
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regTeam">Favourite AFL Team*</label>
 						<select class="form-control" id="regTeam" ng-model="UC.regUser.favouriteteam" required>
@@ -149,12 +153,12 @@
 				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.check">
 					<p ng-cloak>{{ UC.validationErrors.check.message }}</p>
 				</div>
-			
+
 					<label class="col-md-12 col-xs-12 form-check-label">
 						<input name="agree" type="checkbox" class="form-check-input" required>
 						I have read and agree to the terms and conditions
 					</label>
-				
+
 
 				<div class="col-md-12 col-xs-12" style="padding:15px;">
 					<input class="btn btn-primary" type="submit" value="Create Account">
@@ -166,7 +170,7 @@
 		</div>
 		</div>
 	</div>
-</div>	
+</div>
 </div>
 </body>
 </html>
