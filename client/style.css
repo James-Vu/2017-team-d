@@ -144,3 +144,10 @@ a[aria-expanded="true"]::before {
     display: flex;
     align-items: stretch;
 }
+
+.alert .alert-danger {
+	display:inline-block;
+	display:flex;
+	width:100% - 30px;
+	margin:30px;
+}
