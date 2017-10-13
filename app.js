@@ -1,3 +1,5 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
 // Package Dependancies & Variables
 var express = require("express");
 var expressValidator = require('express-validator');
