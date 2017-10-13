@@ -148,6 +148,5 @@ a[aria-expanded="true"]::before {
 .alert {
 	display:inline-block;
 	display:flex;
-	width:100% - 30px;
-	margin:30px;
+	width:100%;
 }
