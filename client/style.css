@@ -145,7 +145,7 @@ a[aria-expanded="true"]::before {
     align-items: stretch;
 }
 
-.alert .alert-danger {
+.alert {
 	display:inline-block;
 	display:flex;
 	width:100% - 30px;
