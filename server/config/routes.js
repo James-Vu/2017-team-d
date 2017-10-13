@@ -1,3 +1,6 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
+// variables, dependancies & package dependancies
 var users = require('./../controllers/users.js');
 var match = require('./../controllers/match.js');
 var team = require('./../controllers/team.js');
@@ -11,6 +14,8 @@ var app = express();
 var path = require('path');
 
 require("./passport.js")(passport);
+// expose our routes to the entire server,
+// so NodeJS & Express know what to do when we encounter a particular request to a url
 module.exports = function(app, passport){
   console.log('routes imported');
 
@@ -44,12 +49,12 @@ module.exports = function(app, passport){
     console.log("LOGGING OUT " + username);
 	});
 }
-
+// check if the request is authenticated.
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 		return next();
 
-	// if they arent logged in redirect them to the home page
+	// if they arent logged in / authenticated redirect them to the home page
 	res.redirect('/');
 }
 router.use(function(req, res, next) {
