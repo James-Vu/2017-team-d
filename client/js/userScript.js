@@ -1,3 +1,5 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
 // insert nodeMail.js (emailTest) as a dependancy
 var app = angular.module("emailTest");
 // define the name of our app and its dependancies

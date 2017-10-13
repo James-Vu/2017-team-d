@@ -1,3 +1,5 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
 // insert ladderScript.js (ladderApp) as a dependancy
 var app = angular.module("ladderApp");
 // define the name of our app and its dependancies

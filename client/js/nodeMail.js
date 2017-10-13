@@ -1,3 +1,5 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
 // define the name of our app
 var app = angular.module("emailTest", []);
 

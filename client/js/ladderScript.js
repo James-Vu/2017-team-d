@@ -1,3 +1,5 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
 // define our apps name
 var app = angular.module("ladderApp", []);
 
