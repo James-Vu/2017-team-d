@@ -1,36 +1,39 @@
-var app = angular.module("ladderApp"); // insert ladderScript.js (ladderApp) as a dependancy
-
+// insert ladderScript.js (ladderApp) as a dependancy
+var app = angular.module("ladderApp");
+// define the name of our app and its dependancies
 var app = angular.module('tippingApp', ['ladderApp'])
 
-//MATCHES
+// TIPPING Controller
 app.controller("tippingController", function($scope, $http)
+{
+	// instantiate scope variables & functions
+	$scope.roundNo = 1;
+
+	$scope.matches = null;
+	$scope.message = null;
+	$scope.filterString = '';
+	$scope.sortByName = false;
+	$scope.sortOrder = '';
+	$scope.setSortOrder = function()
 	{
-		$scope.roundNo = 1;
-
-		$scope.matches = null;
-		$scope.message = null;
-		$scope.filterString = '';
-		$scope.sortByName = false;
-		$scope.sortOrder = '';
-		$scope.setSortOrder = function()
+		if($scope.sortByName)
 		{
-			if($scope.sortByName)
-			{
-				$scope.sortOrder = 'name';
-			}
-			else
-			{
-				$scope.sortOrder = '';
-			}
-   	}
-		var connection = $http(
+			$scope.sortOrder = 'name';
+		}
+		else
 		{
-
+			$scope.sortOrder = '';
+		}
+	}
+	// make a connection to the url
+	var connection = $http(
+		{
 			method: "get",
 			url: "https://lttc.herokuapp.com/match?roundNo=" + $scope.roundNo
 			//url: "http://localhost:3000/match?roundNo=" + $scope.roundNo
 		})
-
+		// if successful, get everything in the match collection
+		// and assign it to our match scope variable
 		.then(function(response)
 		{
 			response.data.forEach(function(item) {
@@ -39,37 +42,16 @@ app.controller("tippingController", function($scope, $http)
 			$scope.matches = response.data;
 		})
 
-		.catch(function(response)
-		{
-			// It is OK not to take any action here because it would be
-			// clear to the user if the list operation is succesfull or not
-		})
-
-		.finally(function(config)	// induce a syntax error here and see what happens
-		{
-			// It is OK not to take any action here because it would be
-			// clear to the user if the list operation is succesfull or not
-		});
-		/*
-		$http.get("http://localhost:3000/tippingUser").
-		then(function(response) {
-			$scope.data = response.data;
-		})
-		*/
-		$http.get("https://lttc.herokuapp.com/tippingUser").
-		then(function(response) {
-			$scope.data = response.data;
-		})
-
-		$scope.$watch('roundNo',function(newVal,oldVal){
-			var connection = $http(
+	// watch the roundNo variable, performing a get request if it changes.
+	$scope.$watch('roundNo',function(newVal,oldVal){
+		var connection = $http(
 			{
 
 				method: "get",
 				url: "https://lttc.herokuapp.com/match?roundNo=" + $scope.roundNo
 				//url: "http://localhost:3000/match?roundNo=" + $scope.roundNo
 			})
-
+			// if successful, get all the data required and assign it to matches.
 			.then(function(response)
 			{
 				response.data.forEach(function(item) {
@@ -77,33 +59,25 @@ app.controller("tippingController", function($scope, $http)
 				});
 				$scope.matches = response.data;
 			})
-
-			.catch(function(response)
-			{
-				// It is OK not to take any action here because it would be
-				// clear to the user if the list operation is succesfull or not
-			})
-
-			.finally(function(config)	// induce a syntax error here and see what happens
-			{
-				// It is OK not to take any action here because it would be
-				// clear to the user if the list operation is succesfull or not
-			});
 		});
 	});
-	//end controller
+	// END OF TIPPING CONTROLLER
+	// USER SESSION CONTROLLER
 	app.controller("userLogController", function($scope, $http)
-		{
-			/*
-			$http.get("http://localhost:3000/tippingUser").
-			then(function(response) {
-				$scope.data = response.data;
-			})
-			*/
-			$http.get("https://lttc.herokuapp.com/tippingUser").
-			then(function(response) {
-				$scope.data = response.data;
-			})
+	{
+		// get the url, assigning the data variable to the response from the url
 
-		});
-	//end controller
+		$http.get("https://lttc.herokuapp.com/tippingUser").
+		then(function(response) {
+			$scope.data = response.data;
+		})
+		/*
+		// localhost version
+		$http.get("http://localhost:3000/tippingUser").
+		then(function(response) {
+		$scope.data = response.data;
+	})
+	*/
+
+});
+// END OF USER SESSION CONTROLLER
