@@ -25,19 +25,20 @@ Version: v12
 	    $affixElement.width($affixElement.parent().width());
 	});
 </script>
-<!-- TODO: EXPLAIN THIS-->
+<!--Script to allow the popup hover function to work-->
 <script>
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
 });
 </script>
+<!--Script that allows the ladder sidebar to collapse-->	
 <script>
 $('[data-toggle=offcanvas]').click(function() {
     $('.row-offcanvas').toggleClass('active');
     $('.collapse').toggleClass('in').toggleClass('hidden-xs').toggleClass('visible-xs');
 });
 </script>
-<!-- TODO: EXPLAIN THIS-->
+<!--Script to stick the ladder to the page as you scroll and toggle the sidebar-->
 <script>
 $(document).ready(function () {
 
