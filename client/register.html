@@ -45,6 +45,9 @@
 						<input type="text" class="form-control" id="regLastName" placeholder="Last Name" ng-model="UC.regUser.lastname" required/>
 					</div>
 
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.username">
+					<p ng-cloak>{{ UC.validationErrors.username.message }}</p>
+				</div>
 		
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regUsername">Username* <span style="color:red">*</span></label>
@@ -52,8 +55,8 @@
 					</div>
 			
 
-				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.username">
-					<p ng-cloak>{{ UC.validationErrors.username.message }}</p>
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.email">
+					<p ng-cloak>{{ UC.validationErrors.email.message }}</p>
 				</div>
 	
 					<div class="col-md-12 col-xs-12 form-group">
@@ -69,8 +72,8 @@
 					</div>
 	
 
-				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.email">
-					<p ng-cloak>{{ UC.validationErrors.email.message }}</p>
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.password">
+					<p ng-cloak>{{ UC.validationErrors.password.message }}</p>
 				</div>
 		
 					<div class="col-md-12 col-xs-12 form-group">
@@ -85,8 +88,12 @@
 						<input type="password" class="form-control" id="regPasswordConf" placeholder="Confirm Password" ng-model="UC.regUser.passwordConf" required/>
 					</div>
 			
-				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.password">
-					<p ng-cloak>{{ UC.validationErrors.password.message }}</p>
+
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.dob">
+					<p ng-cloak>{{ UC.validationErrors.dob.message }}</p>
+				</div>
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.gender">
+					<p ng-cloak>{{ UC.validationErrors.gender.message }}</p>
 				</div>
 				
 					<div class="col-md-12 col-xs-12 form-group">
@@ -95,9 +102,7 @@
 					</div>
 
 			
-				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.dob">
-					<p ng-cloak>{{ UC.validationErrors.dob.message }}</p>
-				</div>
+
 		
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regGender">Gender*</label>
@@ -109,11 +114,10 @@
 						</select>
 					</div>
 		
-				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.gender">
-					<p ng-cloak>{{ UC.validationErrors.gender.message }}</p>
+
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.favouriteteam">
+					<p ng-cloak>{{ UC.validationErrors.favouriteteam.message }}</p>
 				</div>
-
-
 			
 					<div class="col-md-12 col-xs-12 form-group">
 						<label for="regTeam">Favourite AFL Team*</label>
@@ -140,18 +144,15 @@
 							<option value="Western Bulldogs">Western Bulldogs</option>
 						</select>
 					</div>
-				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.favouriteteam">
-					<p ng-cloak>{{ UC.validationErrors.favouriteteam.message }}</p>
+
+				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.check">
+					<p ng-cloak>{{ UC.validationErrors.check.message }}</p>
 				</div>
-					
+			
 					<label class="col-md-12 col-xs-12 form-check-label">
 						<input name="agree" type="checkbox" class="form-check-input" required>
 						I have read and agree to the terms and conditions
 					</label>
-					
-				<div ng-cloak class="alert alert-danger" ng-if="UC.validationErrors.check">
-					<p ng-cloak>{{ UC.validationErrors.check.message }}</p>
-				</div>
 				
 
 				<div class="col-md-12 col-xs-12" style="padding:15px;">
