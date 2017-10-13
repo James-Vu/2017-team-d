@@ -1,3 +1,4 @@
+// Package Dependancies & Variables
 var express = require("express");
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
@@ -15,44 +16,45 @@ var router = express.Router();
 // Force HTTPS
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
-    res.redirect('https://lttc.herokuapp.com'+req.url)
+  res.redirect('https://lttc.herokuapp.com'+req.url)
   else
-    next() // Continue to other routes if we're not redirecting
+  next() // Continue to other routes if we're not redirecting
 })
-// Keep the Dyno Awake
+// Keep the Heroku Dyno Awake
 var https = require("https");
 setInterval(function() {
-    https.get("https://lttc.herokuapp.com");
-    console.log("#### PINGING THE SERVER EVERY 20 MINUTES ####");
+  https.get("https://lttc.herokuapp.com");
+  console.log("#### PINGING THE SERVER EVERY 20 MINUTES ####");
 }, 1200000); // every 20 minutes (1200000)
 
-
-
+// Server port
 var port = process.env.PORT || 3000;
 
+// Middleware
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
+// Static Directories
 app.use(express.static(__dirname + "/client"));
 app.use(express.static(__dirname + '/images')); // all image assets go here
 
 // Express Session
 app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
 }));
 
-// Passport init
+// Passport session initialization
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Express Validator
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
+    var namespace = param.split('.')
+    , root    = namespace.shift()
+    , formParam = root;
 
     while(namespace.length) {
       formParam += '[' + namespace.shift() + ']';
@@ -77,7 +79,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
+// Tell the server where all our routes are & where to go when the server starts
 var router = require("./server/config/routes.js")(app, passport);
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/client/login.html');
@@ -132,9 +134,9 @@ request(url, function(error, response, html) {
         //console.log(team);
         Team.update({ teamID: teamID }, { $set: team }, callback);
 
-    		function callback (err, numAffected) {
+        function callback (err, numAffected) {
           //console.log(numAffected);
-    		}
+        }
       }
     });
   }
@@ -148,9 +150,9 @@ var odds = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
 var matchOdds = [];
 
 for(var i = 0, len = odds.length; i < len; i++) {
-	if(odds[i].Date.substring(7,9) >= 17) {
-		matchOdds.push(odds[i]);
-	}
+  if(odds[i].Date.substring(7,9) >= 17) {
+    matchOdds.push(odds[i]);
+  }
 }
 
 
@@ -201,8 +203,8 @@ function (next) {
           // another way could be useful
           //var homeScore = $(game).find('.match .team-names .home .score').text();
 
-          
-		  var match_data = {
+
+          var match_data = {
             roundNo: roundNo,
             gameNo: gameNo,
             matchDate: d,
@@ -215,58 +217,58 @@ function (next) {
             awayOdds: -1
           };
 
-		  //console.log(match);
-		  matchesToSave.push(match_data);
-		    
-		  
-		  gameNo++;
-		  game = $(game).next();
+          //console.log(match);
+          matchesToSave.push(match_data);
+
+
+          gameNo++;
+          game = $(game).next();
 
         }
       });
     }
-	if(roundNo < currentRoundNo){
-	  roundNo++;
-	  next();
-	}
-	else {
-		async.eachSeries(matchesToSave, function(m, callback) {
-			//console.log(m);
-			if(m != null) {
-				for(var i = 0, len = matchOdds.length; i < len; i++) {
-					console.log(matchOdds[i]);
-					if(matchOdds[i]['Home Team'].charAt(0) == m.homeTeamID.charAt(0) && 
-						matchOdds[i]['Away Team'].charAt(0) == m.awayTeamID.charAt(0) &&
-						matchOdds[i].Venue.charAt(0) == m.matchLocation.charAt(0) &&
-						matchOdds[i].used != true) {
-							m.homeOdds = matchOdds[i]['Home Odds'];
-							m.awayOdds = matchOdds[i]['Away Odds'];
-							matchOdds.used = true;
-					}
-				}
-			}
-			
-			
-			Match.findOne({ roundNo: m.roundNo, gameNo: m.gameNo}, function(err, doc){
-				if(err) {
-					return handleError(err);
-				}
-				else if(doc == null) {
-					var match = new Match(m);
-					match.save(function (err) {
-						if (err) return handleError(err);
-					});
-				}	
-				else {
-					Match.update({_id: doc._id}, m, function (err, res) {
-						console.log(err);
-						console.log(res);
-					});
-				}					
-			});
-			callback();
-		});
-	}
+    if(roundNo < currentRoundNo){
+      roundNo++;
+      next();
+    }
+    else {
+      async.eachSeries(matchesToSave, function(m, callback) {
+        //console.log(m);
+        if(m != null) {
+          for(var i = 0, len = matchOdds.length; i < len; i++) {
+            console.log(matchOdds[i]);
+            if(matchOdds[i]['Home Team'].charAt(0) == m.homeTeamID.charAt(0) &&
+            matchOdds[i]['Away Team'].charAt(0) == m.awayTeamID.charAt(0) &&
+            matchOdds[i].Venue.charAt(0) == m.matchLocation.charAt(0) &&
+            matchOdds[i].used != true) {
+              m.homeOdds = matchOdds[i]['Home Odds'];
+              m.awayOdds = matchOdds[i]['Away Odds'];
+              matchOdds.used = true;
+            }
+          }
+        }
+
+
+        Match.findOne({ roundNo: m.roundNo, gameNo: m.gameNo}, function(err, doc){
+          if(err) {
+            return handleError(err);
+          }
+          else if(doc == null) {
+            var match = new Match(m);
+            match.save(function (err) {
+              if (err) return handleError(err);
+            });
+          }
+          else {
+            Match.update({_id: doc._id}, m, function (err, res) {
+              console.log(err);
+              console.log(res);
+            });
+          }
+        });
+        callback();
+      });
+    }
 
   })
 },
@@ -274,8 +276,7 @@ function (err) {
 
 });
 
-
-
+// exposes app contents to the entire server
 module.exports = app;
 // listen on port 3000
 app.listen(port);
