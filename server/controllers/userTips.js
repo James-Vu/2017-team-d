@@ -1,21 +1,30 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
+// variables & dependancies
 var mongoose = require('mongoose');
 var UserTips = mongoose.model('UserTips');
 
 module.exports = {
   sendTips: function (req, res) {
-    //var bodyCount = Object.keys(tips).length
+    // array filled with all possible matches in the req.body
     var matchArray = [req.body.match1, req.body.match2, req.body.match3,
       req.body.match4, req.body.match5, req.body.match6,
       req.body.match7, req.body.match8, req.body.match9];
-
+    // array filled with all the possible games in the req.body
     var gameArray = [req.body.game1, req.body.game2, req.body.game3,
       req.body.game4, req.body.game5, req.body.game6,
       req.body.game7, req.body.game8, req.body.game9];
 
+      // runs for each match in the match array (up to a maximum of 9 times)
       for (var i = 0; i < matchArray.length; i++) {
+        // if the array isn't empty proceed
         if (matchArray[i] != undefined) {
+          // assign the teamName that was tipped by the user in the match
           var teamName = matchArray[i];
+          // assing the gameNo that was tipped on by the user in the match
           var gameNo = gameArray[i];
+          // create a new UserTips object with the information provided by the post request body
+          // saving the tip (UserTip) to the database.
           new UserTips({ userID: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo , teamID: teamName})
           .save(function (err) {
             if (err) {
@@ -31,6 +40,7 @@ module.exports = {
         }
 
       }
+      // Print out the entire contents of the post request body
       /*
     res.send("<p>SUCCESS, tips were sent to the server</p>" +
          "<p> username: " + req.body.username + "</p>" +
@@ -45,6 +55,7 @@ module.exports = {
          "<p> Match 8: " + req.body.match8 + "</p>" +
          "<p> Match 9: " + req.body.match9 + "</p>");
          */
+    // redirect the tipper to the tippingSubmit page.
     res.redirect("tippingSubmit.html")
 
   },

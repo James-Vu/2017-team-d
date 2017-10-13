@@ -1,17 +1,20 @@
-// Create a SMTP transport object
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
+// variables & dependancies
 var nodemailer = require('nodemailer');
 var mongoose = require("mongoose");
-var User = mongoose.model("User");
+var User = mongoose.model("User"); // User Model
 
 module.exports = {
-  // This function sends broadcasts, useful for customized emails from an admin.
-  // eg. "Merry Christmas USERS!"
+  // This function sends broadcasts, useful for customized emails from an admin to a user.
+  // eg. "Hello user, you have won the prize"
   sendBroadcast: function (req, res) {
     var mailman = req.body; // gets the content of the post (TO, SUBJECT, TEXT)
     console.log("TO: " + mailman.to);
     console.log("SUBJECT: " + mailman.subject);
     console.log("TEXT: " + mailman.text);
 
+    // instantiate our transporter variable, detailing its username & password
     var transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
@@ -19,14 +22,14 @@ module.exports = {
         pass: "Vanberk234"
       }
     });
-
+    // customize our message details, recipient, subject, message
     var mailOptions = {
       from: "LTTC ADMIN <lttcnoreply@gmail.com>",
       to: mailman.to, // This can be automated.
       subject: mailman.subject, // Customized
       text: mailman.text // Customized
     };
-
+    // attempt to send the email
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
         console.log(error);
@@ -49,7 +52,7 @@ module.exports = {
     });
 
     // Get ALL users in the db, send them an email
-    // TODO: CHANGE THE QUERY SO IT ONLY GETS THOSE WITH .optIN
+    // TODO: CHANGE THE QUERY SO IT ONLY GETS THOSE WITH .optIN once that is in our userModel
     User.find({}, function (err, docs) {
       if (err) {
         res.status(504);

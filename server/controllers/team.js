@@ -1,14 +1,14 @@
-// Heres where things get messy
-// We're defining all of our functions that we can perform with ---> users <---
-// You could split up teams, matches etc into seperate .js files
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
+// variables & dependancies
 var mongoose = require('mongoose');
 var Team = mongoose.model('Team');
 
-// For the purpose of a sample, we can make users.
+// For the purpose of a sample, we can make new teams.
 module.exports = {
   createTeams: function (req, res) {
-    var person = req.body;
-    new Team({ id: person.id, isEliminated: person.isEliminated })
+    var team = req.body;
+    new Team({ id: team.id, isEliminated: team.isEliminated })
       .save(function (err) {
         if (err) {
           res.status(504);
@@ -20,7 +20,6 @@ module.exports = {
       });
   },
 // This allows us to see all teams
-// parameters = request, response, next(unsure about this one)
 // we query the team model and find all
 // some error handling is done
 // if no errors we then run a for loop, logging all records in console.

@@ -1,12 +1,15 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
+// variables & dependancies
 var mongoose = require('mongoose');
 var Match = mongoose.model('Match');
 var app = require('../../app');
 
-// For the purpose of a sample, we can make users.
+// For the purpose of a sample, we can make matches.
 module.exports = {
   createTeams: function (req, res) {
-    var person = req.body;
-    new Match({ id: person.id, isEliminated: person.isEliminated })
+    var match = req.body;
+    new Match({ id: match.id, isEliminated: match.isEliminated })
       .save(function (err) {
         if (err) {
           res.status(504);
@@ -17,9 +20,8 @@ module.exports = {
         }
       });
   },
-// This allows us to see all teams
-// parameters = request, response, next(unsure about this one)
-// we query the team model and find all
+// This allows us to see all matches
+// we query the match model and find all
 // some error handling is done
 // if no errors we then run a for loop, logging all records in console.
   seeMatches: function (req, res, next) {
