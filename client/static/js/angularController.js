@@ -1,3 +1,6 @@
+// Authors: Andrew Kuzminsy, Luke Lo Presti
+// Version: v12
+// In this controller we do all our error handling & function passing
 logApp.controller('usersController', ['userFactory', function(userFactory){
   console.log("users controller loaded");
 
