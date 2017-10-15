@@ -20,4 +20,4 @@ Procfile - used by Heroku to find the entry point (app.js)
 
 afl.xlsx - excel spreadsheet with a collection of various AFL odds
 
-elimination algorithm - a java proof of concept of the post season qualification algorithm
+eliminationAlgorithm - a java proof of concept of the post season qualification algorithm
