@@ -144,7 +144,7 @@ request(url, function(error, response, html) {
   }
 })
 
-
+// load odds data from excel spreadsheet
 var XLSX = require('xlsx');
 var workbook = XLSX.readFile('afl.xlsx');
 var sheet_name_list = workbook.SheetNames;
@@ -205,7 +205,6 @@ function (next) {
           // another way could be useful
           //var homeScore = $(game).find('.match .team-names .home .score').text();
 
-
           var match_data = {
             roundNo: roundNo,
             gameNo: gameNo,
@@ -238,19 +237,19 @@ function (next) {
         //console.log(m);
         if(m != null) {
           for(var i = 0, len = matchOdds.length; i < len; i++) {
-            console.log(matchOdds[i]);
+            //console.log(matchOdds[i]);
             if(matchOdds[i]['Home Team'].charAt(0) == m.homeTeamID.charAt(0) &&
-            matchOdds[i]['Away Team'].charAt(0) == m.awayTeamID.charAt(0) &&
-            matchOdds[i].Venue.charAt(0) == m.matchLocation.charAt(0) &&
-            matchOdds[i].used != true) {
+				matchOdds[i]['Away Team'].charAt(0) == m.awayTeamID.charAt(0) &&
+				matchOdds[i].Venue.charAt(0) == m.matchLocation.charAt(0) &&
+				matchOdds[i].used != true) {
               m.homeOdds = matchOdds[i]['Home Odds'];
               m.awayOdds = matchOdds[i]['Away Odds'];
               matchOdds.used = true;
             }
           }
         }
-
-
+		
+		// if match exists, update it, otherwise save it to the database
         Match.findOne({ roundNo: m.roundNo, gameNo: m.gameNo}, function(err, doc){
           if(err) {
             return handleError(err);
