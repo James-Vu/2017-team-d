@@ -13,7 +13,7 @@ var jwt = require('jsonwebtoken');
 var morgan = require('morgan');
 var app = express();
 var router = express.Router();
-
+var path = require('path');
 
 // Force HTTPS
 app.get('*',function(req,res,next){
@@ -28,6 +28,7 @@ setInterval(function() {
   https.get("https://lttc.herokuapp.com");
   console.log("#### PINGING THE SERVER EVERY 20 MINUTES ####");
 }, 1200000); // every 20 minutes (1200000)
+
 
 // Server port
 var port = process.env.PORT || 3000;
@@ -50,6 +51,8 @@ app.use(session({
 // Passport session initialization
 app.use(passport.initialize());
 app.use(passport.session());
+app.set('views', path.join(__dirname, '/client'));
+app.set('view engine', 'ejs'); // set up ejs for templating
 
 // Express Validator
 app.use(expressValidator({
@@ -84,9 +87,9 @@ app.use(function (req, res, next) {
 // Tell the server where all our routes are & where to go when the server starts
 var router = require("./server/config/routes.js")(app, passport);
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/client/login.html');
+  res.render(__dirname + '/client/login.ejs', { message: req.flash('loginMessage')});
+  //res.sendFile(__dirname + '/client/register.html');
 });
-
 
 // data pulling
 var mongoose = require('mongoose');
@@ -248,7 +251,7 @@ function (next) {
             }
           }
         }
-		
+
 		// if match exists, update it, otherwise save it to the database
         Match.findOne({ roundNo: m.roundNo, gameNo: m.gameNo}, function(err, doc){
           if(err) {

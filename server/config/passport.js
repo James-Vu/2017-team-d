@@ -31,11 +31,11 @@ module.exports = function(passport) {
           if(err) throw error;
 
           if(data == null){
-            return done(null, false, {message: 'Invalid Username or Password' });
+            return done(null, false, req.flash('loginMessage', 'Invalid Username or Password')); // create the loginMessage and save it to session as flashdata
           }
             // if the user is found but the password is wrong
             if (!data.validPassword(password))
-                return done(null, false, req.flash('loginMessage', 'Wrong password.')); // create the loginMessage and save it to session as flashdata
+                return done(null, false, req.flash('loginMessage', 'Invalid Username or Password')); // create the loginMessage and save it to session as flashdata
 
             // no errors, return successful user
             return done(null, data);

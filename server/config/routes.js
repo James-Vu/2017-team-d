@@ -26,6 +26,13 @@ module.exports = function(app, passport){
   });
 
   app.post('/users', users.create);
+
+  // show the login form
+	app.get('/login', function(req, res) {
+
+		// render the page and pass in any flash data if it exists
+		res.render('login.ejs', { message: req.flash('loginMessage') });
+	});
   // process the login form
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect : '/tipping.html', // redirect to the secure profile section
