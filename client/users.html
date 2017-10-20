@@ -15,6 +15,7 @@ Version: v12
 	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> <!-- AngularJS -->
 		<script src = "js/nodeMail.js"></script> <!-- nodeMail -->
 		<script src = "js/userScript.js"></script> <!-- userScript -->
+		<script src = "js/export.js"></script> <!-- Data exporting script-->
 		<link rel="stylesheet" href="style.css"> <!-- Stylesheet -->
 	</head>
 	<!--Navbar-->
@@ -49,7 +50,11 @@ Version: v12
 </div>
 		<div class="container" style="background-color:#f2f2f2">
 			<div align = "center" class="row">
-				<div align="center" class="col-md-12 col-xs-6 table-responsive" >
+				<button type="submit" class="btn btn-primary" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+				0 6px 20px 0 rgba(0, 0, 0, 0.19);display:inline-block;margin:0;">
+				<a href="#" class="export1">Export User data into Excel as .csv</a>
+			</button>
+				<div id ="dvData1" align="center" class="col-md-12 col-xs-6 table-responsive" >
 					<br>
 					<table ng-controller="userController" class="table table-bordered" style="background-color:white;">
 						<thead>
@@ -78,7 +83,12 @@ Version: v12
 						</tbody>
 					</table>
 					</div>
-					<div align="center" class="col-md-12 col-xs-6 table-responsive" >
+					<button class="btn btn-primary" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+					0 6px 20px 0 rgba(0, 0, 0, 0.19);margin:0;">
+					<a href="#" class="export2">Export Tipping data into Excel as .csv</a>
+				</button>
+
+					<div style="margin-top:5px" id="dvData2" align="center" class="col-md-12 col-xs-6 table-responsive" >
           <table ng-controller="userTipController"  class="table table-bordered" style="background-color:white">
 						<thead>
 							<tr align="center">

@@ -67,13 +67,14 @@ app.controller("tippingController", function($scope, $http)
 	// USER SESSION CONTROLLER
 	app.controller("userLogController", function($scope, $http)
 	{
+
 		// get the url, assigning the data variable to the response from the url
 		$http.get("https://lttc.herokuapp.com/tippingUser").
 		then(function(response) {
 			$scope.data = response.data;
 		})
 
-		/*
+/*
 		// localhost version
 		$http.get("http://localhost:3000/tippingUser").
 		then(function(response) {

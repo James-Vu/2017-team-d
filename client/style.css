@@ -153,3 +153,17 @@ a[aria-expanded="true"]::before {
 	display:flex;
 	width:100%;
 }
+a.export1,
+a.export1:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  padding:0px;
+}
+a.export2,
+a.export2:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  padding:0px;
+}

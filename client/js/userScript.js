@@ -88,9 +88,9 @@ app.controller("userController", function($scope, $http)
 			then(function(response) {
 			$scope.data = response.data;
 		})
-
-		// localhost version
 /*
+		// localhost version
+
 		$http.get("http://localhost:3000/tippingUser").
 		then(function(response) {
 			$scope.data = response.data;
