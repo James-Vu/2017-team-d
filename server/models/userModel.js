@@ -51,6 +51,12 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please select a Gender"]
   },
+  userGroup: {
+    type: String
+  },
+  emailOptOut: {
+    type: Boolean
+  },
   favouriteteam: {
     type: String,
     required: [true, "Please select a Team"]
