@@ -6,6 +6,7 @@ var UserTips = mongoose.model('UserTips');
 
 module.exports = {
   sendTips: function (req, res) {
+    console.log(req.body);
     // array filled with all possible matches in the req.body
     var matchArray = [req.body.match1, req.body.match2, req.body.match3,
       req.body.match4, req.body.match5, req.body.match6,
