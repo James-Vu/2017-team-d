@@ -8,7 +8,7 @@ var mongoose = require("mongoose");
    what types they are, and what to name the collection in the db
 */
 var UserTipSchema = new mongoose.Schema({
-  userID: { type: String },
+  username: { type: String },
   roundNo: { type: Number },
   gameNo: { type: Number },
   teamID: { type: String }

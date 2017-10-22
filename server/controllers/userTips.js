@@ -25,7 +25,7 @@ module.exports = {
           var gameNo = gameArray[i];
           // create a new UserTips object with the information provided by the post request body
           // saving the tip (UserTip) to the database.
-          new UserTips({ userID: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo , teamID: teamName})
+          new UserTips({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo , teamID: teamName})
           .save(function (err) {
             if (err) {
               res.status(504);
