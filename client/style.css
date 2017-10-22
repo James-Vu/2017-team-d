@@ -1,12 +1,11 @@
 /*Authors: Andrew Kuzminsky, Luke Lo Presti, Matthew Mandile
   Version: v12*/
 .footer {
-  color: #e6e4e2;
+  color: #9d9d9d
 }
 
 .footer a, a:hover, a:active {
-  color: #9d9d9d;
-  text-decoration-style: none;
+  text-decoration none;
 }
 
 .footer a:hover {
