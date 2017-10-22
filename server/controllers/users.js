@@ -14,15 +14,15 @@ module.exports = function(){
   return {
     // REGISTER
     create: function(req, res){
-      req.body.emailOptOut: false;
+      req.body.emailOptOut = false;
 
       var userType = Math.floor((Math.random() * 2));
 
       if(userType == 0) {
-        req.body.userGroup: "odds";
+        req.body.userGroup = "odds";
       }
       else if(userType == 1) {
-        req.body.userGroup: "probability";
+        req.body.userGroup = "probability";
       }
 
       console.log(req.body);
