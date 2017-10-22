@@ -81,6 +81,7 @@ body {
 
 .navbar-inverse {
   background-color: #24292E;
+  border-bottom: 0px;
 }
 .navbar-inverse .navbar-nav > li > a,
 .navbar-brand {
@@ -89,13 +90,18 @@ body {
   line-height: 80px;
 }
 
+.navbar-inverse .navbar-nav > li > a:hover {
+  color: #e6e4e2;
+}
+
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
-  padding-top: 2.5px;
+    padding-top: 2.5px;
     line-height: 75px;
     padding-bottom:-5px;
     border-bottom: 5px solid #e6e4e2;
+    color: #e6e4e2;
 }
 
 .navbar-inverse .navbar-nav > .active > a {
