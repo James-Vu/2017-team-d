@@ -1,5 +1,12 @@
 /*Authors: Andrew Kuzminsky, Luke Lo Presti, Matthew Mandile
   Version: v12*/
+#footer {
+  color: #e6e4e2;
+}
+
+#footer < a {
+  color: #9d9d9d;
+}
 
 .checkbox label:after,
 .radio label:after {
