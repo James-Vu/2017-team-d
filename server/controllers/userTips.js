@@ -62,7 +62,7 @@ module.exports = {
   },
   // get all userTips
   seeTips: function (req, res, next) {
-    UserTips.find({}, function (err, docs) {
+    UserTips.find({}, null, { sort: {username: 1, roundNo: 1, gameNo: 1}}, function (err, docs) {
       if (err) {
         res.status(504);
         res.end(err);
