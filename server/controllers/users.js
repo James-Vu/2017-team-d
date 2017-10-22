@@ -49,7 +49,7 @@ module.exports = function(){
     },
     // Get all users in the database.
     seeUsers: function (req, res, next) {
-      User.find({}, function (err, docs) {
+      User.find({}, null, {sort: {username: 1}}, function (err, docs) {
         if (err) {
           res.status(504);
           res.end(err);
