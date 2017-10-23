@@ -91,7 +91,7 @@ $(document).ready(function () {
 				<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 			</ul>
 		</div>
-		
+
 	</div>
 </nav>
 
@@ -210,7 +210,9 @@ $(document).ready(function () {
 								<td align="center" class="col-md-3 col-xs-3" id="{{ m.awayTeam }}"><br>
 									<img ng-src="{{ m.awayTeamID }}.png" class="img-responsive" alt="{{ m.awayTeamID }}" width="100" height="150">
 									<p style="font-size:17px"><b>{{ m.awayTeamID }}</b></p>
-									<p style="font-size:17px">${{ m.awayOdds | number : 2 }}</p>
+									<span ng-controller="userLogController">
+										<p style="font-size:17px" ng-if="data.userGroup == 'odds'">${{ m.awayOdds | number : 2 }}</p>
+									</span>
 									<div class="radio">
 										<label style="font-size: 1.5em">
 											<input type="radio" name="match{{m.gameNo}}" value="{{ m.awayTeamID }}">
@@ -264,7 +266,7 @@ $(document).ready(function () {
 													<td>Loss</td>
 													<td>32pts</td>
 												</tr>
-											</table>	
+											</table>
 										</div>
 										<div class="col-md-4 col-xs-4" align="center" style="font-size:15px">
 											<p>Ladder position</p>
@@ -309,7 +311,7 @@ $(document).ready(function () {
 													<td>Win</td>
 													<td>7pts</td>
 												</tr>
-											</table>	
+											</table>
 										</div>
 									</div>
 								</td>
