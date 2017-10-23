@@ -194,7 +194,7 @@ $(document).ready(function () {
 									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
 									<span ng-controller="userLogController">
 										<p style="font-size:17px" ng-if="data.userGroup == 'odds' || data.userGroup == 'admin'">${{ m.homeOdds | number : 2 }}</p>
-										<p style="font-size:17px" ng-if="data.userGroup == 'probability' || data.userGroup == 'admin'">{{ (m.homeOdds / (m.homeOdds + m.awayOdds)) * 100 | number : 2 }}%</p>
+										<p style="font-size:17px" ng-if="data.userGroup == 'probability' || data.userGroup == 'admin'">{{ (1 / m.homeOdds) * 100 | number : 2 }}%</p>
 									</span>
 									<div class="radio">
 										<label style="font-size: 1.5em">
@@ -215,7 +215,7 @@ $(document).ready(function () {
 									<p style="font-size:17px"><b>{{ m.awayTeamID }}</b></p>
 									<span ng-controller="userLogController">
 										<p style="font-size:17px" ng-if="data.userGroup == 'odds' || data.userGroup == 'admin'">${{ m.awayOdds | number : 2 }}</p>
-										<p style="font-size:17px" ng-if="data.userGroup == 'probability' || data.userGroup == 'admin'">{{ (m.awayOdds / (m.homeOdds + m.awayOdds)) * 100 | number : 2 }}%</p>
+										<p style="font-size:17px" ng-if="data.userGroup == 'probability' || data.userGroup == 'admin'">{{ (1 / m.awayOdds) * 100 | number : 2 }}%</p>
 									</span>
 									<div class="radio">
 										<label style="font-size: 1.5em">
