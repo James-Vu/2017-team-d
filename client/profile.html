@@ -51,19 +51,34 @@ Version: v12
 			<div id="body">
 				 <div class="container" style="background-color:#e6e4e2; padding:0">
 					<div align="left" class="col-md-8 col-xs-10" style="padding:0px; margin-left:10px"></br>
-						<table>
-							<tr style="display:inline">
-								<td><h1>{{ data.username }}{{prof}} </h1></td>
-								<td><img src="{{ data.favouriteteam }}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="margin-left:10px;max-width:70px"></td>
-							</tr>
-						</table>
+						<h1 style="text-transform:uppercase;margin-top:-10px"><span class="glyphicon glyphicon-user"></span>&nbsp;{{ data.username }}</h1>
 						<p style="font-size:20px"><b>Name: </b>{{ data.firstname }} {{ data.lastname }}</p>
 						<p style="font-size:20px"><b>Email: </b>{{ data.email }}</p>
 						<p style="font-size:20px"><b>Date of Birth: </b>{{data.dob | date:"dd/MM/yyyy"}}</p>
 						<p style="font-size:20px"><b>Gender: </b>{{ data.gender }}</p>
-						<p style="font-size:20px"><b>Favourite Team: </b>{{ data.favouriteteam }}</p>
+						<p style="font-size:20px"><b>Favourite Team: </b>
+						{{ data.favouriteteam }} <img src="{{ data.favouriteteam }}.png" style="max-width:65px"></p>
+						<div ng-if="data.emailOptOut == false">
+						<p style="font-size:20px"><span style="color:green" class="glyphicon glyphicon-ok"></span>&nbsp;<b>Receiving Weekly Tipping Reminders</b></p>
+						<form method="POST" action="/emailTrue">
+							<input type="hidden" name="username" value="{{data.username}}"></input>
+							<input type="hidden" name="emailOptOut" value="{{data.emailOptOut}}"></input>
+						<button type="submit" class="btn btn-primary" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19)
+						;display:inline-block;margin-bottom:10px;">I wish to stop recieving emails</button>
+						</form>
+						</div>
+						<div ng-if="data.emailOptOut == true">
+						<form method="POST" action="/emailFalse">
+							<input type="hidden" name="username" value="{{data.username}}"></input>
+							<input type="hidden" name="emailOptOut" value="{{data.emailOptOut}}"></input>
+
+						<p style="font-size:20px"><span style="color:red" class="glyphicon glyphicon-remove"></span>&nbsp;<b>Not Receiving Weekly Tipping Reminders</b></p>
+						<button type="submit" class="btn btn-primary" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19)
+						;display:inline-block;margin-bottom:10px;">I wish to recieve emails</button>
+					</form>
 					</div>
-				<img src="Eagle-Circle.png" width="300px" style="width:175px;margin:50px"></img>
+					</div>
+					<img class="hidden-xs hidden-sm hidden-md" src="Eagle-Circle.png" style="width:20%;margin:50px"></img>
 				</div>
 			 </div>
 		 </div>

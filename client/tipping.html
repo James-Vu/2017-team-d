@@ -151,7 +151,9 @@ $(document).ready(function () {
 
 					</div>
 					<div align="right" class="col-md-6" style="padding:20px">
-						<a href="#"  data-toggle="popover" data-trigger="hover" data-placement="bottom" data-content="Choose which team you think will win each match by clicking on the circle below the team logo. Once all selections have been made, hit the submit button" class="navbar-btn hidden-xs hidden-sm hidden-md">Help?</a>
+						<a href="#"  data-toggle="popover" data-trigger="hover" data-placement="bottom"
+						data-content="Choose which team you think will win each match by clicking on the circle below the team logo. Once all selections have been made, hit the submit button"
+						class="navbar-btn hidden-xs hidden-sm hidden-md"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a>
 					</div>
 				</div>
 					<form id="tip" method="POST" action="/userTips">
@@ -190,12 +192,9 @@ $(document).ready(function () {
 							<tr>
 								<!--Left team info-->
 								<td align="center" class="col-md-3 col-xs-3" id="{{ m.homeTeam }}"><br>
-									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150"></br>
+									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
 									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
-									<span ng-controller="userLogController">
-										<p style="font-size:17px" ng-show="data.userGroup == 'odds' || data.userGroup == 'admin'"><b>Odds:</b> ${{ m.homeOdds | number : 2 }}</p>
-										<p style="font-size:17px" ng-show="data.userGroup == 'probability' || data.userGroup == 'admin'"><b>Probability:</b> {{ (1 / m.homeOdds) * 100 | number : 2 }}%</p>
-									</span>
+									<p style="font-size:17px">${{ m.homeOdds | number : 2}}</p>
 									<div class="radio">
 										<label style="font-size: 1.5em">
 											<input type="radio" name="match{{m.gameNo}}" value="{{ m.homeTeamID }}">
@@ -211,12 +210,9 @@ $(document).ready(function () {
 								</td>
 								<!--Right team info-->
 								<td align="center" class="col-md-3 col-xs-3" id="{{ m.awayTeam }}"><br>
-									<img ng-src="{{ m.awayTeamID }}.png" class="img-responsive" alt="{{ m.awayTeamID }}" width="100" height="150"></br>
+									<img ng-src="{{ m.awayTeamID }}.png" class="img-responsive" alt="{{ m.awayTeamID }}" width="100" height="150">
 									<p style="font-size:17px"><b>{{ m.awayTeamID }}</b></p>
-									<span ng-controller="userLogController">
-										<p style="font-size:17px" ng-show="data.userGroup == 'odds' || data.userGroup == 'admin'"><b>Odds:</b> ${{ m.awayOdds | number : 2 }}</p>
-										<p style="font-size:17px" ng-show="data.userGroup == 'probability' || data.userGroup == 'admin'"><b>Probability:</b> {{ (1 / m.awayOdds) * 100 | number : 2 }}%</p>
-									</span>
+									<p style="font-size:17px">${{ m.awayOdds | number : 2 }}</p>
 									<div class="radio">
 										<label style="font-size: 1.5em">
 											<input type="radio" name="match{{m.gameNo}}" value="{{ m.awayTeamID }}">
