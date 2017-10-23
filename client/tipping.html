@@ -190,11 +190,11 @@ $(document).ready(function () {
 							<tr>
 								<!--Left team info-->
 								<td align="center" class="col-md-3 col-xs-3" id="{{ m.homeTeam }}"><br>
-									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
+									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150"></br>
 									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
 									<span ng-controller="userLogController">
-										<p style="font-size:17px" ng-show="data.userGroup == 'odds' || data.userGroup == 'admin'">Odds of winning: ${{ m.homeOdds | number : 2 }}</p>
-										<p style="font-size:17px" ng-show="data.userGroup == 'probability' || data.userGroup == 'admin'">Probability of winning: {{ (1 / m.homeOdds) * 100 | number : 2 }}%</p>
+										<p style="font-size:17px" ng-show="data.userGroup == 'odds' || data.userGroup == 'admin'"><b>Odds:</b> ${{ m.homeOdds | number : 2 }}</p>
+										<p style="font-size:17px" ng-show="data.userGroup == 'probability' || data.userGroup == 'admin'"><b>Probability:</b> {{ (1 / m.homeOdds) * 100 | number : 2 }}%</p>
 									</span>
 									<div class="radio">
 										<label style="font-size: 1.5em">
