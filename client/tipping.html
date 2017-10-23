@@ -193,8 +193,8 @@ $(document).ready(function () {
 									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
 									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
 									<span ng-controller="userLogController">
-										<p style="font-size:17px" ng-if="data.userGroup == 'odds' || data.userGroup == 'admin'">${{ m.homeOdds | number : 2 }}</p>
-										<p style="font-size:17px" ng-if="data.userGroup == 'probability' || data.userGroup == 'admin'">{{ (1 / m.homeOdds) * 100 | number : 2 }}%</p>
+										<p style="font-size:17px" ng-show="data.userGroup == 'odds' || data.userGroup == 'admin'">${{ m.homeOdds | number : 2 }}</p>
+										<p style="font-size:17px" ng-show="data.userGroup == 'probability' || data.userGroup == 'admin'">{{ (1 / m.homeOdds) * 100 | number : 2 }}%</p>
 									</span>
 									<div class="radio">
 										<label style="font-size: 1.5em">
