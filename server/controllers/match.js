@@ -3,6 +3,7 @@
 // variables & dependancies
 var mongoose = require('mongoose');
 var Match = mongoose.model('Match');
+var Team = mongoose.model('Team');
 var app = require('../../app');
 
 // For the purpose of a sample, we can make matches.
@@ -34,6 +35,12 @@ module.exports = {
         for (var i = 0; i < docs.length; i++) {
          //console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
         }
+        var homeTeam = Team.find({ teamID : docs.homeTeamID });
+        var awayTeam = Team.find({ teamID : docs.awayTeamID });
+
+        docs.homeTeamName = homeTeam.teamName;
+        docs.awayTeamName = awayTeam.teamName;
+        
         res.end(JSON.stringify(docs));
       }
     });
