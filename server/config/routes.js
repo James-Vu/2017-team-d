@@ -20,13 +20,12 @@ module.exports = function(app, passport){
   console.log('routes imported');
 
   app.get('/tippingUser', function(req, res){
-    console.log("ROUTING: " + req.user.username);
-    console.log("email: " + req.user.email)
     res.send(req.user);
   });
 
   app.post('/users', users.create);
-
+  app.post('/emailTrue', users.emailOptOut);
+  app.post('/emailFalse', users.emailOptIn);
   // show the login form
 	app.get('/login', function(req, res) {
 
