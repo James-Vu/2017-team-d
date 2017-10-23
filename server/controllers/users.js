@@ -58,5 +58,36 @@ module.exports = function(){
         }
       });
     },
+    emailOptOut: function (req, res, next) {
+      console.log("username: " + req.body.username);
+      console.log("email status: " + req.body.emailOptOut);
+
+      User.findOneAndUpdate({ 'username' :  req.body.username }, { 'emailOptOut': true }, function (err, docs) {
+        if (err) {
+          res.status(504);
+          res.end(err);
+        } else {
+          console.log("Email Status: " + docs.emailOptOut);
+          res.redirect("profile.html")
+        }
+      });
+
+    },
+    emailOptIn: function (req, res, next) {
+      console.log("username: " + req.body.username);
+      console.log("email status: " + req.body.emailOptOut);
+
+      User.findOneAndUpdate({ 'username' :  req.body.username }, { 'emailOptOut': false }, function (err, docs) {
+        if (err) {
+          res.status(504);
+          res.end(err);
+        } else {
+          console.log("Email Status: " + docs.emailOptOut);
+          res.redirect("profile.html")
+
+        }
+      });
+
+    },
   }
 }();

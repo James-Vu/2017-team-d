@@ -51,9 +51,8 @@ module.exports = {
       }
     });
 
-    // Get ALL users in the db, send them an email
-    // TODO: CHANGE THE QUERY SO IT ONLY GETS THOSE WITH .optIN once that is in our userModel
-    User.find({}, function (err, docs) {
+    // Get ALL users in the db whom are opted for emails & send them an email reminder
+    User.find({ 'emailOptOut': false}, function (err, docs) {
       if (err) {
         res.status(504);
         res.end(err);
