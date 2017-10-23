@@ -64,7 +64,7 @@ module.exports = {
             from: "LTTC ADMIN <lttcnoreply@gmail.com>",
             to: docs[i].email,
             subject: 'Weekly Tipping Reminder',
-            text: 'Dont forget to tip this week!, if you already have, please ignore this message.'
+            text: 'Dont forget to tip this week!, please visit https://lttc.herokuapp.com to place your tips!. If you already have, please ignore this message.'
           };
           // Then send an email to the user.
           transporter.sendMail(mailOptions, function(error, info) {
