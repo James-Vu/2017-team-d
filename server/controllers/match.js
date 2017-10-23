@@ -35,7 +35,7 @@ module.exports = {
         for (var i = 0; i < docs.length; i++) {
          //console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
         }
-
+/*
         Team.find({ teamID : docs.homeTeamID }, function(e, r) {
           var homeTeam = r;
         });
@@ -49,7 +49,7 @@ module.exports = {
 
         docs.homeTeamName = homeTeam.teamName;
         docs.awayTeamName = awayTeam.teamName;
-
+*/
         res.end(JSON.stringify(docs));
       }
     });
