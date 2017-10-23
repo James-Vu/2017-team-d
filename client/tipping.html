@@ -212,8 +212,8 @@ $(document).ready(function () {
 									<p style="font-size:17px"><b>{{ m.awayTeamID }}</b></p>
 									<span ng-controller="userLogController">
 										{{ data.userGroup }}
-										<p style="font-size:17px" ng-if="data.userGroup == 'odds'">${{ m.awayOdds | number : 2 }}</p>
-										<p style="font-size:17px" ng-if="data.userGroup == 'probability'">${{ (m.awayOdds / (m.homeOdds + m.awayOdds)) | number : 2 }}</p>
+										<p style="font-size:17px" ng-if="data.userGroup == 'odds' || data.userGroup == 'admin'">${{ m.awayOdds | number : 2 }}</p>
+										<p style="font-size:17px" ng-if="data.userGroup == 'probability' || data.userGroup == 'admin'">${{ (m.awayOdds / (m.homeOdds + m.awayOdds)) | number : 2 }}</p>
 									</span>
 									<div class="radio">
 										<label style="font-size: 1.5em">
