@@ -33,7 +33,7 @@ module.exports = {
         res.end(err);
       } else {
         for (var i = 0; i < docs.length; i++) {
-         //console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
+         console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
 
         Team.find({ teamID : docs[i].homeTeamID }, function(e, r) {
           if (e) {
