@@ -68,7 +68,7 @@ Version: v12
 							</tr>
 						</thead>
 						<tbody>
-							<tr style="text-align:center" ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated === true && {'background-colour':'#EEEEEE'}">
+							<tr style="text-align:center" ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated === true && {'background-color':'#EEEEEE'}">
 								<td> {{ t.position }} </td>
 								<td style="padding:0px;width:65px" valign="center">
 									<img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:65px">
