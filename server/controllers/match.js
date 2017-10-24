@@ -41,6 +41,7 @@ module.exports = {
             res.status(504);
             res.end(e);
           } else {
+            console.log(r);
             console.log("SUCC");
             docs[i].homeTeamName = r.teamName;
           }
