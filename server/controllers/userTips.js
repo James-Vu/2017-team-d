@@ -26,9 +26,10 @@ module.exports = {
           var gameNo = gameArray[i];
           // create a new UserTips object with the information provided by the post request body
           // saving the tip (UserTip) to the database.
-          let userTip = new UserTips({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo, teamID: teamName});
+          var userTip = new UserTips({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo, teamID: teamName});
+          var update = { teamID: teamName };
 
-          UserTips.findOneAndUpdate({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo }, { userTip }, { upsert: true }, function(err, res) {
+          UserTips.findOneAndUpdate({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo }, { update }, { upsert: true }, function(err, res) {
             if (err) {
               res.status(504);
               res.end(err);
