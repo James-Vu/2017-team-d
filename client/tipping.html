@@ -117,10 +117,10 @@ $(document).ready(function () {
 								</tr>
 							</thead>
 							<tbody align="center">
-								<a href="#"  data-toggle="popover" data-trigger="hover" data-placement="right"
+								<tr ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated === true && {'background-color':'EEEEEE'}"
+								data-toggle="popover" data-trigger="hover" data-placement="bottom"
 								data-content="This team has been eliminated from being able to qualify for post season"
 								class="navbar-btn hidden-xs hidden-sm hidden-md">
-								<tr ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated === true && {'background-color':'EEEEEE'}">
 									<td valign="center"> {{ t.position }} </td>
 									<td style="padding:0px" valign="center">
 										<img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:65px">
@@ -135,7 +135,6 @@ $(document).ready(function () {
 									<td valign="center"> {{ t.gamesLost }} </td>
 									<td valign="center"> {{ t.points }} </td>
 								</tr>
-							</a>
 							</tbody>
 						</table>
 					</div>
@@ -157,7 +156,7 @@ $(document).ready(function () {
 					<div align="right" class="col-md-6" style="padding:20px">
 						<a href="#"  data-toggle="popover" data-trigger="hover" data-placement="bottom"
 						data-content="Choose which team you think will win each match by clicking on the circle below the team logo. Once all selections have been made, hit the submit button"
-						class="navbar-btn hidden-xs hidden-sm hidden-md"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a>
+						class="navbar-btn hidden-xs hidden-sm hidden-md">Help&nbsp;<span class="glyphicon glyphicon-question-sign"></span></a>
 					</div>
 				</div>
 					<form id="tip" method="POST" action="/userTips">
