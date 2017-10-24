@@ -36,12 +36,15 @@ module.exports = {
          //console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
         }
 
+        var homeTeam;
+        var awayTeam;
+
         Team.find({ teamID : docs.homeTeamID }, function(e, r) {
           if (e) {
             res.status(504);
             res.end(e);
           } else {
-            var homeTeam = r;
+            homeTeam = r;
           }
         });
         Team.find({ teamID : docs.awayTeamID }, function(e, r) {
@@ -49,7 +52,7 @@ module.exports = {
             res.status(504);
             res.end(e);
           } else {
-            var awayTeam = r;
+            awayTeam = r;
           }
         });
 
