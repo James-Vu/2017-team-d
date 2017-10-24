@@ -33,37 +33,9 @@ module.exports = {
         res.end(err);
       } else {
         for (var i = 0; i < docs.length; i++) {
-         console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
-
-        Team.find({ teamID : docs[i].homeTeamID }, function(e, r) {
-          if (e) {
-            console.log("FAIL");
-            res.status(504);
-            res.end(e);
-          } else {
-            console.log(r);
-            console.log("SUCC");
-            docs[i].homeTeamName = r.teamName;
-          }
-        });
-        Team.find({ teamID : docs[i].awayTeamID }, function(e, r) {
-          if (e) {
-            console.log("FAIL");
-            res.status(504);
-            res.end(e);
-          } else {
-            console.log(r);
-            console.log("SUCC");
-            docs[i].awayTeamName = r.teamName;
-          }
-        });
-      }
-
-        console.log("HERE");
-
+        }
         console.log(docs);
         res.end(JSON.stringify(docs));
-      }
     });
   },
 // This isn't used at all yet.

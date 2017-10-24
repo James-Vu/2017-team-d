@@ -193,7 +193,7 @@ $(document).ready(function () {
 								<!--Left team info-->
 								<td align="center" class="col-md-3 col-xs-3" id="{{ m.homeTeam }}"><br>
 									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
-									<p style="font-size:17px"><b>{{ m.homeTeamName }}</b></p>
+									<p style="font-size:17px"><b>{{ m.homeTeamID }}</b></p>
 									<span ng-controller="userLogController">
 										<p style="font-size:17px" ng-show="data.userGroup == 'odds' || data.userGroup == 'admin'"><b>Odds:</b> ${{ m.homeOdds | number : 2 }}</p>
 										<p style="font-size:17px" ng-show="data.userGroup == 'probability' || data.userGroup == 'admin'"><b>Probability:</b> {{ (1 / m.homeOdds) * 100 | number : 2 }}%</p>
@@ -234,7 +234,9 @@ $(document).ready(function () {
 									</button>
 									<div id="{{m.gameNo}}" class="col-md-12 col-xs-12 collapse">
 										<div class="col-md-4 col-xs-4" align="left" style="font-size:15px">
-											<p>9th</p>
+											<div ng-controller="ladderController" ng-repeat="t in teams">
+												<p ng-if="t.teamID == m.homeTeamID"> {{ t.position }} </p>
+											</div>
 											<table class="table-bordered">
 												<tr >
 													<th><b>Round</b></th>
@@ -279,7 +281,9 @@ $(document).ready(function () {
 											<p>Last 5 results</p>
 										</div>
 										<div class="col-md-4 col-xs-4" align="right" style="font-size:15px">
-											<p>3rd</p>
+											<div ng-controller="ladderController" ng-repeat="t in teams">
+												<p ng-if="t.teamID == m.awayTeamID"> {{ t.position }} </p>
+											</div>
 											<table class="table-bordered">
 												<tr >
 													<th><b>Round</b></th>
