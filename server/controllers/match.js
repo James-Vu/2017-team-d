@@ -35,21 +35,31 @@ module.exports = {
         for (var i = 0; i < docs.length; i++) {
          //console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
         }
-/*
+
         Team.find({ teamID : docs.homeTeamID }, function(e, r) {
-          var homeTeam = r;
+          if (e) {
+            res.status(504);
+            res.end(e);
+          } else {
+            var homeTeam = r;
+          }
         });
         Team.find({ teamID : docs.awayTeamID }, function(e, r) {
-          var awayTeam = r;
+          if (e) {
+            res.status(504);
+            res.end(e);
+          } else {
+            var awayTeam = r;
+          }
         });
 
         console.log("HELLO");
-        console.log(homeTeam);
-        console.log(awayTeam);
 
         docs.homeTeamName = homeTeam.teamName;
         docs.awayTeamName = awayTeam.teamName;
-*/
+
+
+        console.log(docs);
         res.end(JSON.stringify(docs));
       }
     });
