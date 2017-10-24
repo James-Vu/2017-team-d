@@ -3,6 +3,7 @@
 // variables & dependancies
 var mongoose = require('mongoose');
 var UserTips = mongoose.model('UserTips');
+async = require('async');
 
 module.exports = {
   sendTips: function (req, res) {
@@ -16,12 +17,13 @@ module.exports = {
       req.body.game4, req.body.game5, req.body.game6,
       req.body.game7, req.body.game8, req.body.game9];
 
+      int i = 0;
       // runs for each match in the match array (up to a maximum of 9 times)
-      for (var i = 0; i < matchArray.length; i++) {
+      async.eachSeries(matchArray, function(m, callback) {
         // if the array isn't empty proceed
-        if (matchArray[i] != undefined) {
+        if (m != undefined) {
           // assign the teamName that was tipped by the user in the match
-          var teamName = matchArray[i];
+          var teamName = m;
           // assing the gameNo that was tipped on by the user in the match
           var gameNo = gameArray[i];
           // create a new UserTips object with the information provided by the post request body
@@ -60,8 +62,9 @@ module.exports = {
           });
 */
         }
-
-      }
+        i++;
+        callback();
+      });
       // Print out the entire contents of the post request body
       /*
     res.send("<p>SUCCESS, tips were sent to the server</p>" +
