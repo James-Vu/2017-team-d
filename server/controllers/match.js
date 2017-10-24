@@ -36,6 +36,7 @@ module.exports = {
         }
         console.log(docs);
         res.end(JSON.stringify(docs));
+      }
     });
   },
 // This isn't used at all yet.
