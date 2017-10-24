@@ -37,19 +37,22 @@ module.exports = {
 
         Team.find({ teamID : docs[i].homeTeamID }, function(e, r) {
           if (e) {
+            console.log("FAIL");
             res.status(504);
             res.end(e);
           } else {
-            console.log(r);
+            console.log("SUCC");
             docs[i].homeTeamName = r.teamName;
           }
         });
         Team.find({ teamID : docs[i].awayTeamID }, function(e, r) {
           if (e) {
+            console.log("FAIL");
             res.status(504);
             res.end(e);
           } else {
             console.log(r);
+            console.log("SUCC");
             docs[i].awayTeamName = r.teamName;
           }
         });
