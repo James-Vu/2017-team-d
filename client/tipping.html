@@ -17,6 +17,7 @@ Version: v12
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> <!-- Bootstrap -->
 	<script src="js/ladderScript.js"></script> <!-- ladderScript -->
 	<script src="js/tippingScript.js"></script> <!-- tippingScript -->
+	<script src="js/userScript.js"></script> <!-- tippingScript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script> <!-- JQuery Scrolling -->
 	<!-- TODO: EXPLAIN THIS-->
 	<script>
@@ -190,6 +191,11 @@ $(document).ready(function () {
 					<div ng-repeat="m in matches" class="panel panel-default" align="center">
 						<table  class="table table-bordered" style="background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
 							<tr>
+								<div ng-controller="userTipController" ng-repeat="u in userTips">
+									<div ng-controller="userLogController">
+										<span ng-if="u.username == data.username"> {{ data.username }}>
+									</div>
+								</div>
 								<!--Left team info-->
 								<td align="center" class="col-md-3 col-xs-3" id="{{ m.homeTeam }}"><br>
 									<img ng-src="{{m.homeTeamID}}.png" class="img-responsive" alt="{{ m.homeTeamID }}" width="100" height="150">
