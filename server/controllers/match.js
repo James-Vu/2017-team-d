@@ -40,6 +40,7 @@ module.exports = {
             res.status(504);
             res.end(e);
           } else {
+            console.log(r);
             docs[i].homeTeamName = r.teamName;
           }
         });
@@ -48,6 +49,7 @@ module.exports = {
             res.status(504);
             res.end(e);
           } else {
+            console.log(r);
             docs[i].awayTeamName = r.teamName;
           }
         });
