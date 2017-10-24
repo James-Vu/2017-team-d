@@ -60,12 +60,15 @@ Version: v12
 								<td><b>Wins</b></td>
 								<td><b>Draws</b></td>
 								<td><b>Losses</b></td>
+								<td><b>Points For</b></td>
+								<td><b>Points Against</b></td>
 								<td><b>Percentage</b></td>
 								<td><b>Points</b></td>
+								<td><b>Is Eliminated?</b></td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr style="text-align:center" ng-repeat="t in teams | orderBy: 'position' ">
+							<tr style="text-align:center" ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated === true && {'background-colour':'#EEEEEE'}">
 								<td> {{ t.position }} </td>
 								<td style="padding:0px;width:65px" valign="center">
 									<img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:65px">
@@ -75,8 +78,12 @@ Version: v12
 								<td> {{ t.gamesWon }} </td>
 								<td> {{ t.gamesDrawn }} </td>
 								<td> {{ t.gamesLost }} </td>
+								<td> {{ t.pointsFor }} </td>
+								<td> {{ t.pointsAgainst }} </td>
 								<td> {{ t.percentage }}%</td>
 								<td> {{ t.points }} </td>
+								<td ng-if="t.isEliminated"> Yes </td>
+								<td ng-if="!t.isEliminated"> No </td>
 							</tr>
 						</tbody>
 					</table>
