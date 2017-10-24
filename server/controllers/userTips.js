@@ -26,21 +26,29 @@ module.exports = {
           var gameNo = gameArray[i];
           // create a new UserTips object with the information provided by the post request body
           // saving the tip (UserTip) to the database.
-          var userTip = new UserTips({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo, teamID: teamName});
-          var update = { teamID: teamName };
-
-          UserTips.findOneAndUpdate({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo }, { update }, { upsert: true }, function(err, res) {
-            if (err) {
-              res.status(504);
-              res.end(err);
+          var userTip = UserTips({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo, teamID: teamName})
+          UserTips.findOne({ username: req.body.username, roundNo: req.body.roundNo, gameNo: gameNo }, function(err, doc) {
+            if(err) { return handleError(err); }
+            else if(doc == null) {
+              userTip.save(function (err) {
+                if (err) {
+                  res.status(504);
+                  res.end(err);
+                }
+                else {
+                  console.log('tip saved');
+                  res.end();
+                }
+              });
             }
             else {
-              console.log('tip saved');
-              res.end();
+              userTips.update({_id: doc._id}, { teamID: teamName }, function (err, res) {
+
+              });
             }
           });
 /*
-          save(function (err) {
+          .save(function (err) {
             if (err) {
               res.status(504);
               res.end(err);
