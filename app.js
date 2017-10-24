@@ -120,7 +120,8 @@ request(url, function(error, response, html) {
         var pointsAgainst = $(children[8]).text().trim();
         var percentage = $(children[9]).text().trim();
         var points = $(children[12]).text().trim();
-        var eliminated = false;
+        var elimainted = position < 8
+
 
         var team = {
           teamID: teamID,

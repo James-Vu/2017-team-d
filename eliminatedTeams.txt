@@ -1,0 +1,17 @@
+ADEL false
+GEEL false
+RICH false
+GWS false
+SYD false
+ESS false
+WCE false
+MELB true
+WB true
+STK true
+HAW true
+COLL true
+FRE true
+NMFC true
+CARL true
+GCFC true
+BL true
