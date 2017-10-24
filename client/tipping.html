@@ -117,10 +117,7 @@ $(document).ready(function () {
 								</tr>
 							</thead>
 							<tbody align="center">
-								<tr ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated === true && {'background-color':'#EEEEEE'}"
-								data-toggle="popover" data-trigger="hover" data-placement="bottom"
-								data-content="This team has been eliminated from being able to qualify for post season"
-								class="navbar-btn hidden-xs hidden-sm hidden-md">
+								<tr ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated === true && {'background-color':'#EEEEEE'}">
 									<td valign="center"> {{ t.position }} </td>
 									<td style="padding:0px" valign="center">
 										<img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:65px">
