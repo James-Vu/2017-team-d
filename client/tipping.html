@@ -43,7 +43,7 @@ $('[data-toggle=offcanvas]').click(function() {
 $(document).ready(function () {
 
     $('#sidebar').niceScroll({
-        cursorcolor: '#53619d', // Changing the scrollbar color
+        cursorcolor: '#9d9d9d', // Changing the scrollbar color
         cursorwidth: 4, // Changing the scrollbar width
         cursorborder: 'none', // Rempving the scrollbar border
     });
@@ -100,7 +100,7 @@ $(document).ready(function () {
 
 <div class="wrapper">
 <!--Ladder sidebar-->
-<nav id="sidebar" class="hidden-xs hidden-sm hidden-md" style="position: relative; z-index:10000000;">
+<nav id="sidebar" class="hidden-xs hidden-sm hidden-md">
 		<div class="row">
 				<div align="center" style="margin-top:10px;" class="col-md-3 col-xs-4 hidden-xs hidden-sm hidden-md">
 					<div data-spy="affix" data-offset-top="100" data-offset-bottom="140">
@@ -139,7 +139,7 @@ $(document).ready(function () {
 	</nav>
 	<!--End ladder sidebar-->
 	<!--Start tipping boxes-->
-<div align="center" class="container" style="background-color:#e6e4e2;">
+<div align="center" class="container" style="background-color:#e6e4e2;position:absolute;">
 				<!--Section for all information about the match-->
 				<div ng-controller="tippingController"  class="col-md-12 col-xs-12 center-block" style="float:right">
 				<div class="col-md-12">
