@@ -35,10 +35,10 @@ Version: v12
 			<div ng-controller="userLogController" align="center" class="collapse navbar-collapse" id="navbar1">
 				<ul align="center" class="nav navbar-nav">
 					<li><a href="tipping.html">Tipping<span class="sr-only">(current)</span></a></li>
-					<li><a padding="30px" href="users.html">View Users</a></li>
+					<li ng-show="data.userGroup == 'admin'"><a padding="30px" href="users.html">View Users</a></li>
 					<li class="active"><a href="ladder.html">Ladder</a></li>
 					<li><a href="ranking.html">Ranking</a></li>
-					<li><a href="email.html">Email</a></li>
+					<li ng-show="data.userGroup == 'admin'"><a href="email.html">Email</a></li>
 					<li><a href="profile.html"><span class="glyphicon glyphicon-user"></span> {{data.username}}</a></li>
 					<li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 				</ul>
