@@ -117,7 +117,7 @@ $(document).ready(function () {
 								</tr>
 							</thead>
 							<tbody align="center">
-								<tr ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated == false && {'background-color':'green'}">
+								<tr ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated == false ? {'background-color':'green'}">
 									<td valign="center"> {{ t.position }} </td>
 									<td style="padding:0px" valign="center">
 										<img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:65px">
