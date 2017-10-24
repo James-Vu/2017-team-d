@@ -117,13 +117,13 @@ $(document).ready(function () {
 								</tr>
 							</thead>
 							<tbody align="center">
-								<tr ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated == false ? {'background-color':'green'}">
+								<tr ng-repeat="t in teams | orderBy: 'position' " ng-style="t.isEliminated == true ? {'background-color':'green'}">
 									<td valign="center"> {{ t.position }} </td>
 									<td style="padding:0px" valign="center">
 										<img ng-src="{{t.teamID}}.png" class="img-responsive" alt="{{ t.teamID }}" height="auto" style="max-width:65px">
 									</td>
 									<td valign="center">{{ t.teamID }}</td>
-									<td valign="center"> {{ t.gamesPlayed }} </td>
+									<td valign="center"> {{ t.isEliminated }} </td>
 									<td valign="center"> {{ t.gamesWon }} </td>
 									<td ng-switch="t.gamesDrawn" valign="center">
 										<span ng-switch-when="0"> - </span>
