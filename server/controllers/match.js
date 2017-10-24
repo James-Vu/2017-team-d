@@ -53,7 +53,7 @@ module.exports = {
         });
       }
 
-        console.log("HELLO");
+        console.log("HERE");
 
         console.log(docs);
         res.end(JSON.stringify(docs));
