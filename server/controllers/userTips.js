@@ -17,7 +17,7 @@ module.exports = {
       req.body.game4, req.body.game5, req.body.game6,
       req.body.game7, req.body.game8, req.body.game9];
 
-      int i = 0;
+      var i = 0;
       // runs for each match in the match array (up to a maximum of 9 times)
       async.eachSeries(matchArray, function(m, callback) {
         // if the array isn't empty proceed
