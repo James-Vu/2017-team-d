@@ -36,6 +36,8 @@ module.exports = {
          //console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
         }
 
+        console.log(docs.homeTeamID);
+        console.log(docs.awayTeamID);
         Team.find({ teamID : docs.homeTeamID }, function(e, r) {
           if (e) {
             res.status(504);
