@@ -34,32 +34,26 @@ module.exports = {
       } else {
         for (var i = 0; i < docs.length; i++) {
          //console.log('Home Team :', docs[i].homeTeamID, ', Away Team:', docs[i].awayTeamID);
-        }
 
-        console.log(docs.homeTeamID);
-        console.log(docs.awayTeamID);
-        Team.find({ teamID : docs.homeTeamID }, function(e, r) {
+        Team.find({ teamID : docs[i].homeTeamID }, function(e, r) {
           if (e) {
             res.status(504);
             res.end(e);
           } else {
-            console.log(r);
+            docs[i].homeTeamName = r.teamName;
           }
         });
-        Team.find({ teamID : docs.awayTeamID }, function(e, r) {
+        Team.find({ teamID : docs[i].awayTeamID }, function(e, r) {
           if (e) {
             res.status(504);
             res.end(e);
           } else {
-            console.log(r);
+            docs[i].awayTeamName = r.teamName;
           }
         });
+      }
 
         console.log("HELLO");
-
-        //docs.homeTeamName = homeTeam.teamName;
-        //docs.awayTeamName = awayTeam.teamName;
-
 
         console.log(docs);
         res.end(JSON.stringify(docs));
