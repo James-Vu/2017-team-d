@@ -42,7 +42,7 @@ module.exports = {
               });
             }
             else {
-              userTips.update({_id: doc._id}, { teamID: teamName }, function (err, res) {
+              UserTips.update({_id: doc._id}, { teamID: teamName }, function (err, res) {
 
               });
             }
